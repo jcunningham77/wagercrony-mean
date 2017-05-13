@@ -1,0 +1,26 @@
+{
+  "name": "wagercrony-mean",
+  "version": "0.0.1",
+  "description": "A MEAN sports betting companion application.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcunningham77/wagercrony-mean"
+  },
+  "keywords": [
+    "twitter",
+    "lists"
+  ],
+  "author": "Jeff Cunningham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcunningham77/wagercrony-mean/issues"
+  },
+  "homepage": "https://github.com/jcunningham77/wagercrony-mean#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
