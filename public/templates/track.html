@@ -1,3 +1,24 @@
 
-<h1>{{name}}</h1>
-<h1>{{controllerName}}</h1>
+<h1>Enter a Bet to Track</h1>
+<div ng-controller="ButtonsCtrl">
+    <div class="btn-group">
+        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'NHL'" ng-click="loadTeamList()">NHL</label>
+        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'MLB'" ng-click="loadTeamList()">MLB</label>
+    </div>
+    
+    <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->
+    
+    <div class="homeTeamTable" ng-show="showHomeTable">
+        <label>HomeTeam: <input ng-model="search.$"></label> <br>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td><h5>Team Name</h5></td>
+                </tr>
+                <tr ng-repeat="team in teams  | filter:search:strict">
+                    <td>{{team.name}}</td>                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
