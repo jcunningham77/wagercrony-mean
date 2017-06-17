@@ -11,41 +11,57 @@ angular.module("wagerCrony")
 
   $scope.loadTeamList = function(){
     console.log("loading team list for " + $scope.sportType);
+
+     $http.get('/api/teams/' + $scope.sportType,
+       {
+					headers:{'userAuthToken':localStorage.getItem("twitterUserToken"),
+							 'userAuthTokenSecret':localStorage.getItem("twitterUserTokenSecret")}
+				}).then(function(res){
+					console.log("in success callback after API call");
+					$scope.teams = res.data;
+					console.log($scope.teams);
+				},function(err){
+					console.log("in error callback after API call");
+					$scope.error_message = err;
+					console.log(err);
+				});
+    
+
     
 
         
-            $scope.teams = [
-                  {"name":"Anaheim Ducks"},
-                  {"name":"Arizona Coyotes"},
-                  {"name":"Boston Bruins"},
-                  {"name":"Buffalo Sabres"},
-                  {"name":"Calgary Flames"},
-                  {"name":"Carolina Hurricanes"},
-                  {"name":"Chicago Blackhawks"},
-                  {"name":"Colorado Avalanche"},
-                  {"name":"Columbus Blue Jackets"},
-                  {"name":"Dallas Stars"},
-                  {"name":"Detroit Red Wings"},
-                  {"name":"Edmonton Oilers"},
-                  {"name":"Florida Panthers"},
-                  {"name":"Los Angeles Kings"},
-                  {"name":"Minnesota Wild"},
-                  {"name":"Montreal Canadiens"},
-                  {"name":"Nashville Predators"},
-                  {"name":"New Jersey Devils"},
-                  {"name":"New York Islanders"},
-                  {"name":"New York Rangers"},
-                  {"name":"Ottawa Senators"},
-                  {"name":"Philadelphia Flyers"},
-                  {"name":"Pittsburgh Penguins"},
-                  {"name":"San Jose Sharks"},
-                  {"name":"St. Louis Blues"},
-                  {"name":"Tampa Bay Lightning"},
-                  {"name":"Toronto Maple Leafs"},
-                  {"name":"Vancouver Canucks"},
-                  {"name":"Washington Capitals"},
-                  {"name":"Winnipeg Jets"}
-                ]
+            // $scope.teams = [
+            //       {"name":"Anaheim Ducks"},
+            //       {"name":"Arizona Coyotes"},
+            //       {"name":"Boston Bruins"},
+            //       {"name":"Buffalo Sabres"},
+            //       {"name":"Calgary Flames"},
+            //       {"name":"Carolina Hurricanes"},
+            //       {"name":"Chicago Blackhawks"},
+            //       {"name":"Colorado Avalanche"},
+            //       {"name":"Columbus Blue Jackets"},
+            //       {"name":"Dallas Stars"},
+            //       {"name":"Detroit Red Wings"},
+            //       {"name":"Edmonton Oilers"},
+            //       {"name":"Florida Panthers"},
+            //       {"name":"Los Angeles Kings"},
+            //       {"name":"Minnesota Wild"},
+            //       {"name":"Montreal Canadiens"},
+            //       {"name":"Nashville Predators"},
+            //       {"name":"New Jersey Devils"},
+            //       {"name":"New York Islanders"},
+            //       {"name":"New York Rangers"},
+            //       {"name":"Ottawa Senators"},
+            //       {"name":"Philadelphia Flyers"},
+            //       {"name":"Pittsburgh Penguins"},
+            //       {"name":"San Jose Sharks"},
+            //       {"name":"St. Louis Blues"},
+            //       {"name":"Tampa Bay Lightning"},
+            //       {"name":"Toronto Maple Leafs"},
+            //       {"name":"Vancouver Canucks"},
+            //       {"name":"Washington Capitals"},
+            //       {"name":"Winnipeg Jets"}
+            //     ]
         
     
     $scope.showHomeTable = true;

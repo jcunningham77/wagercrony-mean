@@ -8,7 +8,8 @@
 
 
 app.use('/assets/',express.static(__dirname+'/public'));
-
+var teamDataController = require('./controller/teamDataController');
+teamDataController(app);
  
 
 

@@ -2,11 +2,15 @@
 <h1>Enter a Bet to Track</h1>
 <div ng-controller="ButtonsCtrl">
     <div class="btn-group">
-        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'NHL'" ng-click="loadTeamList()">NHL</label>
-        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'MLB'" ng-click="loadTeamList()">MLB</label>
+        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'nhl'" ng-click="loadTeamList()">NHL</label>
+        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'mlb'" ng-click="loadTeamList()">MLB</label>
     </div>
     
     <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->
+
+    <br/>
+    <br/><br/>
+    <br/>
     
     <div class="homeTeamTable" ng-show="showHomeTable">
         <label>HomeTeam: <input ng-model="search.$"></label> <br>
