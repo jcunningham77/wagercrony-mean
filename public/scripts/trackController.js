@@ -6,8 +6,15 @@ angular.module("wagerCrony")
   $scope.controllerName = "TrackController";
 
   $scope.sportType = "";
+  $scope.visibilityFlags = {};
+  $scope.visibilityFlags.showLeagueSelect = true;
+
+  // $scope.visibilityFlags.showHomeTable = false;
+  // $scope.visibilityFlags.showVisitingTable = false;
+  // $scope.visibilityFlags.showBet = false;
+
   
-  $scope.showHomeTable = false;
+  $scope.bet = {};
 
   $scope.loadTeamList = function(){
     console.log("loading team list for " + $scope.sportType);
@@ -25,50 +32,25 @@ angular.module("wagerCrony")
 					$scope.error_message = err;
 					console.log(err);
 				});
+  
+    $scope.visibilityFlags.showVisitingTable=true;
+    $scope.visibilityFlags.showLeagueSelect = false;
+    $scope.bet.league = $scope.sportType;
+    $scope.visibilityFlags.showBet= true;
     
 
-    
-
-        
-            // $scope.teams = [
-            //       {"name":"Anaheim Ducks"},
-            //       {"name":"Arizona Coyotes"},
-            //       {"name":"Boston Bruins"},
-            //       {"name":"Buffalo Sabres"},
-            //       {"name":"Calgary Flames"},
-            //       {"name":"Carolina Hurricanes"},
-            //       {"name":"Chicago Blackhawks"},
-            //       {"name":"Colorado Avalanche"},
-            //       {"name":"Columbus Blue Jackets"},
-            //       {"name":"Dallas Stars"},
-            //       {"name":"Detroit Red Wings"},
-            //       {"name":"Edmonton Oilers"},
-            //       {"name":"Florida Panthers"},
-            //       {"name":"Los Angeles Kings"},
-            //       {"name":"Minnesota Wild"},
-            //       {"name":"Montreal Canadiens"},
-            //       {"name":"Nashville Predators"},
-            //       {"name":"New Jersey Devils"},
-            //       {"name":"New York Islanders"},
-            //       {"name":"New York Rangers"},
-            //       {"name":"Ottawa Senators"},
-            //       {"name":"Philadelphia Flyers"},
-            //       {"name":"Pittsburgh Penguins"},
-            //       {"name":"San Jose Sharks"},
-            //       {"name":"St. Louis Blues"},
-            //       {"name":"Tampa Bay Lightning"},
-            //       {"name":"Toronto Maple Leafs"},
-            //       {"name":"Vancouver Canucks"},
-            //       {"name":"Washington Capitals"},
-            //       {"name":"Winnipeg Jets"}
-            //     ]
-        
-    
-    $scope.showHomeTable = true;
-
-
-    
   }
+
+  $scope.setDefaultEventDate = function() {
+    // $scope.dt = new Date();
+    $scope.dt = new Date();
+    $scope.bet.eventDate = new Date();
+  };  
+
+  // $scope.setHome = function(homeTeam){
+  //   console.log("in setHome, homeTeam = " + homeTeam);
+  //   $scope.bet.homeTeam = homeTeam;
+  // }
 
 
 

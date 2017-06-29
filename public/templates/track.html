@@ -1,28 +1,109 @@
 
 <h1>Enter a Bet to Track</h1>
-<div ng-controller="ButtonsCtrl">
+<div ng-controller="ButtonsCtrl" ng-show="visibilityFlags.showLeagueSelect">
     <div class="btn-group">
         <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'nhl'" ng-click="loadTeamList()">NHL</label>
         <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'mlb'" ng-click="loadTeamList()">MLB</label>
     </div>
+</div>
     
     <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->
+        <div ng-show="visibilityFlags.showBet" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bet Details</h3>
+            </div>    
+            <div class="panel-body">
+                <label>{{bet.league | uppercase}}</label><br>
+                <label ng-show="bet.visitingTeam != null">{{bet.visitingTeam}} @ {{bet.homeTeam}}</label><br>
+                <label ng-show="bet.eventDate!=null">Event Date: {{bet.eventDate| date:'shortDate'}}</label><br>
+                <label ng-show="bet.wager != null">Wager: ${{bet.wager}}</label></br>
+                <label ng-show="bet.result != null">Result: ${{bet.result}}</label><br>
+                <label class="btn btn-primary"ng-click="loadTeamList()">Save</label>
+            </div>
+        </div>
+    <br/>
 
-    <br/>
-    <br/><br/>
-    <br/>
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>   
+<div class="homeTeamTable" ng-show="visibilityFlags.showVisitingTable">
+    <label>Visiting Team: <input ng-model="search.$"></label> <br>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="2"><h5>Team Name</h5></td>
+            </tr>
+            <tr ng-repeat="team in teams  | filter:search:strict">
+                <td>{{team.name}}</td>  
+                <td>
+                    <!--<button type="button" class="btn btn-primary" ng-click="setHome(team.name)">-->
+                    <button type="button" class="btn btn-primary" ng-click="bet.visitingTeam = team.name;visibilityFlags.showHomeTable=true;visibilityFlags.showVisitingTable=false;">
+                        Select!
+                    </button>
+                </td>                    
+            </tr>
+        </tbody>
+    </table>
+</div>    
     
-    <div class="homeTeamTable" ng-show="showHomeTable">
-        <label>HomeTeam: <input ng-model="search.$"></label> <br>
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <td><h5>Team Name</h5></td>
-                </tr>
-                <tr ng-repeat="team in teams  | filter:search:strict">
-                    <td>{{team.name}}</td>                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="homeTeamTable" ng-show="visibilityFlags.showHomeTable">
+    <label>HomeTeam: <input ng-model="search.$"></label> <br>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="2"><h5>Team Name</h5></td>
+            </tr>
+            <tr ng-repeat="team in teams  | filter:search:strict">
+                <td>{{team.name}}</td>  
+                <td>
+                    <!--<button type="button" class="btn btn-primary" ng-click="setHome(team.name)">-->
+                    <button type="button" class="btn btn-primary" ng-click="bet.homeTeam = team.name;visibilityFlags.showHomeTable=false;visibilityFlags.showVisitingTable=false;visibilityFlags.showEventDateInput=true;setDefaultEventDate();">
+                        Select!
+                    </button>
+                </td>                    
+            </tr>
+        </tbody>
+    </table>
 </div>
+<div ng-controller="DatepickerPopupDemoCtrl" ng-show="visibilityFlags.showEventDateInput">
+    <div class="row">
+      <div class="col-md-6">
+        <label>Date of Event:</label>
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="bet.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showEventDateInput=false;visibilityFlags.showWagerInput=true;">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+          </span>
+
+        </p>
+      </div>
+    </div>
+</div> 
+
+<div class="wagerInput" ng-show="visibilityFlags.showWagerInput">
+    <label>Wager: <input ng-model="bet.wager"></label>
+        <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showWagerInput=false;visibilityFlags.showResultInput=true;">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+</div>
+<div class="resultInput" ng-show="visibilityFlags.showResultInput">
+    <label>Result: <input ng-model="bet.result"></label>
+        <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showResultInput=false;">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+</div>
+
