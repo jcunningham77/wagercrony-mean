@@ -22,6 +22,7 @@
   "homepage": "https://github.com/jcunningham77/wagercrony-mean#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mongoose": "^4.11.3"
   }
 }

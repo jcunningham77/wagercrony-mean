@@ -1,0 +1,18 @@
+var mongoose = require ('mongoose');
+var Schema = mongoose.Schema;
+
+var betSchema = new Schema({
+    league:String,
+    visitingTeam:String,
+    homeTeam:String,
+    gameDate: Date,
+    wager:{ type: Number, min: 0, max: 1000 },
+    result:{type:Number}
+});
+
+
+var bet = mongoose.model('bet', betSchema);
+
+module.exports = bet;
+
+
