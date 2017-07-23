@@ -41,6 +41,30 @@ angular.module("wagerCrony")
 
   }
 
+  $scope.saveBet = function(){
+      console.log("call node service to persist " + JSON.stringify($scope.bet));
+      $http.post('/api/bet/',
+      {
+        data:{
+          "league": $scope.bet.league,
+          "visitingTeam": $scope.bet.visitingTeam,
+          "homeTeam": $scope.bet.homeTeam,
+          "eventDate": $scope.bet.eventDate,
+          "wager": $scope.bet.wager,
+          "result": $scope.bet.result
+        }
+      }).then(function(res){
+        // localStorage.setItem("slug",res.data.slug);
+        
+        console.log('in success callback after persisting bet = ' + JSON.stringify(res));
+      },function(err){
+        console.log("in error callback after attempting to persist bet = " + JSON.stringify($scope.bet));
+        
+        console.log("error = " + err);
+      });
+
+  }
+
   $scope.setDefaultEventDate = function() {
     // $scope.dt = new Date();
     $scope.dt = new Date();

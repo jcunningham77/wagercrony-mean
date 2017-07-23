@@ -1,7 +1,7 @@
 var https = require('https');
-var bodyParser = require('body-parser');
 var Bet = require('../model/betModel');
 var bodyParser = require('body-parser');
+
 
 module.exports = function(app){
 
@@ -10,14 +10,16 @@ module.exports = function(app){
 
      app.post('/api/bet',function(req,res){
         console.log('in the post endpoint for bet');
-        
-        var bet = new Bet({   league:'NHL',
-                                visitingTeam:'Edmonton Oilers',
-                                homeTeam:'Los Angeles Kings',
-                                gameDate:new Date(2016,2,24),
-                                wager:100,
-                                result:-150
-                    });
+
+       
+
+        var bet = new Bet({ league:req.body.data.league,
+                            visitingTeam:req.body.data.visitingTeam,
+                            homeTeam:req.body.data.homeTeam,
+                            eventDate:new Date(req.body.data.eventDate),
+                            wager:req.body.data.wager,
+                            result:req.body.data.result
+                    });        
 
         bet.save(function(err, bet, numAffected){
             if (err){
