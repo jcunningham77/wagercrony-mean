@@ -19,20 +19,45 @@
 </div>
     
     <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->
-        <div ng-show="visibilityFlags.showBet" class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Bet Details</h3>
-            </div>    
-            <div class="panel-body">
-                <label>{{bet.league | uppercase}}</label><br>
-                <label ng-show="bet.visitingTeam != null">{{bet.visitingTeam}} @ {{bet.homeTeam}}</label><br>
-                <label ng-show="bet.eventDate!=null">Event Date: {{bet.eventDate| date:'shortDate'}}</label><br>
-                <label ng-show="bet.wager != null">Wager: ${{bet.wager}}</label></br>
-                <label ng-show="bet.result != null">Result: ${{bet.result}}</label><br>
-                <label ng-show="visibilityFlags.showSave" class="btn btn-primary" ng-click="saveBet()">Save</label>
-            </div>
+<div ng-show="visibilityFlags.showBet" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Bet Details</h3>
+    </div>    
+    <div class="panel-body">
+        <label>{{bet.league | uppercase}}</label><br>
+        <label ng-show="bet.visitingTeam != null">{{bet.visitingTeam}} @ {{bet.homeTeam}}</label><br>
+        <label ng-show="bet.eventDate!=null">Event Date: {{bet.eventDate| date:'shortDate'}}</label><br>
+        <label ng-show="bet.wager != null">Wager: ${{bet.wager}}</label></br>
+        <label ng-show="bet.result != null">Result: ${{bet.result}}</label><br>
+        <label ng-show="visibilityFlags.showSave" class="btn btn-primary" ng-click="saveBet()">Save</label>
+    </div>
+</div>
+<br/>
+
+<div ng-controller="AccordionCtrl">
+    <script type="text/ng-template" id="group-template.html">
+    <div class="panel-heading">
+      <h4 class="panel-title" style="color:#fa39c3">
+        <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+          <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+            Saved Bets
+          </span>
+        </a>
+      </h4>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="panel-body" style="text-align: right" ng-transclude></div>
+    </div>
+  </script>
+
+   <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" heading="{{bet.homeTeam}}" ng-repeat="bet in bets">
+        Hello
         </div>
-    <br/>
+    </uib-accordion>
+
+
+</div>
 
 <style>
   .full button span {
