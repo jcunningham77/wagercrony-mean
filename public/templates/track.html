@@ -1,4 +1,15 @@
 
+<div ng-controller="AlertCtrl">
+  <script type="text/ng-template" id="alert.html">
+    <div ng-transclude></div>
+  </script>
+
+  <div uib-alert ng-repeat="alert in $parent.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+
+</div>
+
+
+
 <h1>Enter a Bet to Track</h1>
 <div ng-controller="ButtonsCtrl" ng-show="visibilityFlags.showLeagueSelect">
     <div class="btn-group">

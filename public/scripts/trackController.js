@@ -16,6 +16,11 @@ angular.module("wagerCrony")
   
   $scope.bet = {};
 
+  $scope.alerts = [
+    // { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+    // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+  ];
+
   $scope.loadTeamList = function(){
     console.log("loading team list for " + $scope.sportType);
 
@@ -57,10 +62,13 @@ angular.module("wagerCrony")
         // localStorage.setItem("slug",res.data.slug);
         
         console.log('in success callback after persisting bet = ' + JSON.stringify(res));
+        $scope.alerts.push({type:'success',msg: 'Bet saved!'});
+         $scope.visibilityFlags.showBet= false;
       },function(err){
         console.log("in error callback after attempting to persist bet = " + JSON.stringify($scope.bet));
         
         console.log("error = " + err);
+        $scope.alerts.push({type:'danger',msg: 'Bet not saved!'});
       });
 
   }
