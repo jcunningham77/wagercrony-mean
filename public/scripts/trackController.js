@@ -21,6 +21,27 @@ angular.module("wagerCrony")
     // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
   ];
 
+    $scope.savedBets = [{
+                            "league": "MLB",
+                            "visitingTeam": "Phillies",
+                            "homeTeam": "Mets",
+                             "gameDate": {
+                                "$date": "2016-03-24T04:00:00.000Z"
+                            },
+                            "wager": 120,
+                            "result": 80
+                          },
+                          {
+                            "league": "MLB",
+                            "visitingTeam": "Phillies",
+                            "homeTeam": "Phillies",
+                             "gameDate": {
+                                "$date": "2016-03-24T04:00:00.000Z"
+                            },                            
+                            "wager": 100,
+                            "result": 150
+                          }];  
+
   $scope.loadTeamList = function(){
     console.log("loading team list for " + $scope.sportType);
 
@@ -42,7 +63,6 @@ angular.module("wagerCrony")
     $scope.visibilityFlags.showLeagueSelect = false;
     $scope.bet.league = $scope.sportType;
     $scope.visibilityFlags.showBet= true;
-    
 
   }
 
@@ -71,7 +91,7 @@ angular.module("wagerCrony")
         $scope.alerts.push({type:'danger',msg: 'Bet not saved!'});
       });
 
-  }
+  };
 
   $scope.setDefaultEventDate = function() {
     // $scope.dt = new Date();

@@ -1,5 +1,5 @@
 angular.module('wagerCrony').controller('AccordionCtrl', function ($scope) {
-  $scope.oneAtATime = true;
+  $scope.oneAtATime = false;
 
   $scope.groups = [
     {

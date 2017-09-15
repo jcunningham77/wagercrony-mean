@@ -10,9 +10,6 @@ module.exports = function(app){
 
      app.post('/api/bet',function(req,res){
         console.log('in the post endpoint for bet');
-
-       
-
         var bet = new Bet({ league:req.body.data.league,
                             visitingTeam:req.body.data.visitingTeam,
                             homeTeam:req.body.data.homeTeam,
@@ -32,5 +29,10 @@ module.exports = function(app){
             }
         });       
     });
+
+    app.get('/api/bets',function(req,res){
+        console.log('in the get endpoint for bet');
+
+    });    
 
 };
