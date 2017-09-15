@@ -42,6 +42,22 @@ angular.module("wagerCrony")
                             "result": 150
                           }];  
 
+    // @Scope.savedBets = 
+
+     $http.get('/api/teams/' + $scope.sportType,
+       {
+					headers:{'userAuthToken':localStorage.getItem("twitterUserToken"),
+							 'userAuthTokenSecret':localStorage.getItem("twitterUserTokenSecret")}
+				}).then(function(res){
+					console.log("in success callback after API call");
+					$scope.teams = res.data;
+					console.log($scope.teams);
+				},function(err){
+					console.log("in error callback after API call");
+					$scope.error_message = err;
+					console.log(err);
+				});    
+
   $scope.loadTeamList = function(){
     console.log("loading team list for " + $scope.sportType);
 
