@@ -33,6 +33,15 @@ module.exports = function(app){
     app.get('/api/bets',function(req,res){
         console.log('in the get endpoint for bet');
 
+        Bet.find(function (err, bets) {
+            if (err) {
+                return console.error(err);
+            } else {
+                console.log(bets);
+                res.status('200').send(bets);
+            }
+                
+        })
     });    
 
 };

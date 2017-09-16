@@ -21,37 +21,34 @@ angular.module("wagerCrony")
     // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
   ];
 
-    $scope.savedBets = [{
-                            "league": "MLB",
-                            "visitingTeam": "Phillies",
-                            "homeTeam": "Mets",
-                             "gameDate": {
-                                "$date": "2016-03-24T04:00:00.000Z"
-                            },
-                            "wager": 120,
-                            "result": 80
-                          },
-                          {
-                            "league": "MLB",
-                            "visitingTeam": "Phillies",
-                            "homeTeam": "Phillies",
-                             "gameDate": {
-                                "$date": "2016-03-24T04:00:00.000Z"
-                            },                            
-                            "wager": 100,
-                            "result": 150
-                          }];  
+    // $scope.savedBets = [{
+    //                         "league": "MLB",
+    //                         "visitingTeam": "Phillies",
+    //                         "homeTeam": "Mets",
+    //                          "gameDate": {
+    //                             "$date": "2016-03-24T04:00:00.000Z"
+    //                         },
+    //                         "wager": 120,
+    //                         "result": 80
+    //                       },
+    //                       {
+    //                         "league": "MLB",
+    //                         "visitingTeam": "Phillies",
+    //                         "homeTeam": "Phillies",
+    //                          "gameDate": {
+    //                             "$date": "2016-03-24T04:00:00.000Z"
+    //                         },                            
+    //                         "wager": 100,
+    //                         "result": 150
+    //                       }];  
 
-    // @Scope.savedBets = 
+    // // @
 
-     $http.get('/api/teams/' + $scope.sportType,
-       {
-					headers:{'userAuthToken':localStorage.getItem("twitterUserToken"),
-							 'userAuthTokenSecret':localStorage.getItem("twitterUserTokenSecret")}
-				}).then(function(res){
+     $http.get('/api/bets/',)
+        .then(function(res){
 					console.log("in success callback after API call");
-					$scope.teams = res.data;
-					console.log($scope.teams);
+					$scope.savedBets = res.data;
+					console.log($scope.savedBets);
 				},function(err){
 					console.log("in error callback after API call");
 					$scope.error_message = err;
