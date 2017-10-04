@@ -13,8 +13,10 @@ app.use('/assets/',express.static(__dirname+'/public'));
 mongoose.connect(config.getDBConnectionString());
 var teamDataController = require('./controller/teamDataController');
 var betController = require('./controller/betController');
+var authController = require('./controller/authController');
 teamDataController(app);
 betController(app);
+authController(app);
  
 
 
