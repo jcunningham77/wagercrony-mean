@@ -10,6 +10,18 @@ angular.module("wagerCrony")
   $scope.username = "";
   $scope.password = "";
 
+  $scope.alerts = [
+    
+  ];
+
+  $scope.addAlert = function() {
+    $scope.alerts.push({msg: 'Another alert!'});
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alerts.splice(index, 1);
+  };  
+
   $scope.login = function(){
     console.log('inside login function, username = ' + $scope.username + ', password = ' + $scope.password);
 
@@ -49,6 +61,8 @@ angular.module("wagerCrony")
     function handleError(res) {
 	    
 	    console.log("the error was = " + res.data.message);
+
+      $scope.alerts.push({type: 'danger',msg: res.data.message});
 	   
 	    return { success: false, message: res.data.message};
     }
