@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('loginController', function ($scope,$http) {
+.controller('loginController', function ($scope,$http, $location, dataService) {
 
   $scope.name = "Matt McMonigle";
   $scope.controllerName = "LoginController";
@@ -23,10 +23,29 @@ angular.module("wagerCrony")
   };  
 
   $scope.login = function(){
-    console.log('inside login function, username = ' + $scope.username + ', password = ' + $scope.password);
+      dataService.login($scope.username,$scope.password).then(function(response) {
+                if (response.success) {
+                
+                    console.log("LoginController.login, success response data = " + JSON.stringify(response.data));
 
-     return $http.post('/api/login/',{ "username": $scope.username, "password": $scope.password }).then(handleSuccess, handleError);
+                    // authenticationService.SetCredentials(username, password);
+                    // console.log("LoginController.login - data from response to be stored in auth:");
+                    // console.log("email:" + response.data.config.data.email);
+                    // console.log("pw:" + response.data.config.data.password);
+                    // authenticationService.SetCredentials(response.data.config.data.email, response.data.config.data.password);
+                    // vm.dataLoading = false;
 
+                    $location.path('/Track');
+                } else {
+
+                    $scope.alerts.push({type: 'danger',msg: response.message});
+                    console.log("LoginController.login, response is failure, message from Backendless = " + response.message);
+                    //TODO work on flash service for error feedback
+              // flashService.Error(response.message);
+                    // vm.password="";
+                    // vm.dataLoading = false;
+                }
+            });   
 
 
   }
@@ -55,6 +74,9 @@ angular.module("wagerCrony")
         //send back the success
         response = { success: true,data:res };
         console.log(TAG + " handleSuccess: response = " + JSON.stringify(response));
+
+
+
         return  response;
     }	
 
