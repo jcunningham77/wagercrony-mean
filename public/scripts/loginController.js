@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('loginController', function ($scope,$http, $location, dataService) {
+.controller('loginController', function ($scope,$http, $location, dataService, authenticationService) {
 
   $scope.name = "Matt McMonigle";
   $scope.controllerName = "LoginController";
@@ -27,12 +27,12 @@ angular.module("wagerCrony")
                 if (response.success) {
                 
                     console.log("LoginController.login, success response data = " + JSON.stringify(response.data));
-
-                    // authenticationService.SetCredentials(username, password);
+                    // debugger;
+                    
                     // console.log("LoginController.login - data from response to be stored in auth:");
-                    // console.log("email:" + response.data.config.data.email);
-                    // console.log("pw:" + response.data.config.data.password);
-                    // authenticationService.SetCredentials(response.data.config.data.email, response.data.config.data.password);
+                    console.log("email:" + response.data.config.data.email);
+                    console.log("pw:" + response.data.config.data.password);
+                    authenticationService.SetCredentials(response.data.config.data.email, response.data.config.data.password);
                     // vm.dataLoading = false;
 
                     $location.path('/Track');

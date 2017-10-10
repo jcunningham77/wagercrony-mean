@@ -9,12 +9,16 @@
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>    
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>      
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>  
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-cookies.min.js"></script>      
         <script type="text/javascript" src="lib/ui-bootstrap-tpls-2.5.0.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         
+		<!--this jQuery library is used for a jQuery array function declared in app.js for restricted pages-->
+		<script src="//code.jquery.com/jquery-2.0.3.min.js"></script>        
         
         <script type="text/javascript" src="scripts/app.js"></script>  
+        <!--<script type="text/javascript" src="scripts/authenticationService.js"></script>  -->
         <script type="text/javascript" src="scripts/collapseNavController.js"></script>
         <script type="text/javascript" src="scripts/buttonController.js"></script>
         <script type="text/javascript" src="scripts/datePickerPopupController.js"></script>
@@ -24,7 +28,8 @@
         <script type="text/javascript" src="scripts/picksController.js"></script>
         <script type="text/javascript" src="scripts/trackController.js"></script>
         <script type="text/javascript" src="scripts/alertController.js"></script>
-        <script type="text/javascript" src="scripts/dataService.js"></script>        
+        <script type="text/javascript" src="scripts/dataService.js"></script>    
+                      
         <script type="text/javascript" src="scripts/accordionController.js"></script>
 		    
     </head>
@@ -59,6 +64,8 @@
                     <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#!/Login">Login</a></li>
+                            <li><a ng-click="logout()" href="#Login">Logout</a></li>
+	                        <li><a href="#!/Register">Register</a></li>                            
                             <li><a href="#!/Picks">Picks</a></li>
                             <li><a href="#!/Hedge">Hedge</a></li>
                             <li><a href="#!/Track">Track</a></li>
