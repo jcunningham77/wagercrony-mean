@@ -91,13 +91,13 @@ angular.module("wagerCrony")
     }
 
 
-    function SetCredentials(username, password) {
-        var authdata = Base64.encode(username + ':' + password);
-
+    function SetCredentials(data) {
+        var authdata = Base64.encode(data.config.data.password + ':' +data.config.data.password);
+        // debugger;
         $rootScope.globals = {
             currentUser: {
-                username: username,
-                authdata: authdata
+                username: data.data.name,
+                authdata: authdata                
             }
         };
 
@@ -109,6 +109,7 @@ angular.module("wagerCrony")
     }
 
     function ClearCredentials() {
+        // debugger;
         $rootScope.globals = {};
         $cookieStore.remove('globals');
         $http.defaults.headers.common.Authorization = 'Basic';

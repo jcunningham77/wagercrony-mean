@@ -30,9 +30,9 @@ angular.module("wagerCrony")
                     // debugger;
                     
                     // console.log("LoginController.login - data from response to be stored in auth:");
-                    console.log("email:" + response.data.config.data.email);
+                    console.log("email:" + response.data.config.data.username);
                     console.log("pw:" + response.data.config.data.password);
-                    authenticationService.SetCredentials(response.data.config.data.email, response.data.config.data.password);
+                    authenticationService.SetCredentials(response.data);
                     // vm.dataLoading = false;
 
                     $location.path('/Track');

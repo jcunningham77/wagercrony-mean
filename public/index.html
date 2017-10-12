@@ -59,15 +59,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Wager Crony</a>
+                        <a class="navbar-brand" href="#">Wager Crony </a>
                     </div>
 
                     
                     <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#!/Login">Login</a></li>
-                            <li><a ng-click="logout()" href="#Login">Logout</a></li>
-	                        <li><a href="#!/Register">Register</a></li>                            
+                            <li ng-show="!globals.currentUser"><a href="#!/Login">Login</a></li>
+                            <li ng-show="globals.currentUser"><a ng-click="logout()" href="#Login">Logout</a></li>
+	                        <li ng-show="!globals.currentUser"><a href="#!/Register">Register</a></li>                            
                             <li><a href="#!/Picks">Picks</a></li>
                             <li><a href="#!/Hedge">Hedge</a></li>
                             <li><a href="#!/Track">Track</a></li>
