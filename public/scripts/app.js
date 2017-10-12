@@ -61,15 +61,6 @@ run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', 'authenticati
                 $location.path('/Login');
 						}
         });
-
-					$rootScope.logout = function(authenticationService) {
-									localStorage.clear();
-									//todo - authenticationService is not defined, fix this injection issue
-									authenticationService.ClearCredentials();
-									console.log('in logout function');
-									$location.path('/Login');
-
-					}
     }
 		
 })();
