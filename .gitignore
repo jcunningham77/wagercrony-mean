@@ -2,5 +2,5 @@ node_modules/**/*
 typings/**/*
 typings/
 jsconfig.json
-config/**
+
 .vscode/**
