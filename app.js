@@ -3,7 +3,7 @@ var config = require('./config');
 var mongoose = require('mongoose');
  
 var app =express();
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var port = 8081;
 var ip = process.env.OPENSHIFT_NODEJS_IP || 'localhost';
  
 
@@ -22,6 +22,7 @@ authController(app);
 
 console.log('ip = ' + ip);
 console.log('port = ' + port);
+console.log('hello jeff');
 app.listen(port, ip,function(){
-     console.log(new Date() + ' Server is listening on port 8080');
+     console.log(new Date() + ' Server is listening on port :' + port);
 });
