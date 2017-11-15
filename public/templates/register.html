@@ -1,0 +1,22 @@
+
+
+<h1>{{controllerName}}</h1>
+
+<div>
+  <script type="text/ng-template" id="alert.html">
+    <div ng-transclude></div>
+  </script>
+
+  <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+  
+</div>
+
+<div>
+<label>Please Enter Email Address: <input ng-model="email"></label> <br>
+<label>Password: <input ng-model="password"></label> <br>
+
+ <button type="button" class="btn btn-primary" ng-click="register();">
+                        Register New Account!
+                    </button>
+</div>
+

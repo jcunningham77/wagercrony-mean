@@ -29,7 +29,12 @@
 		    templateUrl: 'templates/hedge.html',
 		    controller: 'hedgeController'
 
-		  })          			  		  
+		  })        
+		  .when('/Register', {				
+		    templateUrl: 'templates/register.html',
+		    controller: 'registerController'
+
+		  })        			  			  		  
 		  .otherwise({ redirectTo: '/Login' });
 		})
 
