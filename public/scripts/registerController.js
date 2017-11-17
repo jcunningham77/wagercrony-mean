@@ -2,6 +2,10 @@ angular.module('wagerCrony').controller('registerController', function ($scope, 
   // debugger;
  $scope.controllerName = "RegisterController";
 
+ $scope.alerts = [
+    
+  ];
+
  $scope.register = function(){
 
         dataService.register($scope.email,$scope.password).then(function(response) {
