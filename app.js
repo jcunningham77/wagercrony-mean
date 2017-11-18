@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
  
 var app =express();
 var port = process.env.PORT|| 8081;
-var ip = process.env.IP || 'localhost';
+// var ip = process.env.IP || 'localhost';
+var ip = '0.0.0.0';
  
 
 
