@@ -3,7 +3,7 @@ var config = require('./config');
 var mongoose = require('mongoose');
  
 var app =express();
-var port = 8081;
+var port = process.env.PORT|| 8081;
 var ip = process.env.OPENSHIFT_NODEJS_IP || 'localhost';
  
 
