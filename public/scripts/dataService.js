@@ -10,15 +10,21 @@ angular.module("wagerCrony")
  
 	}
 
-    // this.register = function(user){
 
 
-    //          console.log("about to invoke Backendless register API call, first = " + user.firstName + " and last = " + user.lastName);
+    this.register = function(email,password){
 
-    //          return $http.post('/api/register/',user).then(handleSuccess, handleError);
+            var user = {
+                "email" : email,
+                "password" : password
+            }
+
+             console.log("about to invoke Backendless register API call, first = " + email + " and last = " + password);
+
+             return $http.post('/api/register/',user).then(handleSuccess, handleError);
            
 
-    // }
+    }
 
     // this.resetpassword = function(emailaddress){
 

@@ -98,8 +98,6 @@ module.exports = function(app){
    
             var user = {
                 email:req.body.email,
-                firstName:req.body.firstName,
-                lastName:req.body.lastName,
                 password:req.body.password
             }
 
@@ -107,8 +105,9 @@ module.exports = function(app){
         
             var request1 = https.request({method:'POST',
                       headers : backendlessHeaders,
-                      host:'api.backendless.com',
-                      path:'/v1/users/register'
+                      host:'api.backendless.com',                
+                      path:'/'+backendlessHeaders.applicationId+'/'+backendlessHeaders.apiKey+'/users/register'
+
                       },function(result){
                           
                           var parsed;
