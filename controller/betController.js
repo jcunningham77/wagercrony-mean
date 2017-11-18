@@ -15,7 +15,8 @@ module.exports = function(app){
                             homeTeam:req.body.data.homeTeam,
                             eventDate:new Date(req.body.data.eventDate),
                             wager:req.body.data.wager,
-                            result:req.body.data.result
+                            result:req.body.data.result,
+                            user:req.body.data.user
                     });        
 
         bet.save(function(err, bet, numAffected){
@@ -30,10 +31,10 @@ module.exports = function(app){
         });       
     });
 
-    app.get('/api/bets',function(req,res){
+    app.get('/api/bets/:user',function(req,res){
         console.log('in the get endpoint for bet');
 
-        Bet.find(function (err, bets) {
+        Bet.find({ "user": req.params.user},function (err, bets) {
             if (err) {
                 return console.error(err);
             } else {

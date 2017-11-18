@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('trackController', function ($scope, $http) {
+.controller('trackController', function ($scope, $http, $rootScope) {
 
   $scope.name = "Matt McMonigle";
   $scope.controllerName = "TrackController";
@@ -17,34 +17,12 @@ angular.module("wagerCrony")
   $scope.bet = {};
 
   $scope.alerts = [
-    // { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-    // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+   
   ];
 
-    // $scope.savedBets = [{
-    //                         "league": "MLB",
-    //                         "visitingTeam": "Phillies",
-    //                         "homeTeam": "Mets",
-    //                          "gameDate": {
-    //                             "$date": "2016-03-24T04:00:00.000Z"
-    //                         },
-    //                         "wager": 120,
-    //                         "result": 80
-    //                       },
-    //                       {
-    //                         "league": "MLB",
-    //                         "visitingTeam": "Phillies",
-    //                         "homeTeam": "Phillies",
-    //                          "gameDate": {
-    //                             "$date": "2016-03-24T04:00:00.000Z"
-    //                         },                            
-    //                         "wager": 100,
-    //                         "result": 150
-    //                       }];  
+   
 
-    // // @
-
-     $http.get('/api/bets/',)
+    $http.get('/api/bets/' + $rootScope.globals.currentUser.username,)
         .then(function(res){
 					console.log("in success callback after API call");
 					$scope.savedBets = res.data;
@@ -53,7 +31,25 @@ angular.module("wagerCrony")
 					console.log("in error callback after API call");
 					$scope.error_message = err;
 					console.log(err);
-				});    
+				});  
+
+    $scope.loadSavedBets = function(){
+           $http.get('/api/bets/' + $rootScope.globals.currentUser.username,)
+        .then(function(res){
+					console.log("in success callback after API call");
+					$scope.savedBets = res.data;
+					console.log($scope.savedBets);
+				},function(err){
+					console.log("in error callback after API call");
+					$scope.error_message = err;
+					console.log(err);
+				});  
+
+    }
+
+    
+
+  
 
   $scope.loadTeamList = function(){
     console.log("loading team list for " + $scope.sportType);
@@ -89,14 +85,18 @@ angular.module("wagerCrony")
           "homeTeam": $scope.bet.homeTeam,
           "eventDate": $scope.bet.eventDate,
           "wager": $scope.bet.wager,
-          "result": $scope.bet.result
+          "result": $scope.bet.result,
+          "user":$rootScope.globals.currentUser.username
         }
       }).then(function(res){
         // localStorage.setItem("slug",res.data.slug);
         
         console.log('in success callback after persisting bet = ' + JSON.stringify(res));
         $scope.alerts.push({type:'success',msg: 'Bet saved!'});
+        $scope.loadSavedBets();
+        $scope.visibilityFlags.showLeagueSelect = true;
          $scope.visibilityFlags.showBet= false;
+         
       },function(err){
         console.log("in error callback after attempting to persist bet = " + JSON.stringify($scope.bet));
         
