@@ -22,7 +22,7 @@ authController(app);
 
 console.log('ip = ' + ip);
 console.log('port = ' + port);
-console.log('hello jeff');
+console.log('hello jeff - troubleshooting');
 app.listen(port, ip,function(){
      console.log(new Date() + ' Server is listening on port :' + port);
 });
