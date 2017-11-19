@@ -6,8 +6,8 @@ var betSchema = new Schema({
     visitingTeam:String,
     homeTeam:String,
     eventDate: Date,
-    wager:{ type: Number, min: 0, max: 1000 },
-    result:{type:Number},
+    wager:{ type: Number, min: 0, max: 10000 },
+    result:{ type: Number, min: 0, max: 10000 },
     user:String
 });
 
