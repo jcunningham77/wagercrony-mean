@@ -22,7 +22,7 @@ angular.module('wagerCrony').controller('registerController', function ($scope, 
 
                     $location.path('/Track');
                 } else {
-                    debugger;
+                    
                     $scope.alerts.push({type: 'danger',msg: response.message});
                     console.log("registerController.login, response is failure, message from Backendless = " + response.message);
                     //TODO work on flash service for error feedback
