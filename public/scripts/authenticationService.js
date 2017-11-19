@@ -96,7 +96,8 @@ angular.module("wagerCrony")
         // debugger;
         $rootScope.globals = {
             currentUser: {
-                username: data.data.name,
+                username: data.data.email,
+                name:data.data.name,
                 authdata: authdata                
             }
         };
