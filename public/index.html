@@ -31,6 +31,7 @@
         <script type="text/javascript" src="scripts/trackController.js"></script>
         <script type="text/javascript" src="scripts/alertController.js"></script>
         <script type="text/javascript" src="scripts/registerController.js"></script>
+        <script type="text/javascript" src="scripts/adminController.js"></script>
         <script type="text/javascript" src="scripts/dataService.js"></script>    
                       
         <script type="text/javascript" src="scripts/accordionController.js"></script>
@@ -70,6 +71,7 @@
                             <li ng-show="!globals.currentUser"><a href="#!/Login">Login</a></li>
                             <li ng-show="globals.currentUser"><a ng-click="logout()" href="#Login">Logout</a></li>
 	                        <li ng-show="!globals.currentUser"><a href="#!/Register">Register</a></li>                            
+                            <li ng-show="globals.currentUser.admin"><a href="#!/Admin">Admin</a></li>                            
                             <li><a href="#!/Picks">Picks</a></li>
                             <li><a href="#!/Hedge">Hedge</a></li>
                             <li><a href="#!/Track">Track</a></li>

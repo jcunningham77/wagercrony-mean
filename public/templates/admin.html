@@ -1,3 +1,5 @@
+<h2>Hello {{globals.currentUser.name}}</h2>
+<h3>Enter a Pick to Promote</h3>
 
 <div ng-controller="AlertCtrl">
   <script type="text/ng-template" id="alert.html">
@@ -8,49 +10,28 @@
 
 </div>
 
-
-
-
-
-
-<h1>Enter a Bet to Track</h1>
 <div ng-controller="ButtonsCtrl" ng-show="visibilityFlags.showLeagueSelect">
     <div class="btn-group">
         <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'nhl'" ng-click="loadTeamList()">NHL</label>
         <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'mlb'" ng-click="loadTeamList()">MLB</label>
     </div>
 </div>
-    
-    <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->
-<div ng-show="visibilityFlags.showBet" class="panel panel-default">
+
+<div ng-show="visibilityFlags.showPick" class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Bet Details</h3>
+        <h3 class="panel-title">Pick Details</h3>
     </div>    
     <div class="panel-body">
-        <label>{{bet.league | uppercase}}</label><br>
-        <label ng-show="bet.visitingTeam != null">{{bet.visitingTeam}} @ {{bet.homeTeam}}</label><br>
-        <label ng-show="bet.eventDate!=null">Event Date: {{bet.eventDate| date:'shortDate'}}</label><br>
-        <label ng-show="bet.wager != null">Wager: ${{bet.wager}}</label></br>
-        <label ng-show="bet.result != null">Result: ${{bet.result}}</label><br>
-        <label ng-show="visibilityFlags.showSave" class="btn btn-primary" ng-click="saveBet()">Save</label>
+        <label>{{pick.league | uppercase}}</label><br>
+        <label ng-show="pick.visitingTeam != null">{{pick.visitingTeam}} @ {{pick.homeTeam}}</label><br>
+        <label ng-show="pick.eventDate!=null">Event Date: {{pick.eventDate| date:'shortDate'}}</label><br>
+        <label ng-show="visibilityFlags.showDescription">Pick comments: <input ng-model="pick.description"></label><br>
+        <label ng-show="pick.description!=null" class="btn btn-primary" ng-click="savePick()">Save</label><br>
+        
     </div>
 </div>
 <br/>
 
-
-
-<style>
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-</style>   
 <div class="homeTeamTable" ng-show="visibilityFlags.showVisitingTable">
     <label>Visiting Team: <input ng-model="search.$"></label> <br>
     <table class="table table-striped">
@@ -62,7 +43,7 @@
                 <td>{{team.name}}</td>  
                 <td>
                     <!--<button type="button" class="btn btn-primary" ng-click="setHome(team.name)">-->
-                    <button type="button" class="btn btn-primary" ng-click="bet.visitingTeam = team.name;visibilityFlags.showHomeTable=true;visibilityFlags.showVisitingTable=false;">
+                    <button type="button" class="btn btn-primary" ng-click="pick.visitingTeam = team.name;visibilityFlags.showHomeTable=true;visibilityFlags.showVisitingTable=false;">
                         Select!
                     </button>
                 </td>                    
@@ -82,7 +63,7 @@
                 <td>{{team.name}}</td>  
                 <td>
                     <!--<button type="button" class="btn btn-primary" ng-click="setHome(team.name)">-->
-                    <button type="button" class="btn btn-primary" ng-click="bet.homeTeam = team.name;visibilityFlags.showHomeTable=false;visibilityFlags.showVisitingTable=false;visibilityFlags.showEventDateInput=true;setDefaultEventDate();">
+                    <button type="button" class="btn btn-primary" ng-click="pick.homeTeam = team.name;visibilityFlags.showHomeTable=false;visibilityFlags.showVisitingTable=false;visibilityFlags.showEventDateInput=true;setDefaultEventDate();">
                         Select!
                     </button>
                 </td>                    
@@ -95,12 +76,12 @@
       <div class="col-md-6">
         <label>Date of Event:</label>
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="bet.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="pick.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()">
                     <i class="glyphicon glyphicon-calendar"></i>
             </button>
-            <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showEventDateInput=false;visibilityFlags.showWagerInput=true;">
+            <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showEventDateInput=false;visibilityFlags.showDescription=true;">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </button>
           </span>
@@ -110,26 +91,13 @@
     </div>
 </div> 
 
-<div class="wagerInput" ng-show="visibilityFlags.showWagerInput">
-    <label>Wager: <input ng-model="bet.wager"></label>
-        <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showWagerInput=false;visibilityFlags.showResultInput=true;">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-        </button>
-</div>
-<div class="resultInput" ng-show="visibilityFlags.showResultInput">
-    <label>Result: <input ng-model="bet.result"></label>
-        <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showResultInput=false;visibilityFlags.showSave=true;">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-        </button>
-</div>
-
 <div ng-controller="AccordionCtrl">
     <script type="text/ng-template" id="group-template.html">
     <div class="panel-heading">
       <h4 class="panel-title" style="color:#fa39c3">
         <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
           <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
-            Saved Bets
+            Previous Picks
           </span>
         </a>
       </h4>
@@ -140,10 +108,9 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}" ng-repeat="bet in savedBets">
-        Wager: {{bet.wager}}<br>
-        Result: {{bet.result}}<br>
+        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks">
+        Description: {{pick.description}}<br>
+        
         </div>
     </uib-accordion>
 </div>
-
