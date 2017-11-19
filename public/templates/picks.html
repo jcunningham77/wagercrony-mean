@@ -1,3 +1,25 @@
-
-<h1>{{name}}</h1>
 <h1>{{controllerName}}</h1>
+
+<div ng-controller="AccordionCtrl">
+    <script type="text/ng-template" id="group-template.html">
+    <div class="panel-heading">
+      <h4 class="panel-title" style="color:#fa39c3">
+        <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+          <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+            Previous Picks
+          </span>
+        </a>
+      </h4>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="panel-body" style="text-align: right" ng-transclude></div>
+    </div>
+  </script>
+
+   <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks">
+        Description: {{pick.description}}<br>
+        
+        </div>
+    </uib-accordion>
+</div>

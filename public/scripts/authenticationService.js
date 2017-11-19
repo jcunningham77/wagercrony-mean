@@ -98,6 +98,7 @@ angular.module("wagerCrony")
             currentUser: {
                 username: data.data.email,
                 name:data.data.name,
+                admin:data.data.admin,
                 authdata: authdata                
             }
         };

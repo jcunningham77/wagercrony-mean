@@ -34,7 +34,12 @@
 		    templateUrl: 'templates/register.html',
 		    controller: 'registerController'
 
-		  })        			  			  		  
+		  })       
+		  .when('/Admin', {				
+		    templateUrl: 'templates/admin.html',
+		    controller: 'adminController'
+
+		  })  			 			  			  		  
 		  .otherwise({ redirectTo: '/Login' });
 		})
 
