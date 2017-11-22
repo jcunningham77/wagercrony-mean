@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('wagerCrony',['ngRoute', 'ngCookies', 'ui.bootstrap','ngAnimate'])
+	angular.module('wagerCrony',['ngRoute', 'ngCookies', 'ui.bootstrap','ngAnimate', 'ngMaterial', 'ngMessages'])
     .config(function($routeProvider){
 		$routeProvider
 

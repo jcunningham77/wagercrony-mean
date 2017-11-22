@@ -1,4 +1,4 @@
-<h1>{{controllerName}}</h1>
+<h3>Please Register Your Account</h3>
 
 <div ng-controller="AlertCtrl">
   <script type="text/ng-template" id="alert.html">
@@ -9,19 +9,67 @@
   
 </div>
 
-<div class="container">
+<!--<div class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Create An Account</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" ng-model="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" ng-model="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <!--<div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>-->
+
         <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="register();">Sign in</button>
       </form>  
-</div>
+</div>-->
+
+
+
+<md-content layout-padding>
+    <form name="registerForm">
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Email Address:</label>
+          <input required name="email" type="string" ng-model="email" min="4"
+               max="30" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+          <div ng-messages="registerForm.email.$error"  multiple md-auto-hide="false">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="min">
+              You need at least 4 characters in your email. 
+            </div>
+            <div ng-message="pattern">
+              This is not a valid email format.
+            </div>
+            <div ng-message="max">
+              Your email address cannot contain over 30 characters.
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-input-container class="md-block">
+          <label>Password:</label>
+          <input required type="string" step="any" name="password" ng-model="password" min="8" max="20" />
+
+          <div ng-messages="registerForm.password.$error" multiple md-auto-hide="false">
+            <div ng-message="required">
+              You need a password.
+            </div>
+             <div ng-message="min">
+              You need at least 4 characters in your email. 
+            </div>
+            <div ng-message="max">
+              Your email address cannot contain over 30 characters.
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+          <md-button type="submit" ng-click="register();">Register</md-button>
+      </div>
+
+    </form>
+ </md-content>    
+
+
+
 

@@ -15,7 +15,7 @@ angular.module("wagerCrony")
   ];
 
   $scope.login = function(){
-      dataService.login($scope.username,$scope.password).then(function(response) {
+      dataService.login($scope.emailAddress,$scope.password).then(function(response) {
                 if (response.success) {
                 
                     console.log("LoginController.login, success response data = " + JSON.stringify(response.data));

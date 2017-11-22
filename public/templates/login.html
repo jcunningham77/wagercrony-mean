@@ -1,6 +1,6 @@
 
 
-<h1>{{controllerName}}</h1>
+<h3>Please Login</h3>
 
 <div ng-controller="AlertCtrl">
   <script type="text/ng-template" id="alert.html">
@@ -11,7 +11,7 @@
   
 </div>
 
-<div class="container">
+<!--<div class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -23,9 +23,40 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login();">Sign in</button>
-      </form>  
-</div>
+        <!--<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login();">Sign in</button>
+      </form>  -->
+<!--</div>-->
+
+ <md-content layout-padding>
+    <form name="loginForm">
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>Email Address:</label>
+          <input required name="emailAddress" ng-model="emailAddress">
+          <div ng-messages="loginForm.emailAddress.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-input-container class="md-block">
+          <label>Password:</label>
+          <input required type="string" step="any" name="password" ng-model="password" min="8"  />
+
+          <div ng-messages="loginForm.password.$error" multiple md-auto-hide="false">
+            <div ng-message="required">
+              You need a password.
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+          <md-button type="submit" ng-click="login();">Login</md-button>
+      </div>
+
+    </form>
+ </md-content>    
 
 
 
