@@ -1,6 +1,6 @@
 [
     {
-        "nhl": [
+        "NHL": [
             {"name":"Anaheim Ducks"},
             {"name":"Arizona Coyotes"},
             {"name":"Boston Bruins"},
@@ -32,7 +32,7 @@
             {"name":"Washington Capitals"},
             {"name":"Winnipeg Jets"}
         ],
-        "mlb":[
+        "MLB":[
             {"name":"Arizona Diamondbacks"},
             {"name":"Atlanta Braves"},
             {"name":"Baltimore Orioles"},

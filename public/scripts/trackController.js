@@ -20,7 +20,18 @@ angular.module("wagerCrony")
    
   ];
 
-   
+  $scope.leagues = ['MLB','NHL'];
+
+    $scope.getSelectedText = function() {
+        if ($scope.selectedLeague !== undefined) {
+          this.loadTeamList();
+        } else {
+          return "Please select an league";
+        }
+  }; 
+
+
+
 
     $http.get('/api/bets/' + $rootScope.globals.currentUser.username,)
         .then(function(res){
@@ -47,14 +58,31 @@ angular.module("wagerCrony")
 
     }
 
+    $scope.searchTermTeams;
+    $scope.clearSearchTermTeams = function() {
+      $scope.searchTermTeams = '';
+    };
+    // The md-select directive eats keydown events for some quick select
+    // logic. Since we have a search input here, we don't need that logic.
+
+    // $document.getElementById('searchTermTeamInput').on('keydown',function(ev){
+    //   ev.stopPropagation();
+    // });
+
+angular.element(document.querySelector('#searchTermTeamInput')).on('keydown',function(ev){
+  ev.stopPropagation();
+});
+
+
+
     
 
   
 
   $scope.loadTeamList = function(){
-    console.log("loading team list for " + $scope.sportType);
+    console.log("loading team list for " + $scope.selectedLeague);
 
-     $http.get('/api/teams/' + $scope.sportType,
+     $http.get('/api/teams/' + $scope.selectedLeague,
        {
 					headers:{'userAuthToken':localStorage.getItem("twitterUserToken"),
 							 'userAuthTokenSecret':localStorage.getItem("twitterUserTokenSecret")}
@@ -70,10 +98,11 @@ angular.module("wagerCrony")
   
     $scope.visibilityFlags.showVisitingTable=true;
     $scope.visibilityFlags.showLeagueSelect = false;
-    $scope.bet.league = $scope.sportType;
+    $scope.bet.league = $scope.selectedLeague;
     $scope.visibilityFlags.showBet= true;
 
   }
+
 
   $scope.saveBet = function(){
       console.log("call node service to persist " + JSON.stringify($scope.bet));
