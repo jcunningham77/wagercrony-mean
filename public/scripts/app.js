@@ -2,6 +2,58 @@
 	'use strict';
 
 	angular.module('wagerCrony',['ngRoute', 'ngCookies', 'ui.bootstrap','ngAnimate', 'ngMaterial', 'ngMessages'])
+		.directive('searchInputTextFieldSelectList',function(){
+			var controller = ['$scope','$element', function ($scope,$element) {
+          $element.find('input').on('keydown', function(ev) {
+          	ev.stopPropagation();
+      		});
+      }],
+        
+      // template = '<input id=searchTermTeamInput ng-model="searchTerm" type="search" placeholder="Search for a team.." ' +
+			// 	'class="demo-header-searchbox md-text">'
+			template = 
+
+						'<div class="md-padding" ng-cloak {{visible}}>'+
+							'<div>'+
+								'<div layout="row">'+
+									'<md-input-container>'+
+										'<label>Visiting Team</label>'+
+										'<md-select ng-model="selectedItem" '+
+											'md-on-close="clearSearchTerm()" '+
+											'data-md-container-class="selectdemoSelectHeader" '+
+											'multiple="false"> '+
+											'<md-select-header class="demo-select-header">'+
+												'<input id=searchTermTeamInput ng-model="searchTerm"'+
+													'type="search"'+
+													'placeholder="Search for a team.."'+
+													'class="demo-header-searchbox md-text">'+
+
+											'</md-select-header>'+
+											'<md-optgroup label="item">'+
+											'<md-option ng-value="item.name" ng-repeat="item in items|filter:searchTerm">{{item.name}}</md-option>'+
+											'</md-optgroup>'+
+										'</md-select>'+
+									'</md-input-container>'+
+								'</div>'+
+							'</div>'+
+						'</div>'	
+
+			return{
+				required: '^ngModel',
+				scope:{
+					
+					visible: '=',
+					label: '@',
+					items: '=',
+					selectedItem:  "=ngModel"
+
+				},
+				template: template,
+				controller: controller
+                  
+			}
+
+		})
     .config(function($routeProvider){
 		$routeProvider
 

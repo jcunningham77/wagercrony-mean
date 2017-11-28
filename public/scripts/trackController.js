@@ -69,9 +69,9 @@ angular.module("wagerCrony")
     //   ev.stopPropagation();
     // });
 
-angular.element(document.querySelector('#searchTermTeamInput')).on('keydown',function(ev){
-  ev.stopPropagation();
-});
+// angular.element(document.querySelector('#searchTermTeamInput')).on('keydown',function(ev){
+//   ev.stopPropagation();
+// });
 
 
 

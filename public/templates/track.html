@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<div class="md-padding" ng-cloak visibilityFlags.showVisitingTable>
+<!--<div class="md-padding" ng-cloak visibilityFlags.showVisitingTable>
   <div>
     <div layout="row">
       <md-input-container>
@@ -47,6 +47,7 @@
                     type="search"
                     placeholder="Search for a team.."
                     class="demo-header-searchbox md-text">
+                    <div search-input-text-field ></div>
             </md-select-header>
             <md-optgroup label="team">
                 <md-option ng-value="team.name" ng-repeat="team in teams |
@@ -56,8 +57,9 @@
       </md-input-container>
     </div>
  </div>
-</div>
+</div>-->
 
+<div search-input-text-field-select-list visible="visibilityFlags.showVisitingTable" items="teams" selectedItem="bet.visitingTeam"></div>
 
 
     
