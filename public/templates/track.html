@@ -18,13 +18,26 @@
     </div>
 </div>-->
 
-<div class="md-padding" ng-cloak ng-show="visibilityFlags.showLeagueSelect">
+<!--<div layout="row" layout-align="start" flex>
+        <md-input-container>
+            <label>Leagues</label>
+            <md-select ng-model="bet.league" md-selected-text="getSelectedText()">
+            <md-optgroup label="Leagues">
+                <md-option ng-value="league" ng-repeat="league in leagues">{{league}}</md-option>
+            </md-optgroup>
+            </md-select>
+        </md-input-container>
+</div>-->
+
+
+<div  class="md-padding" ng-cloak>
   <div>
+    <h1 class="md-title">Pick an league below</h1>
     <div layout="row">
       <md-input-container>
         <label>Leagues</label>
-        <md-select ng-model="selectedLeague" md-selected-text="getSelectedText()">
-          <md-optgroup label="Leagues">
+        <md-select ng-model="bet.league" md-selected-text="getSelectedText()">
+          <md-optgroup label="leagues">
             <md-option ng-value="league" ng-repeat="league in leagues">{{league}}</md-option>
           </md-optgroup>
         </md-select>
@@ -33,34 +46,44 @@
   </div>
 </div>
 
-<!--<div class="md-padding" ng-cloak visibilityFlags.showVisitingTable>
-  <div>
-    <div layout="row">
-      <md-input-container>
-        <label>Visiting Team</label>
-        <md-select ng-model="bet.visitingTeam"
-                   md-on-close="clearSearchTerm()"
-                   data-md-container-class="selectdemoSelectHeader"
-                   multiple="false">
-            <md-select-header class="demo-select-header">
-                <input id=searchTermTeamInput ng-model="searchTerm"
-                    type="search"
-                    placeholder="Search for a team.."
-                    class="demo-header-searchbox md-text">
-                    <div search-input-text-field ></div>
-            </md-select-header>
-            <md-optgroup label="team">
-                <md-option ng-value="team.name" ng-repeat="team in teams |
-                filter:searchTerm">{{team.name}}</md-option>
-            </md-optgroup>
-        </md-select>
-      </md-input-container>
-    </div>
- </div>
-</div>-->
+ <div layout="row" layout-align="start" flex>
+    
+        <div search-input-text-field-select-list visible="true" label='Visiting team' items="teams" bind="bet.visitingTeam" action="setVisitingTeam()"></div>
+        <div search-input-text-field-select-list visible="true" label='Home team' items="teams" bind="bet.homeTeam" action="setHomeTeam()"></div>
+    
+</div>        
 
-<div search-input-text-field-select-list visible="visibilityFlags.showVisitingTable" items="teams" selectedItem="bet.visitingTeam"></div>
 
+
+
+
+
+<div layout="row" layout-align="start" flex>
+      <md-datepicker ng-model="bet.eventDate" md-placeholder="Enter event date" ng-change="setEventDate()"></md-datepicker>
+</div>
+
+ <md-input-container class="md-block" ng-show="true">
+        <label>Wager</label>
+        <input required type="number" step="any" name="rate" ng-model="project.rate" min="1"
+               max="10000"/>
+        <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="false">
+          <div ng-message="required">
+            You've got to charge something! You can't just <b>give away</b> a Missile Defense
+            System.
+          </div>
+
+          <div ng-message="min">
+            If your bets are under $1, please use another app to record them.
+          </div>
+
+          <div ng-message="max">
+            {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
+            doubt even Bill Clinton could afford that.
+          </div>
+        </div>
+</md-input-container>               
+
+<!--<md-calendar ng-model="birthday" ng-model="bet.eventDate"></md-calendar>-->
 
     
     <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->

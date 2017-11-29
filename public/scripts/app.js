@@ -7,36 +7,41 @@
           $element.find('input').on('keydown', function(ev) {
           	ev.stopPropagation();
       		});
+
+					$scope.clearSearchTermTeams = function() {
+						$scope.searchTermTeamInput = '';
+						console.log("searchInputTextFieldSelectList directive, clearsearchTermTeams cleared.")
+					};
       }],
         
       // template = '<input id=searchTermTeamInput ng-model="searchTerm" type="search" placeholder="Search for a team.." ' +
 			// 	'class="demo-header-searchbox md-text">'
 			template = 
 
-						'<div class="md-padding" ng-cloak {{visible}}>'+
-							'<div>'+
-								'<div layout="row">'+
+						// '<div class="md-padding" ng-cloak ng-show="visible">'+
+						// 	'<div>'+
+						// 		'<div layout="row">'+
 									'<md-input-container>'+
-										'<label>Visiting Team</label>'+
+										'<label>{{label}}</label>'+
 										'<md-select ng-model="selectedItem" '+
-											'md-on-close="clearSearchTerm()" '+
+											'md-on-close="clearSearchTermTeams();action();" '+
 											'data-md-container-class="selectdemoSelectHeader" '+
 											'multiple="false"> '+
 											'<md-select-header class="demo-select-header">'+
-												'<input id=searchTermTeamInput ng-model="searchTerm"'+
+												'<input id=searchTermTeamInput ng-model="searchTermTeamInput"'+
 													'type="search"'+
 													'placeholder="Search for a team.."'+
 													'class="demo-header-searchbox md-text">'+
 
 											'</md-select-header>'+
 											'<md-optgroup label="item">'+
-											'<md-option ng-value="item.name" ng-repeat="item in items|filter:searchTerm">{{item.name}}</md-option>'+
+											'<md-option ng-value="item.name" ng-repeat="item in items|filter:searchTermTeamInput">{{item.name}}</md-option>'+
 											'</md-optgroup>'+
 										'</md-select>'+
-									'</md-input-container>'+
-								'</div>'+
-							'</div>'+
-						'</div>'	
+									'</md-input-container>'
+						// 		'</div>'+
+						// 	'</div>'+
+						// '</div>'	
 
 			return{
 				required: '^ngModel',
@@ -45,7 +50,8 @@
 					visible: '=',
 					label: '@',
 					items: '=',
-					selectedItem:  "=ngModel"
+					selectedItem:  '=bind',
+					action: "&"
 
 				},
 				template: template,

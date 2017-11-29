@@ -10,7 +10,7 @@ angular.module("wagerCrony")
   $scope.visibilityFlags.showLeagueSelect = true;
 
   // $scope.visibilityFlags.showHomeTable = false;
-  // $scope.visibilityFlags.showVisitingTable = false;
+  $scope.visibilityFlags.showVisitingTable = false;
   // $scope.visibilityFlags.showBet = false;
 
   
@@ -22,14 +22,46 @@ angular.module("wagerCrony")
 
   $scope.leagues = ['MLB','NHL'];
 
-    $scope.getSelectedText = function() {
-        if ($scope.selectedLeague !== undefined) {
-          this.loadTeamList();
-        } else {
-          return "Please select an league";
-        }
-  }; 
+  // $scope.bet.league;
 
+  //   $scope.getSelectedText = function() {
+  //       if ($scope.bet.league !== undefined) {
+  //         this.loadTeamList();
+  //         return $scope.bet.league;
+  //       } else {
+  //         return "Please select an league";
+  //       }
+  // }; 
+//  $scope.selectedItem;
+      $scope.getSelectedText = function() {
+        if ($scope.bet.league !== undefined) {
+          this.loadTeamList();
+          return $scope.bet.league;
+        } else {
+          return "Please select an item";
+        }
+};  
+
+//for the date picker - move to a directive?
+$scope.isOpen = false;
+
+// $scope.setVisitingTeam = function(){
+//   $scope.visibilityFlags.showVisitingTable = false;
+//   $scope.visibilityFlags.showHomeTable = true;
+//   console.log("trackController setVisitingTeam() invoked")
+// }
+
+// $scope.setHomeTeam = function(){
+//   $scope.visibilityFlags.showHomeTable = false;
+//   $scope.visibilityFlags.showEventDateInput=true;
+//   // this.setDefaultEventDate();
+// }
+
+$scope.setEventDate = function(){
+  $scope.visibilityFlags.showEventDateInput=false;
+  $scope.visibilityFlags.showWagerInput=true;
+
+}
 
 
 
@@ -59,9 +91,9 @@ angular.module("wagerCrony")
     }
 
     $scope.searchTermTeams;
-    $scope.clearSearchTermTeams = function() {
-      $scope.searchTermTeams = '';
-    };
+    // $scope.clearSearchTermTeams = function() {
+    //   $scope.searchTermTeams = '';
+    // };
     // The md-select directive eats keydown events for some quick select
     // logic. Since we have a search input here, we don't need that logic.
 
@@ -80,9 +112,9 @@ angular.module("wagerCrony")
   
 
   $scope.loadTeamList = function(){
-    console.log("loading team list for " + $scope.selectedLeague);
+    console.log("loading team list for " + $scope.bet.league);
 
-     $http.get('/api/teams/' + $scope.selectedLeague,
+     $http.get('/api/teams/' + $scope.bet.league,
        {
 					headers:{'userAuthToken':localStorage.getItem("twitterUserToken"),
 							 'userAuthTokenSecret':localStorage.getItem("twitterUserTokenSecret")}
@@ -98,7 +130,7 @@ angular.module("wagerCrony")
   
     $scope.visibilityFlags.showVisitingTable=true;
     $scope.visibilityFlags.showLeagueSelect = false;
-    $scope.bet.league = $scope.selectedLeague;
+    // $scope.bet.league = $scope.selectedLeague;
     $scope.visibilityFlags.showBet= true;
 
   }
