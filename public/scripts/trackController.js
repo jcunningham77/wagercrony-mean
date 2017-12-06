@@ -38,7 +38,7 @@ angular.module("wagerCrony")
           this.loadTeamList();
           return $scope.bet.league;
         } else {
-          return "Please select an item";
+          return "Please select an league...";
         }
 };  
 

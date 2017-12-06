@@ -9,185 +9,80 @@
 </div>
 
 
-
-<h1>Enter a Bet to Track</h1>
-<!--<div ng-controller="ButtonsCtrl" ng-show="visibilityFlags.showLeagueSelect">
-    <div class="btn-group">
-        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'nhl'" ng-click="loadTeamList()">NHL</label>
-        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'mlb'" ng-click="loadTeamList()">MLB</label>
-    </div>
-</div>-->
-
-<!--<div layout="row" layout-align="start" flex>
-        <md-input-container>
-            <label>Leagues</label>
-            <md-select ng-model="bet.league" md-selected-text="getSelectedText()">
-            <md-optgroup label="Leagues">
-                <md-option ng-value="league" ng-repeat="league in leagues">{{league}}</md-option>
-            </md-optgroup>
-            </md-select>
-        </md-input-container>
-</div>-->
-
-
-<div  class="md-padding" ng-cloak>
-  <div>
-    <h1 class="md-title">Pick an league below</h1>
-    <div layout="row">
-      <md-input-container>
-        <label>Leagues</label>
-        <md-select ng-model="bet.league" md-selected-text="getSelectedText()">
-          <md-optgroup label="leagues">
-            <md-option ng-value="league" ng-repeat="league in leagues">{{league}}</md-option>
-          </md-optgroup>
-        </md-select>
-      </md-input-container>
-    </div>
-  </div>
-</div>
-
- <div layout="row" layout-align="start" flex>
-    
-        <div search-input-text-field-select-list visible="true" label='Visiting team' items="teams" bind="bet.visitingTeam" action="setVisitingTeam()"></div>
-        <div search-input-text-field-select-list visible="true" label='Home team' items="teams" bind="bet.homeTeam" action="setHomeTeam()"></div>
-    
-</div>        
-
-
-
-
-
-
-<div layout="row" layout-align="start" flex>
-      <md-datepicker ng-model="bet.eventDate" md-placeholder="Enter event date" ng-change="setEventDate()"></md-datepicker>
-</div>
-
- <md-input-container class="md-block" ng-show="true">
-        <label>Wager</label>
-        <input required type="number" step="any" name="rate" ng-model="project.rate" min="1"
-               max="10000"/>
-        <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="false">
-          <div ng-message="required">
-            You've got to charge something! You can't just <b>give away</b> a Missile Defense
-            System.
-          </div>
-
-          <div ng-message="min">
-            If your bets are under $1, please use another app to record them.
-          </div>
-
-          <div ng-message="max">
-            {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
-            doubt even Bill Clinton could afford that.
-          </div>
+<div ng-cloak layout="column" layout-align="start" ng-cloak>
+    <md-content layout-padding>    
+        <h3>Enter a Bet to Track</h3>
+        <div layout="row" layout-align="start" ng-cloak>
+            <md-input-container>
+                <md-select ng-model="bet.league" md-selected-text="getSelectedText()" placeholder="League">
+                    <md-optgroup label="leagues">
+                        <md-option ng-value="league" ng-repeat="league in leagues">{{league}}</md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
         </div>
-</md-input-container>               
 
-<!--<md-calendar ng-model="birthday" ng-model="bet.eventDate"></md-calendar>-->
 
-    
-    <!--todo - check out this: https://angular-ui.github.io/bootstrap/#!#%2Ftypeahead-->
-<div ng-show="visibilityFlags.showBet" class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Bet Details</h3>
-    </div>    
-    <div class="panel-body">
-        <label>{{bet.league | uppercase}}</label><br>
-        <label ng-show="bet.visitingTeam != null">{{bet.visitingTeam}} @ {{bet.homeTeam}}</label><br>
-        <label ng-show="bet.eventDate!=null">Event Date: {{bet.eventDate| date:'shortDate'}}</label><br>
-        <label ng-show="bet.wager != null">Wager: ${{bet.wager}}</label></br>
-        <label ng-show="bet.result != null">Result: ${{bet.result}}</label><br>
-        <label ng-show="visibilityFlags.showSave" class="btn btn-primary" ng-click="saveBet()">Save</label>
-    </div>
+        <div layout="row" layout-align="start" flex> 
+                <div flex="25">
+                    <div search-input-text-field-select-list visible="true" label='Visiting team' items="teams" bind="bet.visitingTeam" action="setVisitingTeam()"></div>
+                </div>
+                <div flex="5" hide-xs hide-sm>
+                
+                </div>            
+
+                <div flex="25">
+                    <div search-input-text-field-select-list visible="true" label='Home team' items="teams" bind="bet.homeTeam" action="setHomeTeam()"></div>
+                </div>
+                <div flex="45" hide-xs hide-sm>
+                
+                </div>
+        </div>        
+        <div layout="row" layout-align="start" flex>
+            <md-input-container class="md-block">        
+                <md-datepicker ng-model="bet.eventDate" md-placeholder="Enter event date" ng-change="setEventDate()"></md-datepicker>
+            </md-input-container>
+        </div>
+
+
+        <div layout="row" layout-align="start">
+            <div>
+                <md-input-container>
+                        <label>Wager</label>
+                        <input type="number" step="any" name="wager" ng-model="bet.wager" min="1"
+                            max="10000"/>
+                        <div ng-messages="wager.$error" md-auto-hide="false">
+                            <div ng-message="min">
+                                If your bets are under $1, please use another app to record them.
+                            </div>
+                            <div ng-message="max">
+                                Max wager is $10,000.
+                            </div>
+                        </div>
+                </md-input-container>  
+            </div>  
+        </div>
+        <div layout="row" layout-align="start">
+            <div>
+                <md-input-container>
+                        <label>Result</label>
+                        <input type="number" step="any" name="result" ng-model="bet.result"
+                            max="10000"/>
+                        <div ng-messages="bet.result.$error" multiple md-auto-hide="false">
+                            <div ng-message="max">
+                                Max result is $100,000.
+                            </div>
+                        </div>
+                </md-input-container> 
+            </div>  
+        </div>
+        <div layout="row" layout-align="start">
+            <md-input-container>
+                <md-button class="md-raised md-primary" type="submit" ng-click="saveBet()">Submit</md-button>
+            </md-input-container>
+        </div>      
+    </md-content>
 </div>
-<br/>
-
-
-
-<style>
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-</style>   
-<div class="homeTeamTable" ng-show="visibilityFlags.showVisitingTable">
-    <label>Visiting Team: <input ng-model="search.$"></label> <br>
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td colspan="2"><h5>Team Name</h5></td>
-            </tr>
-            <tr ng-repeat="team in teams  | filter:search:strict">
-                <td>{{team.name}}</td>  
-                <td>
-                    <!--<button type="button" class="btn btn-primary" ng-click="setHome(team.name)">-->
-                    <button type="button" class="btn btn-primary" ng-click="bet.visitingTeam = team.name;visibilityFlags.showHomeTable=true;visibilityFlags.showVisitingTable=false;">
-                        Select!
-                    </button>
-                </td>                    
-            </tr>
-        </tbody>
-    </table>
-</div>    
-    
-<div class="homeTeamTable" ng-show="visibilityFlags.showHomeTable">
-    <label>HomeTeam: <input ng-model="search.$"></label> <br>
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td colspan="2"><h5>Team Name</h5></td>
-            </tr>
-            <tr ng-repeat="team in teams  | filter:search:strict">
-                <td>{{team.name}}</td>  
-                <td>
-                    <!--<button type="button" class="btn btn-primary" ng-click="setHome(team.name)">-->
-                    <button type="button" class="btn btn-primary" ng-click="bet.homeTeam = team.name;visibilityFlags.showHomeTable=false;visibilityFlags.showVisitingTable=false;visibilityFlags.showEventDateInput=true;setDefaultEventDate();">
-                        Select!
-                    </button>
-                </td>                    
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div ng-controller="DatepickerPopupDemoCtrl" ng-show="visibilityFlags.showEventDateInput">
-    <div class="row">
-      <div class="col-md-6">
-        <label>Date of Event:</label>
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="bet.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()">
-                    <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-            <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showEventDateInput=false;visibilityFlags.showWagerInput=true;">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-          </span>
-
-        </p>
-      </div>
-    </div>
-</div> 
-
-<div class="wagerInput" ng-show="visibilityFlags.showWagerInput">
-    <label>Wager: <input ng-model="bet.wager"></label>
-        <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showWagerInput=false;visibilityFlags.showResultInput=true;">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-        </button>
-</div>
-<div class="resultInput" ng-show="visibilityFlags.showResultInput">
-    <label>Result: <input ng-model="bet.result"></label>
-        <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showResultInput=false;visibilityFlags.showSave=true;">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-        </button>
-</div>
-
 <div ng-controller="AccordionCtrl">
     <script type="text/ng-template" id="group-template.html">
     <div class="panel-heading">
