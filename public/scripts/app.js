@@ -14,13 +14,8 @@
 					};
       }],
         
-      // template = '<input id=searchTermTeamInput ng-model="searchTerm" type="search" placeholder="Search for a team.." ' +
-			// 	'class="demo-header-searchbox md-text">'
 			template = 
 
-						// '<div class="md-padding" ng-cloak ng-show="visible">'+
-						// 	'<div>'+
-						// 		'<div layout="row">'+
 									'<md-input-container>'+
 										'<label>{{label}}</label>'+
 										'<md-select ng-model="selectedItem" '+
@@ -30,7 +25,7 @@
 											'<md-select-header class="demo-select-header">'+
 												'<input id=searchTermTeamInput ng-model="searchTermTeamInput"'+
 													'type="search"'+
-													'placeholder="Search for a team.."'+
+													'placeholder="{{label2}}"'+
 													'class="demo-header-searchbox md-text">'+
 
 											'</md-select-header>'+
@@ -39,9 +34,6 @@
 											'</md-optgroup>'+
 										'</md-select>'+
 									'</md-input-container>'
-						// 		'</div>'+
-						// 	'</div>'+
-						// '</div>'	
 
 			return{
 				required: '^ngModel',
@@ -49,6 +41,7 @@
 					
 					visible: '=',
 					label: '@',
+					label2: '@',
 					items: '=',
 					selectedItem:  '=bind',
 					action: "&"
@@ -59,6 +52,9 @@
                   
 			}
 
+		})
+		.config(function($mdThemingProvider) {
+			$mdThemingProvider.theme('default');
 		})
     .config(function($routeProvider){
 		$routeProvider
