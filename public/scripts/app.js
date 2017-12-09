@@ -53,6 +53,21 @@
 			}
 
 		})
+		.directive( 'clickNav', function ( $location ) {
+			return function ( scope, element, attrs ) {
+				var path;
+
+				attrs.$observe( 'clickNav', function (val) {
+					path = val;
+				});
+
+				element.bind( 'click', function () {
+					scope.$apply( function () {
+						$location.path( path );
+					});
+				});
+			};
+		})
 		.config(function($mdThemingProvider) {
 			$mdThemingProvider.theme('default');
 		})
@@ -119,7 +134,7 @@ run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', 'authenticati
         	console.log("current = " + current);
 					// debugger;
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/Login');

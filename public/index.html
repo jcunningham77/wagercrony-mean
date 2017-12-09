@@ -83,9 +83,9 @@
                             <li ng-show="globals.currentUser"><a ng-click="logout()" href="#Login">Logout</a></li>
 	                        <li ng-show="!globals.currentUser"><a href="#!/Register">Register</a></li>                            
                             <li ng-show="globals.currentUser.admin"><a href="#!/Admin">Admin</a></li>                            
-                            <li><a href="#!/Picks">Picks</a></li>
-                            <li><a href="#!/Hedge">Hedge</a></li>
-                            <li><a href="#!/Track">Track</a></li>
+                            <li ng-show="globals.currentUser"><a href="#!/Picks">Picks</a></li>
+                            <li ng-show="globals.currentUser"><a href="#!/Hedge">Hedge</a></li>
+                            <li ng-show="globals.currentUser"><a href="#!/Track">Track</a></li>
                             <li><a href="#!/About">About</a></li>
                             
                         </ul>

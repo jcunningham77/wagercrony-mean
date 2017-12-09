@@ -100,9 +100,10 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}" ng-repeat="bet in savedBets">
+        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}, Create Date: {{bet.createDate| date:'short'}}" " ng-repeat="bet in savedBets| orderBy:bet.createDate:reverse">
         Wager: {{bet.wager}}<br>
         Result: {{bet.result}}<br>
+        
         </div>
     </uib-accordion>
 </div>

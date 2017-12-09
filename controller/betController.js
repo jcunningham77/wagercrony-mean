@@ -15,6 +15,7 @@ module.exports = function(app){
                             visitingTeam:req.body.data.visitingTeam,
                             homeTeam:req.body.data.homeTeam,
                             eventDate:new Date(req.body.data.eventDate),
+                            createDate:Date(),
                             wager:req.body.data.wager,
                             result:req.body.data.result,
                             user:req.body.data.user
