@@ -8,7 +8,7 @@ angular.module('wagerCrony').controller('registerController', function ($scope, 
 
  $scope.register = function(){
 
-        dataService.register($scope.email,$scope.password).then(function(response) {
+        dataService.register($scope.email,$scope.password,$scope.customerName).then(function(response) {
                 if (response.success) {
                 
                     console.log("LoginController.login, success response data = " + JSON.stringify(response.data));

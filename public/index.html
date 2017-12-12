@@ -79,14 +79,15 @@
                     
                     <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                         <ul class="nav navbar-nav navbar-right">
-                            <li ng-show="!globals.currentUser"><a href="#!/Login">Login</a></li>
+                            <!-- <li ng-show="!globals.currentUser"><a href="#!/Login">Login</a></li> -->
+                            
+	                        <!-- <li ng-show="!globals.currentUser"><a href="#!/Register">Register</a></li>                             -->
+                            <li ng-show="globals.currentUser.admin"><a href="#!/Admin"><span ng-class="{'boldMenuItem':isActive('/Admin')}">Admin</span></a></li>                            
+                            <li ng-show="globals.currentUser"><a href="#!/Picks"><span ng-class="{'boldMenuItem':isActive('/Picks')}">Picks</span></a></li>
+                            <li ng-show="globals.currentUser"><a href="#!/Hedge"><span ng-class="{'boldMenuItem':isActive('/Hedge')}">Hedge</span></a></li>
+                            <li ng-show="globals.currentUser"><a href="#!/Track"><span ng-class="{'boldMenuItem':isActive('/Track')}">Track</span></a></li>
+                            <li><a href="#!/About"><span ng-class="{'boldMenuItem':isActive('/About')}">About</span></a></li>
                             <li ng-show="globals.currentUser"><a ng-click="logout()" href="#Login">Logout</a></li>
-	                        <li ng-show="!globals.currentUser"><a href="#!/Register">Register</a></li>                            
-                            <li ng-show="globals.currentUser.admin"><a href="#!/Admin">Admin</a></li>                            
-                            <li ng-show="globals.currentUser"><a href="#!/Picks">Picks</a></li>
-                            <li ng-show="globals.currentUser"><a href="#!/Hedge">Hedge</a></li>
-                            <li ng-show="globals.currentUser"><a href="#!/Track">Track</a></li>
-                            <li><a href="#!/About">About</a></li>
                             
                         </ul>
                     </div>

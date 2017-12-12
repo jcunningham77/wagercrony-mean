@@ -12,14 +12,15 @@ angular.module("wagerCrony")
 
 
 
-    this.register = function(email,password){
+    this.register = function(email,password,customerName){
 
             var user = {
                 "email" : email,
-                "password" : password
+                "password" : password,
+                "name" : customerName
             }
 
-             console.log("about to invoke Backendless register API call, first = " + email + " and last = " + password);
+             console.log("about to invoke Backendless register API call, email = " + email + " and password = " + password + ", and name = " +customerName);
 
              return $http.post('/api/register/',user).then(handleSuccess, handleError);
            

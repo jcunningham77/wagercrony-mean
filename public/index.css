@@ -6,6 +6,10 @@
   text-align: left;
   width: 100%; }
 
+  .boldMenuItem {
+    font-weight: bold;
+  }
+
 
 
   .selectdemoSelectHeader {

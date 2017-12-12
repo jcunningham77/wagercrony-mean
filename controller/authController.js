@@ -98,7 +98,8 @@ module.exports = function(app){
    
             var user = {
                 email:req.body.email,
-                password:req.body.password
+                password:req.body.password,
+                name:req.body.name
             }
 
             console.log("about to invoke Backendless registration API call, user = " + JSON.stringify(user));      

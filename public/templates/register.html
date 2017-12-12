@@ -11,6 +11,27 @@
       <div layout="column" layout-align="center">
 
           <div layout="row">
+              <div  flex="66" flex-offset="15">
+                <md-input-container class="md-block">
+                  <label>Name:</label>
+                  <input required name="customerName" type="string" ng-model="customerName" min="2"
+                      max="50" >
+                  <div ng-messages="registerForm.customerName.$error"  multiple md-auto-hide="false">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="min">
+                      You need at least 4 characters in your email. 
+                    </div>
+                    <div ng-message="max">
+                      Your name cannot contain over 50 characters.
+                    </div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div flex>             
+              </div>
+            </div>        
+
+          <div layout="row">
             <div  flex="66" flex-offset="15">
               <md-input-container class="md-block">
                 <label>Email Address:</label>
