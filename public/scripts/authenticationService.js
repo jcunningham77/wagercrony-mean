@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")	
-.factory('authenticationService', function authenticationService($rootScope,$http,$cookieStore){
+.factory('authenticationService', function authenticationService($rootScope,$http,$cookies){
 	var TAG = "authenticationService";
     var service = {};
 
@@ -106,14 +106,20 @@ angular.module("wagerCrony")
 
 
         $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-        $cookieStore.put('globals', $rootScope.globals);
-        console.log('authService, this cookie was just set:', $cookieStore.get('globals'));
+
+        var now = new Date(),
+        // this will set the expiration to 6 months
+        exp = new Date(now.getFullYear(), now.getMonth()+6, now.getDate());
+
+
+        $cookies.putObject('globals', $rootScope.globals,{expires:exp});
+        console.log('authService, this cookie was just set:', $cookies.get('globals'), 'and it will expire in ' + exp.getMonth() + '/' + exp.getDay() + '/' + exp.getFullYear() );
     }
 
     function ClearCredentials() {
         // debugger;
         $rootScope.globals = {};
-        $cookieStore.remove('globals');
+        $cookies.remove('globals');
         $http.defaults.headers.common.Authorization = 'Basic';
     }
 

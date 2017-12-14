@@ -118,11 +118,12 @@
 .run(run);
 
 
-run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', 'authenticationService'];
-	function run($rootScope, $location, $cookieStore, $http, authenticationService) {
+run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationService'];
+	function run($rootScope, $location, $cookies, $http, authenticationService) {
         // keep user logged in after page refresh
-        // debugger;
-        $rootScope.globals = $cookieStore.get('globals') || {};
+				// debugger;
+				console.log('app.js, run(), this is value of globals cookie = ', $cookies.getObject('globals'));
+        $rootScope.globals = $cookies.getObject('globals') || {};
         if ($rootScope.globals.currentUser) {
 						console.log("run - current user appears to be defined");
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line

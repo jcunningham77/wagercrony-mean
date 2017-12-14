@@ -16,6 +16,13 @@ angular.module("wagerCrony")
 
 $scope.messageOnOpen = 'Select league above...';
 
+$scope.formPopulated = $scope.bet.wager
+                          &&$scope.bet.league
+                          // &&$scope.bet.eventDate
+                          &&$scope.visitingTeam
+                          &&$scope.homeTeam
+                          &&$scope.bet.result;
+
 $scope.getSelectedText = function() {
     if ($scope.bet.league !== undefined) {
       this.loadTeamList();

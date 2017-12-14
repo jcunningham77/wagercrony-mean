@@ -15,9 +15,9 @@ angular.module("wagerCrony")
 					}
 	$scope.isActive = function (route) {
 		// debugger;
-		console.log("isActive, evaluating route " + route);
-		console.log("$location.path()= " + $location.path());
-		console.log("will return " + route === $location.path());
+		// console.log("isActive, evaluating route " + route);
+		// console.log("$location.path()= " + $location.path());
+		// console.log("will return " + route === $location.path());
 		return route === $location.path();
 	}  		
 
