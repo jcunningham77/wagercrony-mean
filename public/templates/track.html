@@ -12,7 +12,7 @@
 <div ng-cloak layout="column" layout-align="start" ng-cloak>
     <form name="trackForm">
         <md-content layout-padding>    
-            <h3>Enter a Bet to Track</h3>
+            <h3 class="md-headline">Enter a Bet to Track</h3>
             <div layout="row" layout-align="start" ng-cloak>
                 <md-input-container>
                     <md-select ng-model="bet.league" md-selected-text="getSelectedText()" placeholder="League">
@@ -51,11 +51,12 @@
                     <md-input-container class="md-block">
                             <label>Wager</label>
                             <input type="number" step="any" name="wager" ng-model="bet.wager" min="1"
-                                max="10000"/>
+                                max="10000" ng-blur="setFormPopulated()" required/>
                             <div ng-messages="trackForm.wager.$error" md-auto-hide="false">
                                 <div ng-message="min">
                                     If your bets are under $1, please use another app to record them.
                                 </div>
+                                <div ng-message="required">Wager is required.</div>
                                 <div ng-message="max">
                                     Max wager is $10,000.
                                 </div>
@@ -68,19 +69,21 @@
                     <md-input-container class="md-block">
                             <label>Result</label>
                             <input type="number" step="any" name="result" ng-model="bet.result"
-                                max="10000"/>
+                                max="10000"  ng-blur="setFormPopulated()" required/>
                             <div ng-messages="trackForm.result.$error" multiple md-auto-hide="false">
                                 <div ng-message="max">
                                     Max result is $100,000.
                                 </div>
+                                <div ng-message="required">Result is required.</div>
                             </div>
                     </md-input-container> 
                 </div>  
             </div>
             <div layout="row" layout-align="start">
                 <md-input-container>
-                    <md-button ng-disabled="{{!formPopulated}}" class="md-raised md-primary" type="submit" ng-click="saveBet()">Submit</md-button>
+                    <md-button ng-disabled="!isFormPopulated" class="md-raised md-primary" type="submit" ng-click="saveBet()">Submit</md-button>
                 </md-input-container>
+                
             </div>      
         </md-content>
     </form>
@@ -102,7 +105,7 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}, Create Date: {{bet.createDate| date:'short'}}" " ng-repeat="bet in savedBets| orderBy:bet.createDate:reverse">
+        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}, Create Date: {{bet.createDate| date:'short'}}"  ng-repeat="bet in savedBets| orderBy:bet.createDate:reverse">
         Wager: {{bet.wager}}<br>
         Result: {{bet.result}}<br>
         

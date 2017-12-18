@@ -16,6 +16,21 @@ angular.module("wagerCrony")
 
 $scope.messageOnOpen = 'Select league above...';
 
+$scope.isFormPopulated=false;
+$scope.setFormPopulated = function(){
+  // debugger;
+  if($scope.bet.wager
+      &&$scope.bet.result
+      &&$scope.bet.visitingTeam
+      &&$scope.bet.homeTeam
+      &&$scope.bet.result){
+    console.log("wager and bet are populated");
+    $scope.isFormPopulated=true;
+  }else {
+    console.log("wager and bet are not populated");
+    $scope.isFormPopulated=false;
+  }
+}
 $scope.formPopulated = $scope.bet.wager
                           &&$scope.bet.league
                           // &&$scope.bet.eventDate

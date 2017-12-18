@@ -21,7 +21,10 @@
 										'<md-select ng-model="selectedItem" '+
 											'md-on-close="clearSearchTermTeams();action();" '+
 											'data-md-container-class="selectdemoSelectHeader" '+
-											'multiple="false"> '+
+											'multiple="false" required> '+
+											'<div class="errors" ng-messages="trackForm.selectedItem.$error">'+
+											'<div ng-message="required">This field is required</div>'+
+											'</div>'+
 											'<md-select-header class="demo-select-header">'+
 												'<input id=searchTermTeamInput ng-model="searchTermTeamInput"'+
 													'type="search"'+
