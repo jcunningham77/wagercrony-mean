@@ -3,9 +3,9 @@ angular.module("wagerCrony")
 .controller('adminController', function ($scope,$http, $location) {
 
   $scope.sportType = "";
-  $scope.visibilityFlags = {};
-  $scope.visibilityFlags.showLeagueSelect = true;  
-  $scope.controllerName = "AdminController";
+  
+  $scope.leagues = ['MLB','NHL'];
+
   $scope.pick = {};
   $scope.setDefaultEventDate = function() {
     // $scope.dt = new Date();
@@ -16,6 +16,32 @@ angular.module("wagerCrony")
     $scope.alerts = [
    
   ];  
+
+  $scope.messageOnOpen = 'Select league above...';
+  
+  $scope.isFormPopulated=false;
+  $scope.setFormPopulated = function(){
+    
+    if($scope.pick.visitingTeam
+        &&$scope.pick.homeTeam
+        &&$scope.pick.eventDate){
+      console.log("wager and bet are populated");
+      $scope.isFormPopulated=true;
+    }else {
+      console.log("wager and bet are not populated");
+      $scope.isFormPopulated=false;
+    }
+  }
+  
+  $scope.getSelectedText = function() {
+    if ($scope.pick.league !== undefined) {
+      this.loadTeamList();
+      $scope.messageOnOpen = 'Select a team...';
+      return $scope.pick.league;
+    } else {
+      return "Please select an league...";
+    }
+};  
 
       $http.get('/api/picks/')
         .then(function(res){
@@ -47,8 +73,7 @@ angular.module("wagerCrony")
 
         $http.get('/api/teams/' + $scope.sportType,
         {
-                        headers:{'userAuthToken':localStorage.getItem("twitterUserToken"),
-                                'userAuthTokenSecret':localStorage.getItem("twitterUserTokenSecret")}
+                        
                     }).then(function(res){
                         console.log("in success callback after API call");
                         $scope.teams = res.data;
@@ -59,10 +84,9 @@ angular.module("wagerCrony")
                         console.log(err);
                     });
     
-        $scope.visibilityFlags.showVisitingTable=true;
-        $scope.visibilityFlags.showLeagueSelect = false;
+        
         $scope.pick.league = $scope.sportType;
-        $scope.visibilityFlags.showPick= true;
+        
 
     }  
 

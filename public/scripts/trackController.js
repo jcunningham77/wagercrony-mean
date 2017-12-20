@@ -2,7 +2,7 @@
 angular.module("wagerCrony")
 .controller('trackController', function ($scope, $http, $rootScope) {
 
-  $scope.name = "Matt McMonigle";
+  
   $scope.controllerName = "TrackController";
 
   $scope.sportType = "";
@@ -23,7 +23,7 @@ $scope.setFormPopulated = function(){
       &&$scope.bet.result
       &&$scope.bet.visitingTeam
       &&$scope.bet.homeTeam
-      &&$scope.bet.result){
+      &&$scope.bet.eventDate){
     console.log("wager and bet are populated");
     $scope.isFormPopulated=true;
   }else {
@@ -31,12 +31,7 @@ $scope.setFormPopulated = function(){
     $scope.isFormPopulated=false;
   }
 }
-$scope.formPopulated = $scope.bet.wager
-                          &&$scope.bet.league
-                          // &&$scope.bet.eventDate
-                          &&$scope.visitingTeam
-                          &&$scope.homeTeam
-                          &&$scope.bet.result;
+
 
 $scope.getSelectedText = function() {
     if ($scope.bet.league !== undefined) {
@@ -104,11 +99,6 @@ $scope.isOpen = false;
 					$scope.error_message = err;
 					console.log(err);
 				});
-  
-    // $scope.visibilityFlags.showVisitingTable=true;
-    // $scope.visibilityFlags.showLeagueSelect = false;
-    // $scope.bet.league = $scope.selectedLeague;
-    // $scope.visibilityFlags.showBet= true;
 
   }
 
