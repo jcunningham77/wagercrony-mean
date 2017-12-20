@@ -5,7 +5,7 @@ angular.module("wagerCrony")
   
   $scope.controllerName = "TrackController";
 
-  $scope.sportType = "";
+  
   $scope.bet = {};
 
   $scope.alerts = [

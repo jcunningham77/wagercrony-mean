@@ -34,6 +34,7 @@ angular.module("wagerCrony")
   }
   
   $scope.getSelectedText = function() {
+    // debugger;
     if ($scope.pick.league !== undefined) {
       this.loadTeamList();
       $scope.messageOnOpen = 'Select a team...';
@@ -69,9 +70,9 @@ angular.module("wagerCrony")
     }
 
     $scope.loadTeamList = function(){
-        console.log("loading team list for " + $scope.sportType);
+        console.log("loading team list for " + $scope.pick.league);
 
-        $http.get('/api/teams/' + $scope.sportType,
+        $http.get('/api/teams/' + $scope.pick.league,
         {
                         
                     }).then(function(res){
