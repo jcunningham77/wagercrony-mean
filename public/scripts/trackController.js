@@ -18,27 +18,30 @@ $scope.messageOnOpen = 'Select league above...';
 
 $scope.isFormPopulated=false;
 $scope.setFormPopulated = function(){
-  // debugger;
+  console.log('setFormPopulated');
   if($scope.bet.wager
       &&$scope.bet.result
       &&$scope.bet.visitingTeam
       &&$scope.bet.homeTeam
       &&$scope.bet.eventDate){
-    console.log("wager and bet are populated");
+    console.log("setFormPopulated = form is populated");
     $scope.isFormPopulated=true;
   }else {
-    console.log("wager and bet are not populated");
+    console.log("setFormPopulated = form is not populated");
     $scope.isFormPopulated=false;
   }
 }
 
 
 $scope.getSelectedText = function() {
+  console.log('getSelectedText executed');
     if ($scope.bet.league !== undefined) {
+      console.log('getSelectedText executed, $scope.bet.league is not null, = ' + $scope.bet.league);
       this.loadTeamList();
       $scope.messageOnOpen = 'Select a team...';
       return $scope.bet.league;
     } else {
+      console.log('getSelectedText executed, $scope.bet.league is undefined');
       return "Please select an league...";
     }
 };  

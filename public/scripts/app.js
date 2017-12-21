@@ -12,6 +12,11 @@
 						$scope.searchTermTeamInput = '';
 						console.log("searchInputTextFieldSelectList directive, clearsearchTermTeams cleared.")
 					};
+
+					$scope.validateParentForm = function(){
+						console.log('validateParentForm: directive function called');
+						$scope.validate();
+					}
       }],
         
 			template = 
@@ -19,7 +24,7 @@
 									'<md-input-container>'+
 										'<label>{{label}}</label>'+
 										'<md-select ng-model="selectedItem" '+
-											'md-on-close="clearSearchTermTeams();action();" '+
+											'md-on-close="clearSearchTermTeams();validateParentForm();" '+
 											'data-md-container-class="selectdemoSelectHeader" '+
 											'multiple="false" required> '+
 											'<div class="errors" ng-messages="trackForm.selectedItem.$error">'+
@@ -47,7 +52,7 @@
 					label2: '@',
 					items: '=',
 					selectedItem:  '=bind',
-					action: "&"
+					validate: "&"
 
 				},
 				template: template,

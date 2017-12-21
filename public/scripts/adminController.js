@@ -21,25 +21,27 @@ angular.module("wagerCrony")
   
   $scope.isFormPopulated=false;
   $scope.setFormPopulated = function(){
-    
+    console.log('setFormPopulated');
     if($scope.pick.visitingTeam
         &&$scope.pick.homeTeam
         &&$scope.pick.eventDate){
-      console.log("wager and bet are populated");
+          console.log("setFormPopulated: form is  populated");
       $scope.isFormPopulated=true;
     }else {
-      console.log("wager and bet are not populated");
+      console.log("setFormPopulated: form is  not populated");
       $scope.isFormPopulated=false;
     }
   }
   
   $scope.getSelectedText = function() {
-    // debugger;
+    console.log('getSelectedText executed');
     if ($scope.pick.league !== undefined) {
+      console.log('getSelectedText executed, $scope.pick.league is not null, = ' + $scope.pick.league);
       this.loadTeamList();
       $scope.messageOnOpen = 'Select a team...';
       return $scope.pick.league;
     } else {
+      console.log('getSelectedText executed, $scope.pick.league is undefined');
       return "Please select an league...";
     }
 };  
@@ -73,9 +75,7 @@ angular.module("wagerCrony")
         console.log("loading team list for " + $scope.pick.league);
 
         $http.get('/api/teams/' + $scope.pick.league,
-        {
-                        
-                    }).then(function(res){
+        {}).then(function(res){
                         console.log("in success callback after API call");
                         $scope.teams = res.data;
                         console.log($scope.teams);
@@ -86,7 +86,7 @@ angular.module("wagerCrony")
                     });
     
         
-        $scope.pick.league = $scope.sportType;
+        
         
 
     }  
@@ -112,7 +112,7 @@ angular.module("wagerCrony")
          $scope.visibilityFlags.showPick= false;
          
       },function(err){
-        console.log("in error callback after attempting to persist bet = " + JSON.stringify($scope.pick));
+        console.log("in error callback after attempting to persist pick = " + JSON.stringify($scope.pick));
         
         console.log("error = " + err);
         $scope.alerts.push({type:'danger',msg: 'Pick not saved!'});
