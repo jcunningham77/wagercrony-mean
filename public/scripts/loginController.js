@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('loginController', function ($scope,$http, $location, dataService, authenticationService) {
+.controller('loginController', function ($scope,$http, $location, dataService, authenticationService, $animate) {
 
   $scope.name = "Matt McMonigle";
   $scope.controllerName = "LoginController";
@@ -29,7 +29,13 @@ angular.module("wagerCrony")
 
                     $location.path('/Track');
                 } else {
-
+                    // debugger;
+                    var element = angular.element(document).find(loginForm);
+                    console.log('add shake class');
+                    $animate.addClass(element, 'shake', function() {
+                        console.log('remove shake class');
+                        $animate.removeClass(element, 'shake');
+                      });
                     $scope.alerts.push({type: 'danger',msg: response.message});
                     console.log("LoginController.login, response is failure, message from Backendless = " + response.message);
                     //TODO work on flash service for error feedback
