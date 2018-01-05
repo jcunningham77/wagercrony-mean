@@ -1,0 +1,43 @@
+<div ng-controller="formTestController">
+    <form name="contacts" novalidate>
+        <div layout="row" layout-align="start center">
+            <md-input-container flex>
+                <label data-i18n="email">Email</label>
+                <input id="email" name="email" type="email" data-ng-model="email.address" required>
+                <div ng-messages="contacts.email.$error" ng-if="contacts.email.$touched">
+                    <div ng-message="email">Invalid email</div>
+                </div>
+            </md-input-container>
+            <md-button ng-click="addEmail()">Add</md-button>
+        </div>  
+        <div>
+            <h1 class="md-title">Pick a vegetable below</h1>
+            <div layout="row">
+            <md-input-container>
+                <label>Vegetables</label>
+                <md-select ng-model="selectedVegetables"
+                            md-on-close="clearSearchTerm()"
+                            data-md-container-class="selectdemoSelectHeader"
+                            multiple>
+                <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm"
+                            type="search"
+                            placeholder="Search for a vegetable.."
+                            class="demo-header-searchbox md-text">
+                </md-select-header>
+                <md-optgroup label="vegetables">
+                    <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+                    filter:searchTerm">{{vegetable}}</md-option>
+                </md-optgroup>
+                </md-select>
+            </md-input-container>
+            </div>
+        </div>       
+        <md-list>
+            <md-list-item ng-repeat="mail in emails">
+                <span>{{mail.address}}</span> 
+            </md-list-item>
+        </md-list>
+    </form>
+         
+</div>

@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('trackController', function ($scope, $http, $rootScope) {
+.controller('trackController', function ($scope, $http, $rootScope, $route, $window) {
 
   
   $scope.controllerName = "TrackController";
@@ -9,8 +9,18 @@ angular.module("wagerCrony")
   $scope.bet = {};
 
   $scope.alerts = [
-   
-  ];
+    
+   ];  
+
+  //check if there were any stored alerts before the page was reloaded
+  var alert = $window.localStorage.getItem("alert");
+  if (alert){
+    console.log("retrieved alert from local window storage, alert = " + alert);
+    console.log("retrieved alert from local window storage, alert = " + JSON.parse(alert));
+    $scope.alerts.push(JSON.parse(alert));
+    $window.localStorage.removeItem("alert");
+
+  }
 
   $scope.leagues = ['MLB','NHL'];
 
@@ -123,10 +133,17 @@ $scope.isOpen = false;
         // localStorage.setItem("slug",res.data.slug);
         
         console.log('in success callback after persisting bet = ' + JSON.stringify(res));
-        $scope.alerts.push({type:'success',msg: 'Bet saved!'});
-        $scope.loadSavedBets();
         
-         
+      //store the alert in local session data until figure out how the reset the form without
+        //reloading the browser
+        // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
+
+        $window.localStorage.setItem("alert", JSON.stringify({type:'success',msg: 'Bet tracked!'}));
+        $scope.pick = {};
+
+        // $location.path('/Admin');
+        $route.reload();
+        
       },function(err){
         console.log("in error callback after attempting to persist bet = " + JSON.stringify($scope.bet));
         
@@ -141,12 +158,4 @@ $scope.isOpen = false;
     $scope.dt = new Date();
     $scope.bet.eventDate = new Date();
   };  
-
-  // $scope.setHome = function(homeTeam){
-  //   console.log("in setHome, homeTeam = " + homeTeam);
-  //   $scope.bet.homeTeam = homeTeam;
-  // }
-
-
-
 });

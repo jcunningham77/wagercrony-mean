@@ -1,10 +1,25 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('adminController', function ($scope,$http, $location) {
+.controller('adminController', function ($scope,$http, $location, $route, $window) {
 
   $scope.sportType = "";
+
+  $scope.alerts = [
+    
+   ];  
+
+  //check if there were any stored alerts before the page was reloaded
+  var alert = $window.localStorage.getItem("alert");
+  if (alert){
+    console.log("retrieved alert from local window storage, alert = " + alert);
+    console.log("retrieved alert from local window storage, alert = " + JSON.parse(alert));
+    $scope.alerts.push(JSON.parse(alert));
+    $window.localStorage.removeItem("alert");
+
+  }
   
   $scope.leagues = ['MLB','NHL'];
+  $scope.showErrors=true;
 
   $scope.pick = {};
   $scope.setDefaultEventDate = function() {
@@ -13,11 +28,14 @@ angular.module("wagerCrony")
     $scope.pick.eventDate = new Date();
   };  
 
-    $scope.alerts = [
-   
-  ];  
+ 
 
   $scope.messageOnOpen = 'Select league above...';
+
+  $scope.clearSearchTermTeams = function() {
+    $scope.searchTermTeamInput = '';
+    console.log("searchInputTextFieldSelectList directive, clearsearchTermTeams cleared.")
+  };
   
   $scope.isFormPopulated=false;
   $scope.setFormPopulated = function(){
@@ -103,14 +121,32 @@ angular.module("wagerCrony")
           "description":$scope.pick.description
         }
       }).then(function(res){
-        // localStorage.setItem("slug",res.data.slug);
+        
         
         console.log('in success callback after persisting pick = ' + JSON.stringify(res));
-        $scope.alerts.push({type:'success',msg: 'Pick saved!'});
-        $scope.loadSavedPicks();
-        $scope.visibilityFlags.showLeagueSelect = true;
-         $scope.visibilityFlags.showPick= false;
-         
+        //store the alert in local session data until figure out how the reset the form without
+        //reloading the browser
+        // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
+
+        $window.localStorage.setItem("alert", JSON.stringify({type:'success',msg: 'Pick saved!'}));
+        $scope.pick = {};
+
+        // $location.path('/Admin');
+        $route.reload();
+        
+        // $scope.loadSavedPicks();
+
+        // $scope.trackForm.$setUntouched();
+        
+        // $scope.messageOnOpen = 'Select league above...';
+        // $scope.searchTermTeamInput = '';
+        // $scope.isFormPopulated=false;
+        // $scope.trackForm.homeTeam.$setUntouched();
+        // $scope.trackForm.visitingTeam.$setUntouched();
+        // $scope.trackForm.homeTeam.$error = false;
+        // $scope.trackForm.visitingTeam.$error = false;
+        // $scope.isFormPopulated=false;
+   
       },function(err){
         console.log("in error callback after attempting to persist pick = " + JSON.stringify($scope.pick));
         

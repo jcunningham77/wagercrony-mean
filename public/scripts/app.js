@@ -23,12 +23,12 @@
 
 									'<md-input-container>'+
 										'<label>{{label}}</label>'+
-										'<md-select ng-model="selectedItem" '+
+										'<md-select ng-model="selectedItem" id={{label}} name={{name}} '+
 											'md-on-close="clearSearchTermTeams();validateParentForm();" '+
 											'data-md-container-class="selectdemoSelectHeader" '+
 											'multiple="false" required> '+
 											'<div class="errors" ng-messages="trackForm.selectedItem.$error">'+
-											'<div ng-message="required">This field is required</div>'+
+												'<div ng-message="required">This field is required</div>'+
 											'</div>'+
 											'<md-select-header class="demo-select-header">'+
 												'<input id=searchTermTeamInput ng-model="searchTermTeamInput"'+
@@ -50,6 +50,7 @@
 					visible: '=',
 					label: '@',
 					label2: '@',
+					name: '@',
 					items: '=',
 					selectedItem:  '=bind',
 					validate: "&"
@@ -116,7 +117,12 @@
 		    templateUrl: 'templates/admin.html',
 		    controller: 'adminController'
 
-		  })  			 			  			  		  
+			}) 
+		  .when('/FormTest', {				
+		    templateUrl: 'templates/formTest.html',
+		    controller: 'formTestController'
+
+		  }) 			 			 			  			  		  
 		  .otherwise({ redirectTo: '/Login' });
 		})
 
@@ -143,7 +149,7 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
         	console.log("current = " + current);
 					// debugger;
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/Login');

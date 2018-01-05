@@ -6,6 +6,8 @@
         <div uib-alert ng-repeat="alert in $parent.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
       
       </div>
+
+
       
       
       <div ng-cloak layout="column" layout-align="start" ng-cloak>
@@ -25,14 +27,35 @@
       
                   <div layout="row" layout-align="start" flex> 
                           <div flex="45">
-                              <div search-input-text-field-select-list visible="true" label='Visiting team' label2='{{messageOnOpen}}' items="teams" bind="pick.visitingTeam" validate="setFormPopulated()"></div>
+                              <div search-input-text-field-select-list visible="true" label='Visiting team' label2='{{messageOnOpen}}' name='visitingTeam' items="teams" bind="pick.visitingTeam" validate="setFormPopulated()"></div>
+                              <!-- <md-input-container>
+                                    <label>Visiting Team</label>
+                                    <md-select ng-model="pick.visitingTeam" id='Visiting team' name='visitingTeam'
+                                        md-on-close="clearSearchTermTeams();validateParentForm();" 
+                                        data-md-container-class="selectdemoSelectHeader" 
+                                        multiple="false" required> 
+                                        <div class="errors" ng-messages="trackForm.selectedItem.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                        <md-select-header class="demo-select-header">
+                                            <input id=searchTermTeamInput ng-model="searchTermTeamInput"
+                                                type="search"
+                                                placeholder="{{messageOnOpen}}"
+                                                class="demo-header-searchbox md-text">
+
+                                        </md-select-header>
+                                        <md-optgroup label="item">
+                                        <md-option ng-value="item.name" ng-repeat="item in teams|filter:searchTermTeamInput">{{item.name}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container> -->
                           </div>
                           <div flex="5" hide-xs hide-sm>
                           
                           </div>            
       
                           <div flex="45">
-                              <div search-input-text-field-select-list visible="true" label='Home team' label2='{{messageOnOpen}}' items="teams" bind="pick.homeTeam" validate="setFormPopulated()"></div>
+                              <div search-input-text-field-select-list visible="true" label='Home team' label2='{{messageOnOpen}}' name='homeTeam' items="teams" bind="pick.homeTeam" validate="setFormPopulated()"></div>
                           </div>
                           <div flex="5" hide-xs hide-sm>
                           
@@ -46,124 +69,18 @@
       
                   <md-input-container class="md-block">
                         <label>Expert Commentary:</label>
-                        <textarea ng-model="pick.description" md-maxlength="150" rows="5" md-select-on-focus ng-blur="setFormPopulated()"></textarea>
+                        <textarea ng-model="pick.description" md-maxlength="150" rows="3" md-select-on-focus ng-blur="setFormPopulated()"></textarea>
                  </md-input-container>
 
                   <div layout="row" layout-align="start">
                       <md-input-container>
-                          <md-button ng-disabled="!isFormPopulated" class="md-raised md-primary" type="submit" ng-click="saveBet()">Submit</md-button>
+                          <md-button ng-disabled="!isFormPopulated" class="md-raised md-primary" type="submit" ng-click="savePick()">Submit</md-button>
                       </md-input-container>
                       
                   </div>      
               </md-content>
           </form>
       </div>
-
-
-
-
-
-
-
-
-
-
-<!-- <h2>Hello {{globals.currentUser.name}}</h2>
-<h3>Enter a Pick to Promote</h3>
-
-<div ng-controller="AlertCtrl">
-  <script type="text/ng-template" id="alert.html">
-    <div ng-transclude></div>
-  </script>
-
-  <div uib-alert ng-repeat="alert in $parent.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
-
-</div>
-
-<div ng-controller="ButtonsCtrl" ng-show="visibilityFlags.showLeagueSelect">
-    <div class="btn-group">
-        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'nhl'" ng-click="loadTeamList()">NHL</label>
-        <label class="btn btn-primary" ng-model="$parent.sportType" uib-btn-radio="'mlb'" ng-click="loadTeamList()">MLB</label>
-    </div>
-</div>
-
-<div ng-show="visibilityFlags.showPick" class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Pick Details</h3>
-    </div>    
-    <div class="panel-body">
-        <label>{{pick.league | uppercase}}</label><br>
-        <label ng-show="pick.visitingTeam != null">{{pick.visitingTeam}} @ {{pick.homeTeam}}</label><br>
-        <label ng-show="pick.eventDate!=null">Event Date: {{pick.eventDate| date:'shortDate'}}</label><br>
-        <label ng-show="visibilityFlags.showDescription">Pick comments: <input ng-model="pick.description"></label><br>
-        <label ng-show="pick.description!=null" class="btn btn-primary" ng-click="savePick()">Save</label><br>
-        
-    </div>
-</div>
-<br/>
-
-<div class="homeTeamTable" ng-show="visibilityFlags.showVisitingTable">
-    <label>Visiting Team: <input ng-model="search.$"></label> <br>
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td colspan="2"><h5>Team Name</h5></td>
-            </tr>
-            <tr ng-repeat="team in teams  | filter:search:strict">
-                <td>{{team.name}}</td>  
-                <td>
-                   
-
-
-
-
-                    <button type="button" class="btn btn-primary" ng-click="pick.visitingTeam = team.name;visibilityFlags.showHomeTable=true;visibilityFlags.showVisitingTable=false;">
-                        Select!
-                    </button>
-                </td>                    
-            </tr>
-        </tbody>
-    </table>
-</div>    
-    
-<div class="homeTeamTable" ng-show="visibilityFlags.showHomeTable">
-    <label>HomeTeam: <input ng-model="search.$"></label> <br>
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td colspan="2"><h5>Team Name</h5></td>
-            </tr>
-            <tr ng-repeat="team in teams  | filter:search:strict">
-                <td>{{team.name}}</td>  
-                <td>
-                    
-                    <button type="button" class="btn btn-primary" ng-click="pick.homeTeam = team.name;visibilityFlags.showHomeTable=false;visibilityFlags.showVisitingTable=false;visibilityFlags.showEventDateInput=true;setDefaultEventDate();">
-                        Select!
-                    </button>
-                </td>                    
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div ng-controller="DatepickerPopupDemoCtrl" ng-show="visibilityFlags.showEventDateInput">
-    <div class="row">
-      <div class="col-md-6">
-        <label>Date of Event:</label>
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="pick.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()">
-                    <i class="glyphicon glyphicon-calendar"></i>
-            </button>
-            <button type="button" class="btn btn-default" aria-label="Check Box" ng-click="visibilityFlags.showEventDateInput=false;visibilityFlags.showDescription=true;">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-          </span>
-
-        </p>
-      </div>
-    </div>
-</div>  -->
 
 <div ng-controller="AccordionCtrl">
     <script type="text/ng-template" id="group-template.html">
@@ -182,7 +99,7 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks">
+        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}}" ng-repeat="pick in savedPicks">
         Description: {{pick.description}}<br>
         
         </div>

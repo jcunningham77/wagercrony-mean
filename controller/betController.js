@@ -53,7 +53,8 @@ module.exports = function(app){
                             visitingTeam:req.body.data.visitingTeam,
                             homeTeam:req.body.data.homeTeam,
                             eventDate:new Date(req.body.data.eventDate),
-                            description:req.body.data.description
+                            description:req.body.data.description,
+                            createDate:Date(),
                     });        
 
         pick.save(function(err, pick, numAffected){
