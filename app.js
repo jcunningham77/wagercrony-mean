@@ -3,9 +3,7 @@ var config = require('./config');
 var mongoose = require('mongoose');
  
 var app =express();
-//heroku settings
-// var port = process.env.PORT|| 8081;
-// var ip = '0.0.0.0';
+
 
 // local settings:
 console.log("startup, config.getNodeConfigValue.port = " + config.getNodeConfigValue.port);
