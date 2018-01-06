@@ -5,13 +5,11 @@ var mongoose = require('mongoose');
 var app =express();
 
 
-// local settings:
-console.log("startup, config.getNodeConfigValue.port = " + config.getNodeConfigValue.port);
-console.log("startup, config.getNodeConfigValue().port = " + config.getNodeConfigValue().port);
-console.log("startup, config.getNodeConfigValue().ip = " + config.getNodeConfigValue().ip);
-var port =  config.getNodeConfigValue().port;
-var ip = config.getNodeConfigValue().ip;
- 
+//heroku settings
+var port = process.env.PORT|| 8081;
+var ip = '0.0.0.0';
+console.log("port: " + port);
+console.log("ip: " + ip); 
 
 
 
