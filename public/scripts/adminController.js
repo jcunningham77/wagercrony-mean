@@ -21,6 +21,15 @@ angular.module("wagerCrony")
   $scope.leagues = ['MLB','NHL'];
   $scope.showErrors=true;
 
+  $scope.propertyName = 'createDate';
+	$scope.reverse = true;
+	
+	$scope.sortBy = function(propertyName) {
+		$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+		$scope.propertyName = propertyName;
+	};
+	
+
   $scope.pick = {};
   $scope.setDefaultEventDate = function() {
     // $scope.dt = new Date();
@@ -134,18 +143,6 @@ angular.module("wagerCrony")
         // $location.path('/Admin');
         $route.reload();
         
-        // $scope.loadSavedPicks();
-
-        // $scope.trackForm.$setUntouched();
-        
-        // $scope.messageOnOpen = 'Select league above...';
-        // $scope.searchTermTeamInput = '';
-        // $scope.isFormPopulated=false;
-        // $scope.trackForm.homeTeam.$setUntouched();
-        // $scope.trackForm.visitingTeam.$setUntouched();
-        // $scope.trackForm.homeTeam.$error = false;
-        // $scope.trackForm.visitingTeam.$error = false;
-        // $scope.isFormPopulated=false;
    
       },function(err){
         console.log("in error callback after attempting to persist pick = " + JSON.stringify($scope.pick));

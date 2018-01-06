@@ -28,7 +28,8 @@
                   <div layout="row" layout-align="start" flex> 
                           <div flex="45">
                               <div search-input-text-field-select-list visible="true" label='Visiting team' label2='{{messageOnOpen}}' name='visitingTeam' items="teams" bind="pick.visitingTeam" validate="setFormPopulated()"></div>
-                              <!-- <md-input-container>
+                              <!--this was for troubleshooting form submittal issue 
+                                  <md-input-container>
                                     <label>Visiting Team</label>
                                     <md-select ng-model="pick.visitingTeam" id='Visiting team' name='visitingTeam'
                                         md-on-close="clearSearchTermTeams();validateParentForm();" 
@@ -99,7 +100,7 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}}" ng-repeat="pick in savedPicks">
+        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}}" ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
         Description: {{pick.description}}<br>
         
         </div>
