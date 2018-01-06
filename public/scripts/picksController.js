@@ -2,6 +2,15 @@
 angular.module("wagerCrony")
 .controller('picksController', function ($scope,$http) {
 
+	$scope.propertyName = 'eventDate';
+	$scope.reverse = true;
+	
+	$scope.sortBy = function(propertyName) {
+		$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+		$scope.propertyName = propertyName;
+	};
+	
+
 
   $scope.controllerName = "PicksController";
 

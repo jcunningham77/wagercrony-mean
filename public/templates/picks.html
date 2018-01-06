@@ -1,4 +1,10 @@
-<h1>{{controllerName}}</h1>
+<h3 class="md-headline">Promoted Picks</h3>
+<span class="md-subhead">Sort By: </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('league')">League &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('homeTeam')">Home &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('visitingTeam')">Visitor &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('eventDate')">Event Date &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>
 
 <div ng-controller="AccordionCtrl">
     <script type="text/ng-template" id="group-template.html">
@@ -17,7 +23,7 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks">
+        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
         Description: {{pick.description}}<br>
         
         </div>

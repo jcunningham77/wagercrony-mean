@@ -26,6 +26,18 @@ angular.module("wagerCrony")
 
 $scope.messageOnOpen = 'Select league above...';
 
+$scope.propertyName = 'createDate';
+$scope.reverse = true;
+
+$scope.sortBy = function(propertyName) {
+  $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+  $scope.propertyName = propertyName;
+};
+
+
+
+
+
 $scope.isFormPopulated=false;
 $scope.setFormPopulated = function(){
   console.log('setFormPopulated');
@@ -58,8 +70,7 @@ $scope.getSelectedText = function() {
 
 
 
-//for the date picker - move to a directive?
-$scope.isOpen = false;
+
 
 
     $http.get('/api/bets/' + $rootScope.globals.currentUser.username,)
@@ -71,7 +82,11 @@ $scope.isOpen = false;
 					console.log("in error callback after API call");
 					$scope.error_message = err;
 					console.log(err);
-				});  
+        });  
+
+           
+        
+
 
     $scope.loadSavedBets = function(){
            $http.get('/api/bets/' + $rootScope.globals.currentUser.username,)

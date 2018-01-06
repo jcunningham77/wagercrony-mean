@@ -52,7 +52,7 @@
                             <label>Wager</label>
                             <input type="number" step="any" name="wager" ng-model="bet.wager" min="1"
                                 max="10000" ng-blur="setFormPopulated()" required/>
-                            <div ng-messages="trackForm.wager.$error" md-auto-hide="false" ng-if="$scope.trackForm.wager.$touched">
+                            <div ng-messages="trackForm.wager.$error" md-auto-hide="false">
                                 <div ng-message="min">
                                     If your bets are under $1, please use another app to record them.
                                 </div>
@@ -83,35 +83,46 @@
                 <md-input-container>
                     <md-button ng-disabled="!isFormPopulated" class="md-raised md-primary" type="submit" ng-click="saveBet()">Submit</md-button>
                     <br>
-                    <br>trackForm.$touched = {{trackForm.$touched}}
-                    <br>trackForm.homeTeam.$touched = {{trackForm.homeTeam.$touched}}
-                    <br>trackForm.homeTeam.$pristine = {{trackForm.homeTeam.$pristine}}
-                    <br>trackForm.visitingTeam.$touched = {{trackForm.visitingTeam.$touched}}
-                    <br>trackForm.wager.$touched = {{trackForm.wager.$touched}}
                 </md-input-container>
                 
             </div>      
         </md-content>
     </form>
 </div>
+
+<md-divider></md-divider>
+<br>
+
+<h3 class="md-headline">Saved Bets</h3>
+<span class="md-subhead">Sort By: </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('league')">League &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('homeTeam')">Home &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('visitingTeam')">Visitor &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('createDate')">Date Recorded &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="Regular 12px" ng-click="sortBy('eventDate')">Event Date &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+<br><br>
+
+<!-- <pre>Sort by = {{propertyName}}; reverse = {{reverse}}</pre> -->
+
 <div ng-controller="AccordionCtrl">
     <script type="text/ng-template" id="group-template.html">
     <div class="panel-heading">
       <h4 class="panel-title" style="color:#fa39c3">
         <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-          <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                Saved Bets
+            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
             Saved Bets
           </span>
         </a>
       </h4>
     </div>
-    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+    <div class="panel-collapse collapse" uib-collapse="!CollapsHeaderIsOpen">
       <div class="panel-body" style="text-align: right" ng-transclude></div>
     </div>
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}, Date recorded: {{bet.createDate| date:'short'}}"  ng-repeat="bet in savedBets| orderBy:bet.createDate:reverse">
+        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.homeTeam}} @ {{bet.visitingTeam}}, {{bet.eventDate| date:'shortDate'}}, Date recorded: {{bet.createDate| date:'short'}}"  ng-repeat="bet in savedBets| orderBy:propertyName:reverse">
         Wager: {{bet.wager}}<br>
         Result: {{bet.result}}<br>
         
