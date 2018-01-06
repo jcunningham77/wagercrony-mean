@@ -8,8 +8,11 @@ var app =express();
 // var ip = '0.0.0.0';
 
 // local settings:
-var port =  3000;
-var ip = process.env.IP || 'localhost';
+console.log("startup, config.getNodeConfigValue.port = " + config.getNodeConfigValue.port);
+console.log("startup, config.getNodeConfigValue().port = " + config.getNodeConfigValue().port);
+console.log("startup, config.getNodeConfigValue().ip = " + config.getNodeConfigValue().ip);
+var port =  config.getNodeConfigValue().port;
+var ip = config.getNodeConfigValue().ip;
  
 
 

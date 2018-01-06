@@ -1,5 +1,6 @@
 var configValues = require('./config');
 var backendlessConfigValues = require('./backendless');
+var nodeConfig = require('./nodeConfig');
 
 module.exports = {
     getDBConnectionString:function(){
@@ -10,6 +11,10 @@ module.exports = {
     getBackendlessConfigValues:function(){
 
         return backendlessConfigValues;
+    },
+
+    getNodeConfigValue:function(){
+        return nodeConfig;
     }
 
     
