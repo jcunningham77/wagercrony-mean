@@ -22,7 +22,7 @@ angular.module("wagerCrony")
 
   }
 
-  $scope.leagues = ['MLB','NHL'];
+  $scope.leagues = ['MLB','NHL','NFL'];
 
 $scope.messageOnOpen = 'Select league above...';
 

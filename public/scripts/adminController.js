@@ -18,7 +18,7 @@ angular.module("wagerCrony")
 
   }
   
-  $scope.leagues = ['MLB','NHL'];
+  $scope.leagues = ['MLB','NHL','NFL'];
   $scope.showErrors=true;
 
   $scope.propertyName = 'createDate';
