@@ -1,4 +1,4 @@
 {
-    "port":"process.env.PORT",
-    "ip":"0.0.0.0"
+    "port":"3000",
+    "ip":"localhost"
 }
