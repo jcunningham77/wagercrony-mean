@@ -63,7 +63,41 @@
             {"name":"Texas Rangers"},
             {"name":"Toronto Blue Jays"},
             {"name":"Washington Nationals"}
-        ]
+        ],
+        "NFL":[
+        {"name":"Arizona Cardinals"},
+        {"name":"Atlanta Falcons"},
+        {"name":"Baltimore Ravens"},
+        {"name":"Buffalo Bills"},
+        {"name":"Carolina Panthers"},
+        {"name":"Chicago Bears"},
+        {"name":"Cincinnati Bengals"},
+        {"name":"Cleveland Browns"},
+        {"name":"Dallas Cowboys"},
+        {"name":"Denver Broncos"},
+        {"name":"Detroit Lions"},
+        {"name":"Green Bay Packers"},
+        {"name":"Houston Texans"},
+        {"name":"Indianapolis Colts"},
+        {"name":"Jacksonville Jaguars"},
+        {"name":"Kansas City Chiefs"},
+        {"name":"Miami Dolphins"},
+        {"name":"Minnesota Vikings"},
+        {"name":"New England Patriots"},
+        {"name":"New Orleans Saints"},
+        {"name":"NY Giants"},
+        {"name":"NY Jets"},
+        {"name":"Oakland Raiders"},
+        {"name":"Philadelphia Eagles"},
+        {"name":"Pittsburgh Steelers"},
+        {"name":"San Diego Chargers"},
+        {"name":"San Francisco 49ers"},
+        {"name":"Seattle Seahawks"},
+        {"name":"St. Louis Rams"},
+        {"name":"Tampa Bay Buccaneers"},
+        {"name":"Tennessee Titans"},
+        {"name":"Washington Redskins"}
+       ]
     }
 ]
 
