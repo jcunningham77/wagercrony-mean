@@ -1,0 +1,40 @@
+.css-class-add, .css-class-remove {
+    animation: move_up 2000ms ease-in-out;
+    transition: all 2s ease-in-out;
+  }
+  
+  .css-class,
+  .css-class-add.css-class-add-active {
+    color: red;
+    font-size: 3em;
+  }
+
+@keyframes move-up{  
+    0%    {transform: translate(0,50px);}
+    12.5% {transform: translate(0,100px);}
+    37.5% {transform: translate(0,150px);}
+    62.5% {transform: translate(0,200px);}
+    87.5% {transform: translate(0,250px);}
+    100%  {transform: translate(0,300px);}
+  /* -webkit-transform: translate(0,350px); * Chrome & Safari * */
+  /* -o-transform: translate(0,350px); * Opera * */
+  /* -moz-transform: translate(0,350px); * Firefox * */
+}
+
+.move-up {
+    animation: move-up 400ms ease-in-out;
+  }
+
+
+@keyframes shake {
+    0%    {transform: translateX(0);}
+    12.5% {transform: translateX(-6px) rotateY(-5deg)}
+    37.5% {transform: translateX(5px) rotateY(4deg)}
+    62.5% {transform: translateX(-3px) rotateY(-2deg)}
+    87.5% {transform: translateX(2px) rotateY(1deg)}
+    100%  {transform: translateX(0)}
+  }
+  
+  .shake {
+    animation: shake 400ms ease-in-out;
+  }
