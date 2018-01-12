@@ -14,6 +14,11 @@ angular.module("wagerCrony")
     
   ];
 
+
+
+  $scope.showResetPassword = false;
+
+
   $scope.login = function(){
       dataService.login($scope.emailAddress,$scope.password).then(function(response) {
                 if (response.success) {
@@ -44,9 +49,20 @@ angular.module("wagerCrony")
                     // vm.dataLoading = false;
                 }
             });   
-
-
   }
+
+  $scope.resetpassword = function(){
+    
+    console.log('loginController - reset password');
+    dataService.resetpassword($scope.emailAddressResetPassword).then(function(response) {
+            if (response.success){
+                console.log('reset password link has been set');
+                $scope.alerts.push({type:'success',msg: 'Reset Password Email Sent!'});
+            }	else {
+                console.log('reset password didn\'t go correctly');
+            }
+        });   
+    }
    /*
     * Handle the sucess message coming back from the Node service that hits Backendless.
     * Note we are doing a check in here for response body data that indicates a failure
