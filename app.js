@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 var app =express();
 
 
-//heroku settings
 
 console.log("startup, config.getNodeConfigValue().port = " + config.getNodeConfigValue().port);
 console.log("startup, config.getNodeConfigValue().ip = " + config.getNodeConfigValue().ip);

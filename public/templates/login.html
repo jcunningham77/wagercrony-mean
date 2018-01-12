@@ -7,7 +7,7 @@
   
 </div>
 <md-content layout-padding>
-    <form name="loginForm">
+    <form name="loginForm"  ng-show="!showResetPassword">
       <div layout="column" layout-align="center">
 
             <div layout="row">
@@ -51,9 +51,41 @@
               <div>
                   <md-button class="md-raised md-secondary" click-nav="/Register">Register</md-button>
               </div>
+              <div>
+                  <md-button  class="md-warn" ng-click="showResetPassword = !showResetPassword">Forgot Password?</md-button>
+              </div>              
             </div>
 
       </div>
+    </form>
+    <form name="resetPasswordForm" ng-show="showResetPassword">
+        <div layout="column" layout-align="center">
+                 <div layout="row">
+                          <div  flex="66" flex-offset="15">
+                            <md-input-container class="md-block">
+                              <label>Email Address:</label>
+                              <input required name="emailAddress" ng-model="emailAddressResetPassword">
+                              <div ng-messages="resetPasswordForm.emailAddress.$error">
+                                <div ng-message="required">This is required.</div>
+                              </div>
+                            </md-input-container>
+                          </div>
+                          <div flex>            
+                          </div>
+                 </div>
+                 <div layout="column" layout-align="center center">
+                          <div>
+                                <md-button class="md-raised md-primary" type="submit" ng-click="resetpassword();">Reset Password</md-button>
+                          </div>   
+                          
+                          <div>
+                              <h5>or</h5>
+                          </div>                          
+                          <div>
+                              <md-button class="md-raised md-primary" type="submit" ng-click="showResetPassword = !showResetPassword">Login</md-button> <md-button class="md-raised md-secondary" click-nav="/Register">Register</md-button>
+                          </div>         
+                  </div>
+        </div>
     </form>
  </md-content>    
 

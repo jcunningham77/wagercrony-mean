@@ -2,15 +2,13 @@
 angular.module("wagerCrony")	
 .service('dataService',function($http){
 
-	var TAG = "dataService";
+    var TAG = "dataService";
 
 	this.login = function(username,password){
  
             return $http.post('/api/login/',{ "username": username, "password": password }).then(handleSuccess, handleError);
  
 	}
-
-
 
     this.register = function(email,password,customerName){
 
@@ -27,23 +25,23 @@ angular.module("wagerCrony")
 
     }
 
-    // this.resetpassword = function(emailaddress){
+    this.resetpassword = function(emailaddress){
 
-    //     console.log("about to invoke node reset password API call, email = " +emailaddress);
-    //     return $http.get('/api/resetpassword/'+emailaddress).then(function success(res){
-    //         var response;
-    //         console.log("dataservice, success callback from api resetpassword call, res = " + res)
-    //         response = { success: true};
-    //         return response;
+        console.log("about to invoke node reset password API call, email = " +emailaddress);
+        return $http.get('/api/resetpassword/'+emailaddress).then(function success(res){
+            var response;
+            console.log("dataservice, success callback from api resetpassword call, res = " + res)
+            response = { success: true};
+            return response;
 
-    //     },function failure(res){
+        },function failure(res){
             
-    //         var response;
-    //         console.log("dataservice, failure callback from api resetpassword call, res = " + res)
-    //         response = { success: false};
-    //         return response;
-    //     });
-    // }
+            var response;
+            console.log("dataservice, failure callback from api resetpassword call, res = " + res)
+            response = { success: false};
+            return response;
+        });
+    }
 
     /*
     * Handle the sucess message coming back from the Node service that hits Backendless.

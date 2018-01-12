@@ -25,7 +25,7 @@ module.exports = function(app){
         var request1 = https.request({method:'GET',
                       headers : backendlessHeaders,
                       host:'api.backendless.com',
-                      path:'/v1/users/restorepassword/' + req.params.email
+                      path:'/'+backendlessHeaders.applicationId+'/'+backendlessHeaders.apiKey+'/users/restorepassword/' + req.params.email
                       },function(result){
                           var body= "";
                             result.on('data', function(d) {
@@ -133,4 +133,38 @@ module.exports = function(app){
                       request1.write(JSON.stringify(user));                      
                       request1.end();
     });
+
+    app.post('api/reset-password/:email',function(req,res){
+
+        var request1 = https.request({method:'POST',
+        headers : backendlessHeaders,
+        host:'api.backendless.com',                
+        path:'/'+backendlessHeaders.applicationId+'/'+backendlessHeaders.apiKey+'/users/restorepassword'+ req.params.email
+
+        },function(result){
+            
+            var parsed;
+             var body = '';
+              result.on('data', function(d) {
+                  body += d;
+              });
+              result.on('end',function(){
+                  console.log('in end clause of backendless register post callback - body = ' + body);
+                  parsed = JSON.parse(body);
+                  res.send(parsed);
+              });
+              result.on('error',function(){
+                  if (err){
+                      console.log('in authController node endpoint for register - error - ' + err);
+                      console.log(err);
+                      throw err;
+                  }
+              });
+
+        });                     
+        request1.write(JSON.stringify(user));                      
+        request1.end();
+
+    });
+
 }
