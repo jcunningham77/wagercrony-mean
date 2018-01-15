@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 var config = require('./config');
 var mongoose = require('mongoose');
  
@@ -12,8 +13,9 @@ console.log("port: " + port);
 console.log("ip: " + ip); 
 
 
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/assets/',express.static(__dirname+'/public'));
 
-app.use('/assets/',express.static(__dirname+'/public'));
 mongoose.connect(config.getDBConnectionString());
 var teamDataController = require('./controller/teamDataController');
 var betController = require('./controller/betController');
