@@ -149,10 +149,16 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
         	console.log("current = " + current);
 					// debugger;
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest','/']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
-            if (restrictedPage && !loggedIn) {
+						
+						
+						if (restrictedPage && !loggedIn) {
                 $location.path('/Login');
+						} 
+
+						if (loggedIn){
+							$location.path('/Picks');
 						}
         });
     }
