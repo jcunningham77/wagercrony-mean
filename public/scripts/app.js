@@ -146,10 +146,11 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
         	console.log("event = " + event);
         	console.log("next = " + next);
-        	console.log("current = " + current);
+					console.log("current = " + current);
+					console.log("$location.path = " + $location.path());
 					// debugger;
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest','/']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
 						
 						
@@ -157,7 +158,7 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
                 $location.path('/Login');
 						} 
 
-						if (loggedIn){
+						if ($location.path()===''&&loggedIn){
 							$location.path('/Picks');
 						}
         });
