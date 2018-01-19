@@ -23,7 +23,7 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
+        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.visitingTeam}} @ {{pick.homeTeam}}, {{pick.eventDate| date:'shortDate'}}" ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
         Description: {{pick.description}}<br>
         
         </div>
