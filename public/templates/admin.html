@@ -13,7 +13,7 @@
       <div ng-cloak layout="column" layout-align="start" ng-cloak>
           <form name="trackForm">
               <md-content layout-padding>    
-                  <h3 class="md-headline">Enter a Pick to Promote</h3>
+                  <h3 class="md-headline">{{formMessage}}</h3>
                   <div layout="row" layout-align="start" ng-cloak>
                       <md-input-container>
                           <md-select ng-model="pick.league" md-selected-text="getSelectedText()" placeholder="League">
@@ -100,8 +100,13 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}}" ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
-        Description: {{pick.description}}<br>
+        <div uib-accordion-group class="panel-default"  ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
+                <uib-accordion-heading>
+                        {{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}} <i class="material-icons md-18" ng-click="editPick($index)">mode_edit</i>
+                </uib-accordion-heading>
+        
+        
+            Description: {{pick.description}}<br>
         
         </div>
     </uib-accordion>

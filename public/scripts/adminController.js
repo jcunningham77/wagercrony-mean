@@ -1,6 +1,6 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('adminController', function ($scope,$http, $location, $route, $window) {
+.controller('adminController', function ($scope,$http, $location, $route, $window, $rootScope) {
 
   $scope.sportType = "";
 
@@ -45,6 +45,16 @@ angular.module("wagerCrony")
     $scope.searchTermTeamInput = '';
     console.log("searchInputTextFieldSelectList directive, clearsearchTermTeams cleared.")
   };
+
+  $scope.formMessage = "Enter Pick to Promote";
+  $scope.editPickMode = false;
+
+  $scope.editPick = function(index){
+    console.log($scope.savedPicks[index]);
+    $scope.pick = $scope.savedPicks[index];
+    $scope.editPickMode = true;
+    $scope.formMessage = "Edit Pick to Promote";
+  }
   
   $scope.isFormPopulated=false;
   $scope.setFormPopulated = function(){
@@ -127,7 +137,8 @@ angular.module("wagerCrony")
           "visitingTeam": $scope.pick.visitingTeam,
           "homeTeam": $scope.pick.homeTeam,
           "eventDate": $scope.pick.eventDate,
-          "description":$scope.pick.description
+          "description":$scope.pick.description,
+          "creator":$rootScope.globals.currentUser.username
         }
       }).then(function(res){
         

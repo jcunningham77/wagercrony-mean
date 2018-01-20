@@ -7,7 +7,8 @@ var pickSchema = new Schema({
     homeTeam:String,
     eventDate: Date,
     description:String,
-    createDate:Date
+    createDate:Date,
+    creator:String
 });
 
 
