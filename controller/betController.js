@@ -70,6 +70,37 @@ module.exports = function(app){
         });       
     });
 
+    app.put('/api/pick',function(req,res){
+        console.log('in the put endpoint for pick, req = ' + JSON.stringify(req.body.data));
+        var pick = {
+                        league:req.body.data.league,
+                        visitingTeam:req.body.data.visitingTeam,
+                        homeTeam:req.body.data.homeTeam,
+                        eventDate:new Date(req.body.data.eventDate),
+                        description:req.body.data.description,
+                        creator:req.body.data.creator
+                     };
+        var options = {
+            new: true
+        }             
+        Pick.findByIdAndUpdate(
+            req.body.data._id,
+            pick,
+            options,
+            function(err,doc) {
+                    if (err){
+                    console.log(err);
+                    res.status('500').send(err);
+
+                }else if(pick){
+                    console.log('successfully updated this pick: ' + pick);
+                    res.status('200').send(pick);
+                }
+            }
+        );
+
+    });
+
     app.get('/api/picks',function(req,res){
         console.log('in the get endpoint for picks');
 

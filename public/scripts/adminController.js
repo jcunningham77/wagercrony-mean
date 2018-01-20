@@ -49,11 +49,33 @@ angular.module("wagerCrony")
   $scope.formMessage = "Enter Pick to Promote";
   $scope.editPickMode = false;
 
-  $scope.editPick = function(index){
-    console.log($scope.savedPicks[index]);
-    $scope.pick = $scope.savedPicks[index];
+  $scope.editPick = function(pick){
+    console.log("adminController: editPick = pick:" + JSON.stringify(pick));
+    // $scope.removeFromListByIndex($scope.savedPicks,pick);
+    // $scope.savedPicks = $scope.removeFromListByFilter($scope.savedPicks,pick);
+    console.log("adminController: editPick , returned from the method call");
+    $scope.pick = pick;
     $scope.editPickMode = true;
     $scope.formMessage = "Edit Pick to Promote";
+  }
+
+  $scope.cancelEdit = function(){
+    $scope.editPickMode = false;
+    
+    $scope.pick = {};
+    $scope.formMessage = "Enter Pick to Promote";
+
+  }
+
+  $scope.removeFromListByIndex = function remove(array, element) {
+    // debugger;
+    console.log("adminController: removeFromList = pick:" + JSON.stringify(element));
+    const index = array.indexOf(element);
+    array.splice(index, 1);
+  }
+
+  $scope.removeFromListByFilter = function remove(array, element) {
+    return array.filter(e => e !== element);
   }
   
   $scope.isFormPopulated=false;
@@ -128,8 +150,47 @@ angular.module("wagerCrony")
 
     }  
 
+    $scope.updatePick = function(){
+      console.log("adminController: updatePick: call node service to update Pick " + JSON.stringify($scope.pick));
+
+      $http.put('/api/pick/',
+    { 
+        data:{
+        "_id":$scope.pick._id,  
+        "league": $scope.pick.league,
+        "visitingTeam": $scope.pick.visitingTeam,
+        "homeTeam": $scope.pick.homeTeam,
+        "eventDate": $scope.pick.eventDate,
+        "description":$scope.pick.description,
+        "creator":$rootScope.globals.currentUser.username
+      }
+
+
+    }).then(function(res){
+      
+      
+        console.log('in success callback after updating pick = ' + JSON.stringify(res));
+        //store the alert in local session data until figure out how the reset the form without
+        //reloading the browser
+        // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
+
+        $window.localStorage.setItem("alert", JSON.stringify({type:'success',msg: 'Pick updated!'}));
+        $scope.pick = {};
+
+        // $location.path('/Admin');
+        $route.reload();
+        
+  
+      },function(err){
+        console.log("in error callback after attempting to update pick = " + JSON.stringify($scope.pick));
+        
+        console.log("error = " + err);
+        $scope.alerts.push({type:'danger',msg: 'Pick not updated!'});
+      });
+    }
+
      $scope.savePick = function(){
-      console.log("adminController: call node service to persist Pick " + JSON.stringify($scope.pick));
+      console.log("adminController: savePick: call node service to persist Pick " + JSON.stringify($scope.pick));
       $http.post('/api/pick/',
       {
         data:{

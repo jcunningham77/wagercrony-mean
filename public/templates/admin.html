@@ -73,12 +73,18 @@
                         <textarea ng-model="pick.description" md-maxlength="5000" rows="3" md-select-on-focus ng-blur="setFormPopulated()"></textarea>
                  </md-input-container>
 
-                  <div layout="row" layout-align="start">
+                  <div layout="row" layout-align="start" ng-show="!editPickMode">
                       <md-input-container>
                           <md-button ng-disabled="!isFormPopulated" class="md-raised md-primary" type="submit" ng-click="savePick()">Submit</md-button>
                       </md-input-container>
                       
-                  </div>      
+                  </div>     
+                  <div layout="row" layout-align="start" ng-show="editPickMode">
+                        <md-input-container>
+                            <md-button class="md-raised md-primary" type="submit" ng-click="updatePick()">Update Pick</md-button> <md-button class="md-raised md-secondary" type="submit" ng-click="cancelEdit()">Cancel</md-button>
+                        </md-input-container>
+                        
+                    </div>                      
               </md-content>
           </form>
       </div>
@@ -102,7 +108,7 @@
    <uib-accordion close-others="oneAtATime">
         <div uib-accordion-group class="panel-default"  ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
                 <uib-accordion-heading>
-                        {{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}} <i class="material-icons md-18" ng-click="editPick($index)">mode_edit</i>
+                        {{pick.league}}: {{pick.homeTeam}} @ {{pick.visitingTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}} <i class="material-icons md-18" ng-click="editPick(pick)">mode_edit</i>
                 </uib-accordion-heading>
         
         
