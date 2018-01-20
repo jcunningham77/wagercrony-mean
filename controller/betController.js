@@ -55,6 +55,7 @@ module.exports = function(app){
                             eventDate:new Date(req.body.data.eventDate),
                             description:req.body.data.description,
                             createDate:Date(),
+                            creator:req.body.data.creator
                     });        
 
         pick.save(function(err, pick, numAffected){
