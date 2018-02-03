@@ -23,33 +23,50 @@
                           </md-select>
                       </md-input-container>
                   </div>
-      
-      
+                  <div layout="row" layout-align="start" flex> 
+                        <div flex="20">
+                            <div search-input-text-field-select-list visible="true" label='Winning team' label2='{{messageOnOpen}}' name='pickTeam' items="teams" bind="pick.pickTeam" validate="setFormPopulated()"></div>
+                        </div>
+                        <div flex="15">
+                        </div>
+                        <div flex="20">        
+                                <md-input-container class="md-block">
+                                        <label>Pick Money Line</label>
+                                        <input type="number" step="any" name="pickMoneyLine" ng-model="pick.pickMoneyLine" min="-1000"
+                                            max="10000" ng-blur="setFormPopulated()"/>
+                                        <div ng-messages="trackForm.wager.$error" md-auto-hide="false">
+                                            <div ng-message="min">
+                                                Money Line can't be less than -1000.
+                                            </div>
+                                            <div ng-message="max">
+                                                Max money line is 10000
+                                            </div>
+                                        </div>
+                                </md-input-container>  
+                        </div>
+                        <div flex="15">
+                        </div>                           
+                        <div flex="20">        
+                            <md-input-container class="md-block">
+                                    <label>Pick Line</label>
+                                    <input type="number" step="any" name="pickLine" ng-model="pick.pickLine" min="-20"
+                                        max="20" ng-blur="setFormPopulated()"/>
+                                    <div ng-messages="trackForm.wager.$error" md-auto-hide="false">
+                                        <div ng-message="min">
+                                            Pick Line can't be less than -20.
+                                        </div>
+                                        <div ng-message="max">
+                                            Pick line max is 20
+                                        </div>
+                                    </div>
+                            </md-input-container>  
+                        </div>      
+                        <div flex="10">
+                        </div>                                                              
+                </div>                         
                   <div layout="row" layout-align="start" flex> 
                           <div flex="45">
                               <div search-input-text-field-select-list visible="true" label='Visiting team' label2='{{messageOnOpen}}' name='visitingTeam' items="teams" bind="pick.visitingTeam" validate="setFormPopulated()"></div>
-                              <!--this was for troubleshooting form submittal issue 
-                                  <md-input-container>
-                                    <label>Visiting Team</label>
-                                    <md-select ng-model="pick.visitingTeam" id='Visiting team' name='visitingTeam'
-                                        md-on-close="clearSearchTermTeams();validateParentForm();" 
-                                        data-md-container-class="selectdemoSelectHeader" 
-                                        multiple="false" required> 
-                                        <div class="errors" ng-messages="trackForm.selectedItem.$error">
-                                            <div ng-message="required">This field is required</div>
-                                        </div>
-                                        <md-select-header class="demo-select-header">
-                                            <input id=searchTermTeamInput ng-model="searchTermTeamInput"
-                                                type="search"
-                                                placeholder="{{messageOnOpen}}"
-                                                class="demo-header-searchbox md-text">
-
-                                        </md-select-header>
-                                        <md-optgroup label="item">
-                                        <md-option ng-value="item.name" ng-repeat="item in teams|filter:searchTermTeamInput">{{item.name}}</md-option>
-                                        </md-optgroup>
-                                    </md-select>
-                                </md-input-container> -->
                           </div>
                           <div flex="5" hide-xs hide-sm>
                           
