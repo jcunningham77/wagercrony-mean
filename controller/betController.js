@@ -74,6 +74,10 @@ module.exports = function(app){
         console.log('in the put endpoint for pick, req = ' + JSON.stringify(req.body.data));
         var pick = {
                         league:req.body.data.league,
+                        pickTeam:req.body.data.pickTeam,
+                        pickLine:req.body.data.pickLine,
+                        pickMoneyLine:req.body.data.pickMoneyLine,
+                        result:req.body.data.result,        
                         visitingTeam:req.body.data.visitingTeam,
                         homeTeam:req.body.data.homeTeam,
                         eventDate:new Date(req.body.data.eventDate),
@@ -93,7 +97,7 @@ module.exports = function(app){
                     res.status('500').send(err);
 
                 }else if(pick){
-                    console.log('successfully updated this pick: ' + pick);
+                    console.log('successfully updated this pick: ' + JSON.stringify(pick));
                     res.status('200').send(pick);
                 }
             }

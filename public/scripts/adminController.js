@@ -41,6 +41,13 @@ angular.module("wagerCrony")
 
   $scope.messageOnOpen = 'Select league above...';
 
+  $scope.resultValues = [{label:"Pending...",value:null},
+                          {label:"Win",value:1},
+                          {label:"Push",value:0},
+                          {label:"Loss",value:-1}
+                        ];
+
+
   $scope.clearSearchTermTeams = function() {
     $scope.searchTermTeamInput = '';
     console.log("searchInputTextFieldSelectList directive, clearsearchTermTeams cleared.")
@@ -55,6 +62,7 @@ angular.module("wagerCrony")
     // $scope.savedPicks = $scope.removeFromListByFilter($scope.savedPicks,pick);
     console.log("adminController: editPick , returned from the method call");
     $scope.pick = pick;
+    // debugger;
     $scope.editPickMode = true;
     $scope.formMessage = "Edit Pick to Promote";
   }
@@ -93,14 +101,14 @@ angular.module("wagerCrony")
   }
   
   $scope.getSelectedText = function() {
-    console.log('getSelectedText executed');
+    // console.log('getSelectedText executed');
     if ($scope.pick.league !== undefined) {
-      console.log('getSelectedText executed, $scope.pick.league is not null, = ' + $scope.pick.league);
+      // console.log('getSelectedText executed, $scope.pick.league is not null, = ' + $scope.pick.league);
       this.loadTeamList();
       $scope.messageOnOpen = 'Select a team...';
       return $scope.pick.league;
     } else {
-      console.log('getSelectedText executed, $scope.pick.league is undefined');
+      // console.log('getSelectedText executed, $scope.pick.league is undefined');
       return "Please select an league...";
     }
 };  
@@ -109,7 +117,7 @@ angular.module("wagerCrony")
         .then(function(res){
 					console.log("in success callback after API call");
 					$scope.savedPicks = res.data;
-					// console.log($scope.savedPicks);
+					console.log($scope.savedPicks);
 				},function(err){
 					console.log("in error callback after API call");
 					$scope.error_message = err;
@@ -152,11 +160,16 @@ angular.module("wagerCrony")
 
     $scope.updatePick = function(){
       console.log("adminController: updatePick: call node service to update Pick " + JSON.stringify($scope.pick));
-
+      // debugger;
       $http.put('/api/pick/',
     { 
         data:{
         "_id":$scope.pick._id,  
+        "league": $scope.pick.league,
+        "pickTeam":$scope.pick.pickTeam,
+        "pickLine":$scope.pick.pickLine,
+        "pickMoneyLine":$scope.pick.pickMoneyLine,
+        "result":$scope.pick.result,        
         "league": $scope.pick.league,
         "visitingTeam": $scope.pick.visitingTeam,
         "homeTeam": $scope.pick.homeTeam,
@@ -195,6 +208,10 @@ angular.module("wagerCrony")
       {
         data:{
           "league": $scope.pick.league,
+          "pickTeam":$scope.pick.pickTeam,
+          "pickLine":$scope.pick.pickLine,
+          "pickMoneyLine":$scope.pick.pickMoneyLine,
+          "result":$scope.pick.result,
           "visitingTeam": $scope.pick.visitingTeam,
           "homeTeam": $scope.pick.homeTeam,
           "eventDate": $scope.pick.eventDate,

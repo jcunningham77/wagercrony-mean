@@ -90,6 +90,17 @@
                         <textarea ng-model="pick.description" md-maxlength="5000" rows="3" md-select-on-focus ng-blur="setFormPopulated()"></textarea>
                  </md-input-container>
 
+                 <div layout="row" layout-align="start" flex>
+                        <md-input-container>
+                                <label>Result</label>
+                                <md-select ng-model="pick.result">
+                                  <md-option ng-repeat="resultValue in resultValues" ng-value="resultValue.value">
+                                    {{resultValue.label}}
+                                  </md-option>
+                                </md-select>
+                        </md-input-container>
+                    </div>                 
+
                   <div layout="row" layout-align="start" ng-show="!editPickMode">
                       <md-input-container>
                           <md-button ng-disabled="!isFormPopulated" class="md-raised md-primary" type="submit" ng-click="savePick()">Submit</md-button>
