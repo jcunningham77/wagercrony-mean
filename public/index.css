@@ -21,10 +21,28 @@
     100% {transform: translateX(0)}
   }
   
-  .shake {
-    animation: shake 400ms ease-in-out;
+.shake {
+  animation: shake 400ms ease-in-out;
+}
+
+ /* .panel-heading-win {
+  background-color: green !important;
+} */
+
+accordion>.panel-heading-win{
+  background-color: #128F04;
+}
+
+
+  md-input-container label{
+    font-weight: normal;
   }
 
+  md-input-container label-bold{
+    font-weight:bold;
+  }
+
+  
 
 
   .selectdemoSelectHeader {

@@ -75,9 +75,9 @@ module.exports = function(app){
         var pick = {
                         league:req.body.data.league,
                         pickTeam:req.body.data.pickTeam,
-                        pickLine:req.body.data.pickLine,
-                        pickMoneyLine:req.body.data.pickMoneyLine,
-                        result:req.body.data.result,        
+                        pickLine:req.body.data.pickLine||null,
+                        pickMoneyLine:req.body.data.pickMoneyLine||null,
+                        result:req.body.data.result||null,        
                         visitingTeam:req.body.data.visitingTeam,
                         homeTeam:req.body.data.homeTeam,
                         eventDate:new Date(req.body.data.eventDate),

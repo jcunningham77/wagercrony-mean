@@ -80,7 +80,8 @@
                           </div>
                   </div>        
                   <div layout="row" layout-align="start" flex>
-                      <md-input-container class="md-block">        
+                      <md-input-container class="md-block">   
+                            <label>Event Date</label>     
                           <md-datepicker ng-model="pick.eventDate" md-placeholder="Enter event date" ng-blur="setFormPopulated()"></md-datepicker>
                       </md-input-container>
                   </div>
@@ -117,7 +118,32 @@
           </form>
       </div>
 
-<div ng-controller="AccordionCtrl">
+      <div flex-gt-sm="50" flex>
+            
+                <md-toolbar layout="row" class="md-hue-3">
+                  <div class="md-toolbar-tools">
+                    <span>Normal</span>
+                  </div>
+                </md-toolbar>
+            
+                <md-content>
+                  <md-list flex>
+                    <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader>
+                    <md-list-item class="md-3-line" ng-repeat="pick in savedPicks" ng-click="null">
+                      <img ng-src="logo/nhl/flyers.png" class="md-avatar" alt="{{item.who}}" />
+                      <div class="md-list-item-text" layout="column">
+                        <h3>{{ item.who }}</h3>
+                        <h4>{{ item.what }}</h4>
+                        <p>{{ item.notes }}</p>
+                      </div>
+                    </md-list-item>
+                    
+                  </md-list>
+                </md-content>
+
+      </div>
+
+<!-- <div ng-controller="AccordionCtrl">
     <script type="text/ng-template" id="group-template.html">
     <div class="panel-heading">
       <h4 class="panel-title" style="color:#fa39c3">
@@ -134,8 +160,8 @@
   </script>
 
    <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default"  ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
-                <uib-accordion-heading>
+        <div uib-accordion-group class="panel-default panel-heading-win"  ng-repeat="pick in savedPicks| orderBy:propertyName:reverse">
+                <uib-accordion-heading ng-style="{'background-color':'red'}">
                         {{pick.league}}: {{pick.visitingTeam}} @ {{pick.homeTeam}}, {{pick.eventDate| date:'shortDate'}} Date recorded: {{pick.createDate| date:'short'}} <i class="material-icons md-18" ng-click="editPick(pick)">mode_edit</i>
                 </uib-accordion-heading>
         
@@ -144,4 +170,6 @@
         
         </div>
     </uib-accordion>
-</div>
+</div> -->
+
+

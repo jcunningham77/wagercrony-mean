@@ -72,6 +72,8 @@ angular.module("wagerCrony")
     
     $scope.pick = {};
     $scope.formMessage = "Enter Pick to Promote";
+    //todo reload route until figure out how to reset form 
+    $route.reload();
 
   }
 
