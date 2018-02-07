@@ -2,7 +2,12 @@
 	'use strict';
 
 	angular.module('wagerCrony',['ngRoute', 'ngCookies', 'ui.bootstrap','ngAnimate', 'ngMaterial', 'ngMessages'])
-		.directive('searchInputTextFieldSelectList',function(){
+	.config(function($mdIconProvider) {
+		$mdIconProvider
+			.iconSet('editor', 'img/icons/sets/editor-icons.svg', 24)
+			.defaultIconSet('img/icons/sets/core-icons.svg', 24);
+	})
+	.directive('searchInputTextFieldSelectList',function(){
 			var controller = ['$scope','$element', function ($scope,$element) {
           $element.find('input').on('keydown', function(ev) {
           	ev.stopPropagation();

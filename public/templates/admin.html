@@ -118,24 +118,24 @@
           </form>
       </div>
 
-      <div flex-gt-sm="50" flex>
-            
-                <md-toolbar layout="row" class="md-hue-3">
-                  <div class="md-toolbar-tools">
-                    <span>Normal</span>
-                  </div>
-                </md-toolbar>
-            
+      <div flex-gt-sm="50" flex>            
                 <md-content>
                   <md-list flex>
-                    <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader>
+                    <md-subheader class="md-no-sticky">Saved Picks</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="pick in savedPicks" ng-click="null">
-                      <img ng-src="logo/nhl/flyers.png" class="md-avatar" alt="{{item.who}}" />
+                      <img ng-src="logo/nhl/flyers.png" class="md-avatar" alt="{{pick.pickTeam}}" />
                       <div class="md-list-item-text" layout="column">
-                        <h3>{{ item.who }}</h3>
-                        <h4>{{ item.what }}</h4>
-                        <p>{{ item.notes }}</p>
+                        <h2>{{ pick.pickTeam }},  {{pick.eventDate| date:'shortDate'}} </h2>
+                        <h4>{{ pick.visitingTeam }} @ {{pick.homeTeam}}</h4>
+                        <p>{{ pick.description }}</p>
                       </div>
+                      
+                      <md-icon md-font-icon="mode_edit md-18"></md-icon>
+                      <!-- <i class="material-icons md-18" ng-click="editPick(pick)">mode_edit</i> -->
+
+                      <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" aria-label="call">
+                            <md-icon md-svg-icon="editor:mode_edit"></md-icon>
+                          </md-button>
                     </md-list-item>
                     
                   </md-list>
