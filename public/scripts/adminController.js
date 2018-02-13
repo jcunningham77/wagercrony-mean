@@ -57,7 +57,9 @@ angular.module("wagerCrony")
   $scope.editPickMode = false;
 
   $scope.editPick = function(pick){
+    
     console.log("adminController: editPick = pick:" + JSON.stringify(pick));
+
     // $scope.removeFromListByIndex($scope.savedPicks,pick);
     // $scope.savedPicks = $scope.removeFromListByFilter($scope.savedPicks,pick);
     console.log("adminController: editPick , returned from the method call");

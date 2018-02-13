@@ -130,12 +130,18 @@
                         <p>{{ pick.description }}</p>
                       </div>
                       
-                      <md-icon md-font-icon="mode_edit md-18"></md-icon>
+                      
                       <!-- <i class="material-icons md-18" ng-click="editPick(pick)">mode_edit</i> -->
 
-                      <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" aria-label="call">
-                            <md-icon md-svg-icon="editor:mode_edit"></md-icon>
-                          </md-button>
+                      
+                            
+
+                            <md-icon md-svg-src="../images/ic_mode_edit.svg" class="md-secondary"
+                                    aria-label="Edit Pick" ng-click="editPick(pick)">
+                            </md-icon>
+                           
+                      
+
                     </md-list-item>
                     
                   </md-list>
