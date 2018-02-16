@@ -5,7 +5,7 @@
       
         <div uib-alert ng-repeat="alert in $parent.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
       
-      </div>
+</div>
 
 
       
@@ -16,7 +16,7 @@
                   <h3 class="md-headline">{{formMessage}}</h3>
                   <div layout="row" layout-align="start" ng-cloak>
                       <md-input-container>
-                          <md-select ng-model="pick.league" md-selected-text="getSelectedText()" placeholder="League">
+                          <md-select ng-model="pick.league" md-selected-text="getSelectedText();" placeholder="League">
                               <md-optgroup label="leagues">
                                   <md-option ng-value="league" ng-repeat="league in leagues">{{league}}</md-option>
                               </md-optgroup>
@@ -24,8 +24,11 @@
                       </md-input-container>
                   </div>
                   <div layout="row" layout-align="start" flex> 
+                        <img ng-src="{{selectedLogo}}" class="md-avatar" />
+                  </div>
+                  <div layout="row" layout-align="start" flex> 
                         <div flex="20">
-                            <div search-input-text-field-select-list visible="true" label='Winning team' label2='{{messageOnOpen}}' name='pickTeam' items="teams" bind="pick.pickTeam" validate="setFormPopulated()"></div>
+                            <div search-input-text-field-select-list visible="true" label='Winning team' label2='{{messageOnOpen}}' name='pickTeam' items="teamsOutcomeList" bind="pick.pickTeam" validate="setFormPopulated()"></div>
                         </div>
                         <div flex="15">
                         </div>
@@ -122,12 +125,18 @@
                 <md-content>
                   <md-list flex>
                     <md-subheader class="md-no-sticky">Saved Picks</md-subheader>
-                    <md-list-item class="md-3-line" ng-repeat="pick in savedPicks" ng-click="null">
+                    <span class="md-subhead">Sort By: </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="Regular 12px" ng-click="sortBy('league')">League &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="Regular 12px" ng-click="sortBy('homeTeam')">Home &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="Regular 12px" ng-click="sortBy('visitingTeam')">Visitor &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="Regular 12px" ng-click="sortBy('eventDate')">Event Date &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br><br>
+                    <md-list-item class="md-3-line" ng-repeat="pick in savedPicks | orderBy:propertyName:reverse" ng-click="null">
                       <img ng-src="logo/nhl/flyers.png" class="md-avatar" alt="{{pick.pickTeam}}" />
                       <div class="md-list-item-text" layout="column">
                         <h2>{{ pick.pickTeam }},  {{pick.eventDate| date:'shortDate'}} </h2>
                         <h4>{{ pick.visitingTeam }} @ {{pick.homeTeam}}</h4>
-                        <p>{{ pick.description }}</p>
+                        <p>{{ (pick.result===1)?'Win':(pick.result===-1)?'Loss':'' }}</p>
                       </div>
                       
                       

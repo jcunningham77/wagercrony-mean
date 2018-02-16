@@ -1,3 +1,4 @@
+
 'use strict';
 angular.module("wagerCrony")
 .controller('adminController', function ($scope,$http, $location, $route, $window, $rootScope) {
@@ -17,6 +18,8 @@ angular.module("wagerCrony")
     $window.localStorage.removeItem("alert");
 
   }
+
+  
   
   $scope.leagues = ['MLB','NHL','NFL'];
   $scope.showErrors=true;
@@ -28,7 +31,8 @@ angular.module("wagerCrony")
 		$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
 		$scope.propertyName = propertyName;
 	};
-	
+  
+
 
   $scope.pick = {};
   $scope.setDefaultEventDate = function() {
@@ -36,6 +40,8 @@ angular.module("wagerCrony")
     $scope.dt = new Date();
     $scope.pick.eventDate = new Date();
   };  
+
+
 
  
 
@@ -56,6 +62,13 @@ angular.module("wagerCrony")
   $scope.formMessage = "Enter Pick to Promote";
   $scope.editPickMode = false;
 
+  $scope.propertyName = 'eventDate';
+
+  $scope.sortBy = function(propertyName) {
+		$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+		$scope.propertyName = propertyName;
+	};
+
   $scope.editPick = function(pick){
     
     console.log("adminController: editPick = pick:" + JSON.stringify(pick));
@@ -67,6 +80,7 @@ angular.module("wagerCrony")
     // debugger;
     $scope.editPickMode = true;
     $scope.formMessage = "Edit Pick to Promote";
+    $window.scrollTo(0, 0);
   }
 
   $scope.cancelEdit = function(){
@@ -102,13 +116,27 @@ angular.module("wagerCrony")
       console.log("setFormPopulated: form is  not populated");
       $scope.isFormPopulated=false;
     }
-  }
+    $scope.setLogo();
+  };
+
+  $scope.setLogo = function(){
+    var selectedTeam;
+    if ($scope.pick===undefined){
+      console.log("pick is undefined");
+    }else {
+      selectedTeam = $scope.teamsOutcomeList.filter(function( obj ) {
+        return obj.name == $scope.pick.pickTeam;
+      });
+    }
+    console.log("set logo:" + JSON.stringify(selectedTeam));
+  };
   
   $scope.getSelectedText = function() {
     // console.log('getSelectedText executed');
     if ($scope.pick.league !== undefined) {
       // console.log('getSelectedText executed, $scope.pick.league is not null, = ' + $scope.pick.league);
       this.loadTeamList();
+      this.loadPickOutcomeList();
       $scope.messageOnOpen = 'Select a team...';
       return $scope.pick.league;
     } else {
@@ -117,7 +145,7 @@ angular.module("wagerCrony")
     }
 };  
 
-      $http.get('/api/picks/')
+  $http.get('/api/picks/')
         .then(function(res){
 					console.log("in success callback after API call");
 					$scope.savedPicks = res.data;
@@ -155,12 +183,24 @@ angular.module("wagerCrony")
                         $scope.error_message = err;
                         console.log(err);
                     });
-    
-        
-        
-        
-
     }  
+
+    $scope.loadPickOutcomeList = function(){
+      console.log("loading pick outcome list for " + $scope.pick.league);
+
+      $http.get('/api/pick-outcomes/' + $scope.pick.league,
+      {}).then(function(res){
+                      console.log("in success callback after api/pick-outcomes/ API call");
+                      $scope.teamsOutcomeList = res.data;
+                      console.log($scope.teamsOutcomeList);
+                  },function(err){
+                      console.log("in error callback after API call");
+                      $scope.error_message = err;
+                      console.log(err);
+                  });
+  }     
+
+
 
     $scope.updatePick = function(){
       console.log("adminController: updatePick: call node service to update Pick " + JSON.stringify($scope.pick));
@@ -245,10 +285,4 @@ angular.module("wagerCrony")
       });
 
   };
-
-
-
-
-
-
 });

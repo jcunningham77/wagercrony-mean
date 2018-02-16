@@ -16,5 +16,15 @@ module.exports = function(app){
                                    
     });
 
+    app.get('/api/pick-outcomes/:league',function(req,res){
+        console.log('in the get endpoint for getting pick outcomes by league, league = ' + req.params.league);
+
+        var pickOutcomes= teamData.getTeamOutcomesByLeague(req.params.league);
+        
+        console.log("pickOutcomes length = " + pickOutcomes.length);
+
+        res.status('200').send(pickOutcomes);
+                                   
+    });
 
 }
