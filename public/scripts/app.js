@@ -9,8 +9,15 @@
 			.iconSet('device', 'img/icons/sets/device-icons.svg', 24)
 			.iconSet('communication', 'img/icons/sets/communication-icons.svg', 24)
 			.defaultIconSet('img/icons/sets/core-icons.svg', 24);			
-	})
-	.directive('searchInputTextFieldSelectList',function(){
+	}).directive('backImg', function(){
+    return function(scope, element, attrs){
+        var url = attrs.backImg;
+        element.css({
+            'background-image': 'url(' + url +')',
+            'background-size' : 'cover'
+        });
+    };
+}).directive('searchInputTextFieldSelectList',function(){
 			var controller = ['$scope','$element', function ($scope,$element) {
           $element.find('input').on('keydown', function(ev) {
           	ev.stopPropagation();

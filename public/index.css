@@ -88,6 +88,10 @@ accordion>.panel-heading-win{
   /* Likely future */ 
 } 
 
+.body{
+  background-image: "images/backgroundRink.jpg" !important;
+}
+
 
 /*result class*/
 .result_loss {
