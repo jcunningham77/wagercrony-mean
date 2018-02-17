@@ -87,3 +87,22 @@ accordion>.panel-heading-win{
   user-select: none;
   /* Likely future */ 
 } 
+
+
+/*result class*/
+.result_loss {
+  color: red!important;
+}
+.result_win {
+  color:green!important;
+}
+
+.md-avatar-size {
+  
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+
+    width: 110px!important;
+    height: 110px!important;
+
+}

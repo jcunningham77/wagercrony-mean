@@ -13,7 +13,8 @@ var pickSchema = new Schema({
     eventDate: Date,
     description:String,
     createDate:Date,
-    creator:String
+    creator:String,
+    archived: { type: Boolean, default: false }
 });
 
 

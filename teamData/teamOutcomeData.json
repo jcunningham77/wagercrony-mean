@@ -1,124 +1,336 @@
 [
     {
-        "NHL": [
-            {"name":"Anaheim Ducks"},
-            {"name":"Arizona Coyotes"},
-            {"name":"Boston Bruins"},
-            {"name":"Buffalo Sabres"},
-            {"name":"Calgary Flames"},
-            {"name":"Carolina Hurricanes"},
-            {"name":"Chicago Blackhawks"},
-            {"name":"Colorado Avalanche"},
-            {"name":"Columbus Blue Jackets"},
-            {"name":"Dallas Stars"},
-            {"name":"Detroit Red Wings"},
-            {"name":"Edmonton Oilers"},
-            {"name":"Florida Panthers"},
-            {"name":"Los Angeles Kings"},
-            {"name":"Minnesota Wild"},
-            {"name":"Montreal Canadiens"},
-            {"name":"Nashville Predators"},
-            {"name":"New Jersey Devils"},
-            {"name":"New York Islanders"},
-            {"name":"New York Rangers",
-                "logo":"logo/nhl/rangers.png"},
-            {"name":"Ottawa Senators"},
-            {"name":"Philadelphia Flyers",
+       "NHL":[
+          {
+             "name":"Anaheim Ducks",
+             "logo":"logo/nhl/ducks.png"
+          },
+          {
+             "name":"Arizona Coyotes",
+             "logo":"logo/nhl/coyotes.png"
+          },
+          {
+             "name":"Boston Bruins",
+             "logo":"logo/nhl/bruins.png"
+          },
+          {
+             "name":"Buffalo Sabres",
+             "logo":"logo/nhl/sabres.png"
+          },
+          {
+             "name":"Calgary Flames",
+             "logo":"logo/nhl/flames.png"
+          },
+          {
+             "name":"Carolina Hurricanes",
+             "logo":"logo/nhl/hurricanes.png"
+          },
+          {
+             "name":"Chicago Blackhawks",
+             "logo":"logo/nhl/blackhawks.png"
+          },
+          {
+             "name":"Colorado Avalanche",
+             "logo":"logo/nhl/avalanche.png"
+          },
+          {
+             "name":"Columbus Blue Jackets",
+             "logo":"logo/nhl/bluejackets.png"
+          },
+          {
+             "name":"Dallas Stars",
+             "logo":"logo/nhl/stars.png"
+          },
+          {
+             "name":"Detroit Red Wings",
+             "logo":"logo/nhl/redwings.png"
+          },
+          {
+             "name":"Edmonton Oilers",
+             "logo":"logo/nhl/oilers.png"
+          },
+          {
+             "name":"Florida Panthers",
+             "logo":"logo/nhl/panthers.png"
+          },
+          {
+             "name":"Los Angeles Kings",
+             "logo":"logo/nhl/kings.png"
+          },
+          {
+             "name":"Minnesota Wild",
+             "logo":"logo/nhl/wild.png"
+          },
+          {
+             "name":"Montreal Canadiens",
+             "logo":"logo/nhl/canadiens.png"
+          },
+          {
+             "name":"Nashville Predators",
+             "logo":"logo/nhl/predators.png"
+          },
+          {
+             "name":"New Jersey Devils",
+             "logo":"logo/nhl/devils.png"
+          },
+          {
+             "name":"New York Islanders",
+             "logo":"logo/nhl/islanders.png"
+          },
+          {
+             "name":"New York Rangers",
+             "logo":"logo/nhl/rangers.png"
+          },
+          {
+             "name":"Ottawa Senators",
+             "logo":"logo/nhl/senators.png"
+          },
+          {
+             "name":"Philadelphia Flyers",
              "logo":"logo/nhl/flyers.png"
-            },
-            {"name":"Pittsburgh Penguins",
-             "logo":"logo/nhl/flyers.png"},
-            {"name":"San Jose Sharks",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"St. Louis Blues",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Tampa Bay Lightning",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Toronto Maple Leafs",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Vancouver Canucks",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Vegas Golden Knights",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Washington Capitals",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Winnipeg Jets",
-                "logo":"logo/nhl/flyers.png"},
-            {"name":"Over",
-                "logo":"logo/nhl/over.png"},
-            {"name":"Under",
-                "logo":"logo/nhl/under.png"},
-            {"name":"Prop Bet: No OT",
-                "logo":"logo/nhl/no_OT.png"},
-            {"name":"Prop Bet: OT",
-                "logo":"logo/nhl/OT.png"}
-        ],
-        "MLB":[
-            {"name":"Arizona Diamondbacks"},
-            {"name":"Atlanta Braves"},
-            {"name":"Baltimore Orioles"},
-            {"name":"Boston Red Sox"},
-            {"name":"Chicago Cubs"},
-            {"name":"Chicago White Sox"},
-            {"name":"Cincinnati Reds"},
-            {"name":"Cleveland Indians"},
-            {"name":"Colorado Rockies"},
-            {"name":"Detroit Tigers"},
-            {"name":"Miami Marlins"},
-            {"name":"Houston Astros"},
-            {"name":"Kansas City Royals"},
-            {"name":"Los Angeles Angels of Anaheim"},
-            {"name":"Los Angeles Dodgers"},
-            {"name":"Milwaukee Brewers"},
-            {"name":"Minnesota Twins"},
-            {"name":"New York Mets"},
-            {"name":"New York Yankees"},
-            {"name":"Oakland Athletics"},
-            {"name":"Philadelphia Phillies"},
-            {"name":"Pittsburgh Pirates"},
-            {"name":"Saint (St.) Louis Cardinals"},
-            {"name":"San Diego Padres"},
-            {"name":"San Francisco Giants"},
-            {"name":"Seattle Mariners"},
-            {"name":"Tampa Bay Rays"},
-            {"name":"Texas Rangers"},
-            {"name":"Toronto Blue Jays"},
-            {"name":"Washington Nationals"}
-        ],
-        "NFL":[
-        {"name":"Arizona Cardinals"},
-        {"name":"Atlanta Falcons"},
-        {"name":"Baltimore Ravens"},
-        {"name":"Buffalo Bills"},
-        {"name":"Carolina Panthers"},
-        {"name":"Chicago Bears"},
-        {"name":"Cincinnati Bengals"},
-        {"name":"Cleveland Browns"},
-        {"name":"Dallas Cowboys"},
-        {"name":"Denver Broncos"},
-        {"name":"Detroit Lions"},
-        {"name":"Green Bay Packers"},
-        {"name":"Houston Texans"},
-        {"name":"Indianapolis Colts"},
-        {"name":"Jacksonville Jaguars"},
-        {"name":"Kansas City Chiefs"},
-        {"name":"Miami Dolphins"},
-        {"name":"Minnesota Vikings"},
-        {"name":"New England Patriots"},
-        {"name":"New Orleans Saints"},
-        {"name":"NY Giants"},
-        {"name":"NY Jets"},
-        {"name":"Oakland Raiders"},
-        {"name":"Philadelphia Eagles"},
-        {"name":"Pittsburgh Steelers"},
-        {"name":"San Diego Chargers"},
-        {"name":"San Francisco 49ers"},
-        {"name":"Seattle Seahawks"},
-        {"name":"St. Louis Rams"},
-        {"name":"Tampa Bay Buccaneers"},
-        {"name":"Tennessee Titans"},
-        {"name":"Washington Redskins"}
+          },
+          {
+             "name":"Pittsburgh Penguins",
+             "logo":"logo/nhl/penguins.png"
+          },
+          {
+             "name":"San Jose Sharks",
+             "logo":"logo/nhl/sharks.png"
+          },
+          {
+             "name":"St. Louis Blues",
+             "logo":"logo/nhl/blues.png"
+          },
+          {
+             "name":"Tampa Bay Lightning",
+             "logo":"logo/nhl/lightning.png"
+          },
+          {
+             "name":"Toronto Maple Leafs",
+             "logo":"logo/nhl/leafs.png"
+          },
+          {
+             "name":"Vancouver Canucks",
+             "logo":"logo/nhl/canucks.png"
+          },
+          {
+             "name":"Vegas Golden Knights",
+             "logo":"logo/nhl/knights.png"
+          },
+          {
+             "name":"Washington Capitals",
+             "logo":"logo/nhl/capitals.png"
+          },
+          {
+             "name":"Winnipeg Jets",
+             "logo":"logo/nhl/jets.png"
+          },
+          {
+             "name":"Over",
+             "logo":"logo/nhl/PropOvertime.png"
+          },
+          {
+             "name":"Under",
+             "logo":"logo/nhl/PropUnder.png"
+          },
+          {
+             "name":"Prop Bet: No OT",
+             "logo":"logo/nhl/PropNoOvertime.png"
+          },
+          {
+             "name":"Prop Bet: OT",
+             "logo":"logo/nhl/PropOvertime.png"
+          }
+       ],
+       "MLB":[
+          {
+             "name":"Arizona Diamondbacks"
+          },
+          {
+             "name":"Atlanta Braves"
+          },
+          {
+             "name":"Baltimore Orioles"
+          },
+          {
+             "name":"Boston Red Sox"
+          },
+          {
+             "name":"Chicago Cubs"
+          },
+          {
+             "name":"Chicago White Sox"
+          },
+          {
+             "name":"Cincinnati Reds"
+          },
+          {
+             "name":"Cleveland Indians"
+          },
+          {
+             "name":"Colorado Rockies"
+          },
+          {
+             "name":"Detroit Tigers"
+          },
+          {
+             "name":"Miami Marlins"
+          },
+          {
+             "name":"Houston Astros"
+          },
+          {
+             "name":"Kansas City Royals"
+          },
+          {
+             "name":"Los Angeles Angels of Anaheim"
+          },
+          {
+             "name":"Los Angeles Dodgers"
+          },
+          {
+             "name":"Milwaukee Brewers"
+          },
+          {
+             "name":"Minnesota Twins"
+          },
+          {
+             "name":"New York Mets"
+          },
+          {
+             "name":"New York Yankees"
+          },
+          {
+             "name":"Oakland Athletics"
+          },
+          {
+             "name":"Philadelphia Phillies"
+          },
+          {
+             "name":"Pittsburgh Pirates"
+          },
+          {
+             "name":"Saint (St.) Louis Cardinals"
+          },
+          {
+             "name":"San Diego Padres"
+          },
+          {
+             "name":"San Francisco Giants"
+          },
+          {
+             "name":"Seattle Mariners"
+          },
+          {
+             "name":"Tampa Bay Rays"
+          },
+          {
+             "name":"Texas Rangers"
+          },
+          {
+             "name":"Toronto Blue Jays"
+          },
+          {
+             "name":"Washington Nationals"
+          }
+       ],
+       "NFL":[
+          {
+             "name":"Arizona Cardinals"
+          },
+          {
+             "name":"Atlanta Falcons"
+          },
+          {
+             "name":"Baltimore Ravens"
+          },
+          {
+             "name":"Buffalo Bills"
+          },
+          {
+             "name":"Carolina Panthers"
+          },
+          {
+             "name":"Chicago Bears"
+          },
+          {
+             "name":"Cincinnati Bengals"
+          },
+          {
+             "name":"Cleveland Browns"
+          },
+          {
+             "name":"Dallas Cowboys"
+          },
+          {
+             "name":"Denver Broncos"
+          },
+          {
+             "name":"Detroit Lions"
+          },
+          {
+             "name":"Green Bay Packers"
+          },
+          {
+             "name":"Houston Texans"
+          },
+          {
+             "name":"Indianapolis Colts"
+          },
+          {
+             "name":"Jacksonville Jaguars"
+          },
+          {
+             "name":"Kansas City Chiefs"
+          },
+          {
+             "name":"Miami Dolphins"
+          },
+          {
+             "name":"Minnesota Vikings"
+          },
+          {
+             "name":"New England Patriots"
+          },
+          {
+             "name":"New Orleans Saints"
+          },
+          {
+             "name":"NY Giants"
+          },
+          {
+             "name":"NY Jets"
+          },
+          {
+             "name":"Oakland Raiders"
+          },
+          {
+             "name":"Philadelphia Eagles"
+          },
+          {
+             "name":"Pittsburgh Steelers"
+          },
+          {
+             "name":"San Diego Chargers"
+          },
+          {
+             "name":"San Francisco 49ers"
+          },
+          {
+             "name":"Seattle Seahawks"
+          },
+          {
+             "name":"St. Louis Rams"
+          },
+          {
+             "name":"Tampa Bay Buccaneers"
+          },
+          {
+             "name":"Tennessee Titans"
+          },
+          {
+             "name":"Washington Redskins"
+          }
        ]
     }
-]
-
+ ]

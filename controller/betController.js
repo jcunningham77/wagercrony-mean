@@ -50,6 +50,11 @@ module.exports = function(app){
     app.post('/api/pick',function(req,res){
         console.log('in the post endpoint for pick, req = ' + req);
         var pick = new Pick({ league:req.body.data.league,
+                            pickTeam:req.body.data.pickTeam,
+                            pickLogo:req.body.data.pickLogo,
+                            pickLine:req.body.data.pickLine||null,
+                            pickMoneyLine:req.body.data.pickMoneyLine||null,
+                            result:req.body.data.result||null,               
                             visitingTeam:req.body.data.visitingTeam,
                             homeTeam:req.body.data.homeTeam,
                             eventDate:new Date(req.body.data.eventDate),
@@ -75,6 +80,7 @@ module.exports = function(app){
         var pick = {
                         league:req.body.data.league,
                         pickTeam:req.body.data.pickTeam,
+                        pickLogo:req.body.data.pickLogo,
                         pickLine:req.body.data.pickLine||null,
                         pickMoneyLine:req.body.data.pickMoneyLine||null,
                         result:req.body.data.result||null,        
@@ -82,7 +88,8 @@ module.exports = function(app){
                         homeTeam:req.body.data.homeTeam,
                         eventDate:new Date(req.body.data.eventDate),
                         description:req.body.data.description,
-                        creator:req.body.data.creator
+                        creator:req.body.data.creator,
+                        archived:req.body.data.archived
                      };
         var options = {
             new: true
@@ -108,7 +115,7 @@ module.exports = function(app){
     app.get('/api/picks',function(req,res){
         console.log('in the get endpoint for picks');
 
-        Pick.find(function (err, picks) {
+        Pick.find({ 'archived': false },function (err, picks) {
             if (err) {
                 return console.error(err);
             } else {

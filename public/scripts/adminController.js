@@ -9,6 +9,8 @@ angular.module("wagerCrony")
     
    ];  
 
+   
+
   //check if there were any stored alerts before the page was reloaded
   var alert = $window.localStorage.getItem("alert");
   if (alert){
@@ -35,6 +37,7 @@ angular.module("wagerCrony")
 
 
   $scope.pick = {};
+  $scope.pick.pickLogo = "../images/question_icon.png";
   $scope.setDefaultEventDate = function() {
     // $scope.dt = new Date();
     $scope.dt = new Date();
@@ -83,6 +86,7 @@ angular.module("wagerCrony")
     $window.scrollTo(0, 0);
   }
 
+
   $scope.cancelEdit = function(){
     $scope.editPickMode = false;
     
@@ -128,7 +132,10 @@ angular.module("wagerCrony")
         return obj.name == $scope.pick.pickTeam;
       });
     }
-    console.log("set logo:" + JSON.stringify(selectedTeam));
+    // debugger;
+    console.log("set logo's selected team:" + JSON.stringify(selectedTeam));
+    console.log("the associated logo = ")
+    $scope.pick.pickLogo=selectedTeam[0].logo;
   };
   
   $scope.getSelectedText = function() {
@@ -202,6 +209,56 @@ angular.module("wagerCrony")
 
 
 
+
+  $scope.deletePick = function(pick){
+    console.log("adminController - delete pick");
+    $http.put('/api/pick/',
+    { 
+        data:{
+        "_id":pick._id,  
+        "league": pick.league,
+        "pickTeam":pick.pickTeam,
+        "pickLogo":pick.pickLogo,
+        "pickLine":pick.pickLine,
+        "pickMoneyLine":pick.pickMoneyLine,
+        "result":pick.result,        
+        "league": pick.league,
+        "visitingTeam": pick.visitingTeam,
+        "homeTeam": pick.homeTeam,
+        "eventDate": pick.eventDate,
+        "description":pick.description,
+        "creator":$rootScope.globals.currentUser.username,
+        "archived":true
+      }
+
+
+    }).then(function(res){
+      
+      
+        console.log('in success callback after updating pick = ' + JSON.stringify(res));
+        //store the alert in local session data until figure out how the reset the form without
+        //reloading the browser
+        // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
+
+        $window.localStorage.setItem("alert", JSON.stringify({type:'success',msg: 'Pick archived!'}));
+        $scope.pick = {};
+
+        // $location.path('/Admin');
+        $route.reload();
+        
+  
+      },function(err){
+        console.log("in error callback after attempting to archive pick = " + JSON.stringify($scope.pick));
+        
+        console.log("error = " + err);
+        $scope.alerts.push({type:'danger',msg: 'Pick not archived!'});
+      });
+    
+
+  }
+
+
+
     $scope.updatePick = function(){
       console.log("adminController: updatePick: call node service to update Pick " + JSON.stringify($scope.pick));
       // debugger;
@@ -211,6 +268,7 @@ angular.module("wagerCrony")
         "_id":$scope.pick._id,  
         "league": $scope.pick.league,
         "pickTeam":$scope.pick.pickTeam,
+        "pickLogo":$scope.pick.pickLogo,
         "pickLine":$scope.pick.pickLine,
         "pickMoneyLine":$scope.pick.pickMoneyLine,
         "result":$scope.pick.result,        
@@ -219,7 +277,8 @@ angular.module("wagerCrony")
         "homeTeam": $scope.pick.homeTeam,
         "eventDate": $scope.pick.eventDate,
         "description":$scope.pick.description,
-        "creator":$rootScope.globals.currentUser.username
+        "creator":$rootScope.globals.currentUser.username,
+        "archived":false
       }
 
 
@@ -253,6 +312,7 @@ angular.module("wagerCrony")
         data:{
           "league": $scope.pick.league,
           "pickTeam":$scope.pick.pickTeam,
+          "pickLogo":$scope.pick.pickLogo,
           "pickLine":$scope.pick.pickLine,
           "pickMoneyLine":$scope.pick.pickMoneyLine,
           "result":$scope.pick.result,
@@ -260,7 +320,8 @@ angular.module("wagerCrony")
           "homeTeam": $scope.pick.homeTeam,
           "eventDate": $scope.pick.eventDate,
           "description":$scope.pick.description,
-          "creator":$rootScope.globals.currentUser.username
+          "creator":$rootScope.globals.currentUser.username,
+          "archived":false
         }
       }).then(function(res){
         
