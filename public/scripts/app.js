@@ -151,6 +151,7 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
 	function run($rootScope, $location, $cookies, $http, authenticationService) {
         // keep user logged in after page refresh
 				// debugger;
+				
 				console.log('app.js, run(), this is value of globals cookie = ', $cookies.getObject('globals'));
         $rootScope.globals = $cookies.getObject('globals') || {};
         if ($rootScope.globals.currentUser) {
@@ -163,6 +164,7 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
         	console.log("next = " + next);
 					console.log("current = " + current);
 					console.log("$location.path = " + $location.path());
+					$rootScope.location  = $location.path();
 					// debugger;
             // redirect to login page if not logged in and trying to access a restricted page
             var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest']) === -1;

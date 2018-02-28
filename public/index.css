@@ -92,6 +92,27 @@ accordion>.panel-heading-win{
   background-image: "images/backgroundRink.jpg" !important;
 }
 
+/*login screen styles*/
+.md-loginTransparent {
+  background-color: transparent;
+}
+
+.md-loginInput label{
+  color:#d9e6fc !important;
+}
+
+.md-loginInput {
+  border-bottom: 1px solid; color:#d9e6fc  !important;
+}
+
+
+.md-loginInput.md-input-focused{
+  color:#d9e6fc !important;
+  border-bottom: 1px solid; color:#d9e6fc  !important;
+}
+
+
+
 
 /*result class*/
 .result_loss {

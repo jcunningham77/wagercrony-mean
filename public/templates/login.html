@@ -6,13 +6,13 @@
   <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
   
 </div>
-<md-content layout-padding>
+<md-content layout-padding class="md-loginTransparent">
     <form name="loginForm"  ng-show="!showResetPassword">
       <div layout="column" layout-align="center">
 
             <div layout="row">
               <div  flex="66" flex-offset="15">
-                <md-input-container class="md-block">
+                <md-input-container class="md-block md-loginInput">
                   <label>Email Address:</label>
                   <input required name="emailAddress" ng-model="emailAddress">
                   <div ng-messages="loginForm.emailAddress.$error">
