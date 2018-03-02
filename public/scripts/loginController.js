@@ -1,8 +1,8 @@
 'use strict';
 angular.module("wagerCrony")
-.controller('loginController', function ($scope,$http, $location, dataService, authenticationService, $animate) {
+.controller('loginController', function ($scope,$http, $location, dataService, authenticationService, $animate, $mdToast, $document) {
 
-  $scope.name = "Matt McMonigle";
+  
   $scope.controllerName = "LoginController";
 
   var TAG = "loginController";
@@ -17,6 +17,39 @@ angular.module("wagerCrony")
 
 
   $scope.showResetPassword = false;
+
+  //toast stuffs//todo - extract into it's own controller
+  var last = {
+    bottom: false,
+    top: true,
+    left: false,
+    right: true
+  };
+  $scope.toastPosition = angular.extend({},last);
+  $scope.getToastPosition = function() {
+    sanitizePosition();
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  }
+  function sanitizePosition() {
+    var current = $scope.toastPosition;
+    if ( current.bottom && last.top ) current.top = false;
+    if ( current.top && last.bottom ) current.bottom = false;
+    if ( current.right && last.left ) current.left = false;
+    if ( current.left && last.right ) current.right = false;
+    last = angular.extend({},current);
+  }
+
+  //
+  $scope.showSimpleToast = function(message) {
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent(message)
+        .position($scope.getToastPosition())
+        .hideDelay(3000)
+    );
+  }
 
 
   $scope.login = function(){
@@ -41,7 +74,8 @@ angular.module("wagerCrony")
                         console.log('remove shake class');
                         $animate.removeClass(element, 'shake');
                       });
-                    $scope.alerts.push({type: 'danger',msg: response.message});
+                    // $scope.alerts.push({type: 'danger',msg: response.message});
+                    $scope.showSimpleToast(response.message);
                     console.log("LoginController.login, response is failure, message from Backendless = " + response.message);
                     //TODO work on flash service for error feedback
               // flashService.Error(response.message);

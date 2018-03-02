@@ -93,7 +93,9 @@
 			};
 		})
 		.config(function($mdThemingProvider) {
-			$mdThemingProvider.theme('default');
+			$mdThemingProvider.theme('default')
+				
+				.dark();
 		})
     .config(function($routeProvider){
 		$routeProvider
@@ -137,7 +139,12 @@
 		    templateUrl: 'templates/formTest.html',
 		    controller: 'formTestController'
 
-		  }) 			 			 			  			  		  
+			}) 			 		
+		  .when('/LayoutTest', {				
+		    templateUrl: 'templates/layoutTest.html',
+		    controller: 'formTestController'
+
+		  }) 						 			  			  		  
 		  .otherwise({ redirectTo: '/Login' });
 		})
 
@@ -164,9 +171,12 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
 					console.log("current = " + current);
 					console.log("$location.path = " + $location.path());
 					// debugger;
+					$rootScope.location  = $location.path();
+
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest']) === -1;
-            var loggedIn = $rootScope.globals.currentUser;
+            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest','/LayoutTest']) === -1;
+						var loggedIn = $rootScope.globals.currentUser;
+						console.log('restricted page = ' + restrictedPage);
 						
 						
 						if (restrictedPage && !loggedIn) {

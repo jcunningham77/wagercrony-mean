@@ -51,7 +51,8 @@
 		    
     </head>
 
-    <body ng-app="wagerCrony" ng-controller="rootController">
+    <body ng-app="wagerCrony" ng-controller="rootController" ng-style="{'background-image':'url(images/backgroundRink.jpg)'}">
+
 
 
         <style>
@@ -63,9 +64,9 @@
             }
         </style>
 
-        <div class="container">
+        <div class="container" class="md-loginTransparent">
 
-            <div ng-controller="collapseNavController">
+                <div ng-controller="collapseNavController" ng-show="location!='/Login'">
                 <nav class="navbar navbar-default">
                     <nav class="navbar navbar-default" role="navigation">
                         <div class="navbar-header">

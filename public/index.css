@@ -88,9 +88,15 @@ accordion>.panel-heading-win{
   /* Likely future */ 
 } 
 
-.body{
+/* .body{
   background-image: "images/backgroundRink.jpg" !important;
+} */
+
+/*login screen styles*/
+.md-loginTransparent {
+  background-color: transparent;
 }
+
 
 
 /*result class*/
