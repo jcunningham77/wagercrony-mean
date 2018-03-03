@@ -12,6 +12,9 @@
 
   .material-icons.md-18 { font-size: 18px; }
 
+  .material-icons.md-light { color:#6f7b85; }
+  
+
   @keyframes shake {
     0% {transform: translateX(0);}
     12.5% {transform: translateX(-6px) rotateY(-5deg)}

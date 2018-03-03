@@ -9,52 +9,49 @@
 
 <form name="loginForm">    
 <div layout="column">
+
+    <div style="min-height: 30px;">
+
+      </div>
+  
   <div align="center">
-      <h3 class=".md-headline" style="color:#e8f0ff;">PremiumHockeyPicks.com</h3>
+      
+      <img src="images\PHP-logoMobile.png">
   </div>
   <!-- <form name="loginForm"  ng-show="!showResetPassword"> -->
   
-  <div layout="row">
-      <div flex="20"></div>
-      <div flex="20" align="center">
-          <h5 class=".md-title"  style="color:#6f7b86">Sign In</h5>
-      </div>
-      <div flex="20">
-        
-      </div>
-      <div flex="20"  align="center">
-          <h5 class=".md-display-2"><a href="#!/Register" class=".md-title" style="color:#6f7b86">Sign Up</a></h5>
-      </div>
-      <div flex="20"></div>
-  </div>
 
-  <div style="min-height: 200px;">
+
+  <div style="min-height: 300px;">
 
   </div>
 
 
   <div layout="row">
-    <div flex="30"></div>
-    <div flex="40">
+    <div flex="20"></div>
+    <div flex="60">
         
           <md-input-container class="md-block">
             <label>Email Address:</label>
-            <input required name="emailAddress" ng-model="emailAddress">
+            
+            <md-icon md-svg-src="../images/ic_mail_outline_white_24px.svg"></md-icon>
+            <input required name="emailAddress" ng-model="emailAddress"  md-no-asterisk>
             <div ng-messages="loginForm.emailAddress.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
       </div>  
-      <div flex="30"></div>
+      <div flex="20"></div>
   </div>
 
   <div layout="row">
-      <div flex="30"></div>
-      <div flex="40">
+      <div flex="20"></div>
+      <div flex="60">
           
           <md-input-container class="md-block">
               <label>Password:</label>
-              <input required type="password" step="any" name="password" ng-model="password" min="8"  />
+              <md-icon md-svg-src="../images/ic_lock_outline_white_24px.svg"></md-icon>
+              <input required type="password" step="any" name="password" ng-model="password" min="8"  md-no-asterisk />
               <div ng-messages="loginForm.password.$error" multiple md-auto-hide="false">
                 <div ng-message="required">
                   You need a password.
@@ -62,19 +59,34 @@
               </div>
             </md-input-container>
         </div>  
-        <div flex="30"></div>
+        <div flex="20"></div>
     </div>  
     <div align="center">
         <div>
-            <md-button class="md-raised md-primary" type="submit" ng-click="login();">Login</md-button>
+            <!-- <md-button class="md-raised md-primary" type="submit" ng-click="login();">Login</md-button> -->
+            <img src="images\PHP-logoButtonLogin.png" ng-click="login();">
         </div>
     </div>    
 
-    <div align="center">
+    <div layout="row">
+        <div flex="20"></div>
+        <div flex="20" align="center">
+            <h5 class=".md-title"  style="color:#6f7b86">Forget Password?</h5>
+        </div>
+        <div flex="20">
+          
+        </div>
+        <div flex="20"  align="center">
+            <h5 class=".md-display-2"><a href="#!/Register" class=".md-title" style="color:#6f7b86">Create Account</a></h5>
+        </div>
+        <div flex="20"></div>
+    </div>    
+
+    <!-- <div align="center">
         <div>
             <md-button  class="md-warn" ng-click="showResetPassword = !showResetPassword">Forgot Password?</md-button>
         </div>  
-    </div>  
+    </div>   -->
 </div>
 </form>
 
