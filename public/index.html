@@ -39,6 +39,7 @@
         <script type="text/javascript" src="scripts/aboutController.js"></script>
         <script type="text/javascript" src="scripts/hedgeController.js"></script>
         <script type="text/javascript" src="scripts/loginController.js"></script>
+        <script type="text/javascript" src="scripts/resetPasswordController.js"></script>
         <script type="text/javascript" src="scripts/picksController.js"></script>
         <script type="text/javascript" src="scripts/trackController.js"></script>
         <script type="text/javascript" src="scripts/formTestController.js"></script>
@@ -66,7 +67,7 @@
 
         <div class="container" class="md-loginTransparent">
 
-                <div ng-controller="collapseNavController" ng-show="location!='/Login'">
+                <div ng-controller="collapseNavController" ng-show="(location!='/Login'&&location!='/Register'&&location!='/ResetPassword')">
                 <nav class="navbar navbar-default">
                     <nav class="navbar navbar-default" role="navigation">
                         <div class="navbar-header">

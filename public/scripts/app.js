@@ -139,7 +139,12 @@
 		    templateUrl: 'templates/formTest.html',
 		    controller: 'formTestController'
 
-			}) 			 		
+			}) 		
+		  .when('/ResetPassword', {				
+		    templateUrl: 'templates/resetPassword.html',
+		    controller: 'resetPasswordController'
+
+			}) 				 		
 		  .when('/LayoutTest', {				
 		    templateUrl: 'templates/layoutTest.html',
 		    controller: 'formTestController'
@@ -174,7 +179,7 @@ run.$inject = ['$rootScope', '$location', '$cookies', '$http', 'authenticationSe
 					$rootScope.location  = $location.path();
 
             // redirect to login page if not logged in and trying to access a restricted page
-            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest','/LayoutTest']) === -1;
+            var restrictedPage = $.inArray($location.path(), ['/Login', '/Register', '/About','FormTest','/LayoutTest','/ResetPassword']) === -1;
 						var loggedIn = $rootScope.globals.currentUser;
 						console.log('restricted page = ' + restrictedPage);
 						

@@ -1,9 +1,4 @@
-angular.module('wagerCrony').controller('registerController', function ($scope, $location, dataService, authenticationService) {
-    // debugger;
-    $scope.controllerName = "RegisterController";
-
-
-
+angular.module('wagerCrony').controller('resetPasswordController', function ($scope, $location, dataService, authenticationService, $mdToast, $document) {
     //toast stuffs//todo - extract into it's own controller
     var last = {
         bottom: false,
@@ -37,30 +32,18 @@ angular.module('wagerCrony').controller('registerController', function ($scope, 
         );
     }
 
-    $scope.register = function () {
+    $scope.resetpassword = function () {
 
-        dataService.register($scope.email, $scope.password).then(function (response) {
+        console.log('resetpasswordController - reset password');
+        dataService.resetpassword($scope.email).then(function (response) {
             if (response.success) {
-
-                console.log("LoginController.login, success response data = " + JSON.stringify(response.data));
                 // debugger;
+                console.log('reset password link has been set');
+                $scope.showSimpleToast('Check Email For Reset Password Link');
 
-                // console.log("LoginController.login - data from response to be stored in auth:");
-                console.log("email:" + response.data.config.data.username);
-                console.log("pw:" + response.data.config.data.password);
-                authenticationService.SetCredentials(response.data);
-                // vm.dataLoading = false;
-
-                $location.path('/Track');
             } else {
-
-                $scope.alerts.push({ type: 'danger', msg: response.message });
-                console.log("registerController.login, response is failure, message from Backendless = " + response.message);
-                $scope.showSimpleToast(response.message);
+                console.log('reset password didn\'t go correctly');
             }
         });
-
     }
-
-
 });
