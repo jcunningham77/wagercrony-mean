@@ -14,6 +14,7 @@ var pickSchema = new Schema({
     description:String,
     createDate:Date,
     creator:String,
+    modifiedBy:String,
     archived: { type: Boolean, default: false }
 });
 

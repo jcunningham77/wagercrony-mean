@@ -1,86 +1,103 @@
 .inputdemoErrors .inputErrorsApp {
-  min-height: 48px; }
+  min-height: 48px;
+}
 
-.inputdemoErrors md-input-container > p {
+.inputdemoErrors md-input-container>p {
   font-size: 0.8em;
   text-align: left;
-  width: 100%; }
+  width: 100%;
+}
 
-  .boldMenuItem {
-    font-weight: bold;
+.boldMenuItem {
+  font-weight: bold;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-light {
+  color: #6f7b85;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
   }
-
-  .material-icons.md-18 { font-size: 18px; }
-
-  .material-icons.md-light { color:#6f7b85; }
-  
-
-  @keyframes shake {
-    0% {transform: translateX(0);}
-    12.5% {transform: translateX(-6px) rotateY(-5deg)}
-    37.5% {transform: translateX(5px) rotateY(4deg)}
-    62.5% {transform: translateX(-3px) rotateY(-2deg)}
-    87.5% {transform: translateX(2px) rotateY(1deg)}
-    100% {transform: translateX(0)}
+  12.5% {
+    transform: translateX(-6px) rotateY(-5deg)
   }
-  
+  37.5% {
+    transform: translateX(5px) rotateY(4deg)
+  }
+  62.5% {
+    transform: translateX(-3px) rotateY(-2deg)
+  }
+  87.5% {
+    transform: translateX(2px) rotateY(1deg)
+  }
+  100% {
+    transform: translateX(0)
+  }
+}
+
 .shake {
   animation: shake 400ms ease-in-out;
 }
 
- /* .panel-heading-win {
+/* .panel-heading-win {
   background-color: green !important;
 } */
 
-accordion>.panel-heading-win{
+accordion>.panel-heading-win {
   background-color: #128F04;
 }
 
+md-input-container label {
+  font-weight: normal;
+}
 
-  md-input-container label{
-    font-weight: normal;
-  }
+md-input-container label-bold {
+  font-weight: bold;
+}
 
-  md-input-container label-bold{
-    font-weight:bold;
-  }
+/* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
 
-  
+}
 
+.selectdemoSelectHeader .demo-header-searchbox {
+  border: none;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
 
-  .selectdemoSelectHeader {
-  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
-  .selectdemoSelectHeader .demo-header-searchbox {
-    border: none;
-    outline: none;
-    height: 100%;
-    width: 100%;
-    padding: 0; }
-  .selectdemoSelectHeader .demo-select-header {
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
-    padding-left: 10.667px;
-    height: 48px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: auto; }
-  .selectdemoSelectHeader md-content._md {
-    max-height: 240px; }
+.selectdemoSelectHeader .demo-select-header {
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+  padding-left: 10.667px;
+  height: 48px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto;
+}
 
-
+.selectdemoSelectHeader md-content._md {
+  max-height: 240px;
+}
 
 .listdemoListControls md-divider {
   margin-top: 0;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 
 .listdemoListControls md-list {
-  padding-top: 0; }
+  padding-top: 0;
+}
 
-.listdemoListControls md-list-item > p,
-.listdemoListControls md-list-item > .md-list-item-inner > p,
-.listdemoListControls md-list-item .md-list-item-inner > p,
-.listdemoListControls md-list-item .md-list-item-inner > .md-list-item-inner > p {
+.listdemoListControls md-list-item>p, .listdemoListControls md-list-item>.md-list-item-inner>p, .listdemoListControls md-list-item .md-list-item-inner>p, .listdemoListControls md-list-item .md-list-item-inner>.md-list-item-inner>p {
   -webkit-user-select: none;
   /* Chrome all / Safari all */
   -moz-user-select: none;
@@ -88,34 +105,44 @@ accordion>.panel-heading-win{
   -ms-user-select: none;
   /* IE 10+ */
   user-select: none;
-  /* Likely future */ 
-} 
+  /* Likely future */
+}
 
 /* .body{
   background-image: "images/backgroundRink.jpg" !important;
 } */
 
 /*login screen styles*/
+
 .md-loginTransparent {
   background-color: transparent;
 }
 
-
-
 /*result class*/
+
 .result_loss {
   color: red!important;
 }
+
 .result_win {
-  color:green!important;
+  color: green!important;
 }
 
-.md-avatar-size {
-  
+@media (max-width: 505px) {
+  .md-avatar-size {
     -webkit-box-flex: 0;
     -webkit-flex: none;
+    width: 65px!important;
+    height: 65px!important;
+  }
+}
 
+@media (min-width: 505px) {
+  .md-avatar-size {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
     width: 110px!important;
-    height: 110px!important;
+    height: 110px!important;    
 
+  }
 }

@@ -88,7 +88,7 @@ module.exports = function(app){
                         homeTeam:req.body.data.homeTeam,
                         eventDate:new Date(req.body.data.eventDate),
                         description:req.body.data.description,
-                        creator:req.body.data.creator,
+                        modifiedBy:req.body.data.modifiedBy,
                         archived:req.body.data.archived
                      };
         var options = {

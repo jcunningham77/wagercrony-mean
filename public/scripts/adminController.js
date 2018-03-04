@@ -238,7 +238,7 @@ angular.module("wagerCrony")
             "homeTeam": pick.homeTeam,
             "eventDate": pick.eventDate,
             "description": pick.description,
-            "creator": $rootScope.globals.currentUser.username,
+            "modifiedBy": $rootScope.globals.currentUser.username,
             "archived": true
           }
 
@@ -272,7 +272,7 @@ angular.module("wagerCrony")
 
     $scope.updatePick = function () {
       console.log("adminController: updatePick: call node service to update Pick " + JSON.stringify($scope.pick));
-      // debugger;
+      debugger;
       $http.put('/api/pick/',
         {
           data: {
@@ -288,7 +288,7 @@ angular.module("wagerCrony")
             "homeTeam": $scope.pick.homeTeam,
             "eventDate": $scope.pick.eventDate,
             "description": $scope.pick.description,
-            "creator": $rootScope.globals.currentUser.username,
+            "modifiedBy": $rootScope.globals.currentUser.username,
             "archived": false
           }
 

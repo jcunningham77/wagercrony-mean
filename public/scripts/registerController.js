@@ -51,7 +51,7 @@ angular.module('wagerCrony').controller('registerController', function ($scope, 
                 authenticationService.SetCredentials(response.data);
                 // vm.dataLoading = false;
 
-                $location.path('/Track');
+                $location.path('/Picks');
             } else {
 
                 $scope.alerts.push({ type: 'danger', msg: response.message });

@@ -65,7 +65,7 @@ angular.module("wagerCrony")
                     authenticationService.SetCredentials(response.data);
                     // vm.dataLoading = false;
 
-                    $location.path('/Track');
+                    $location.path('/Picks');
                 } else {
                     // debugger;
                     var element = angular.element(document).find(loginForm);
