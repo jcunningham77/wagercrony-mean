@@ -37,7 +37,7 @@ angular.module("wagerCrony")
 
 
     $scope.pick = {};
-    $scope.pick.pickLogo = "../images/question_icon.png";
+    $scope.pick.pickLogo = "../images/blueQuestionTrans75.png";
     $scope.setDefaultEventDate = function () {
       // $scope.dt = new Date();
       $scope.dt = new Date();

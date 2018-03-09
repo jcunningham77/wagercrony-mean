@@ -108,9 +108,20 @@ md-input-container label-bold {
   /* Likely future */
 }
 
-/* .body{
-  background-image: "images/backgroundRink.jpg" !important;
-} */
+.headerLogo img {
+	display: block;
+  margin: 0 auto;
+}
+
+.backgroundImage{
+  /* background-image: "images/backgroundRink.jpg" !important; */
+  background-position-y: 60px;
+  background-image:url(images/backgroundRink.jpg);
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
+  background-color:black;
+}
 
 /*login screen styles*/
 

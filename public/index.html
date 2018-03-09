@@ -55,7 +55,9 @@
 
 </head>
 
-<body ng-app="wagerCrony" ng-controller="rootController" ng-style="{'background-image':'url(images/backgroundRink.jpg)','background-repeat': 'repeat-y','background-attachment': 'fixed','background-size':'cover'}">
+<!-- <body ng-app="wagerCrony" ng-controller="rootController" ng-style="{'background-image':'url(images/backgroundRink.jpg)','background-repeat': 'repeat-y','background-attachment': 'fixed','background-size':'cover'}"> -->
+
+<body ng-app="wagerCrony" ng-controller="rootController" class="backgroundImage">
 
 
 
@@ -69,15 +71,18 @@
         }
     </style>
 
-    <div class="container" class="md-loginTransparent">
+    <!-- <div class="container" class="md-loginTransparent"> -->
+    <div layout="column" layout-align="start" ng-cloak class="md-loginTransparent">
+
+        <!-- <md-content layout-padding> -->
 
 
-        <div style="min-height: 40px;">
+        <div style="min-height: 10px;">
 
         </div>
 
-        <div align="center">
-            <img src="images\PHP-logoMobile.png">
+        <div class="headerLogo">
+            <img src="images\PHP-logoOctinFont.png">
         </div>
 
         <div ng-controller="navBarController" ng-cloak ng-show="(location!='/Login'&&location!='/Register'&&location!='/ResetPassword')">
@@ -164,6 +169,8 @@
 
 
     </div>
+
+    <!-- </md-content> -->
 
 </body>
 
