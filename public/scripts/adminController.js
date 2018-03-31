@@ -1,7 +1,7 @@
 
 'use strict';
 angular.module("wagerCrony")
-  .controller('adminController', function ($scope, $http, $location, $route, $window, $rootScope, $mdDialog) {
+  .controller('adminController', function ($scope, $http, $location, $route, $window, $rootScope, $mdDialog, $mdToast) {
 
     $scope.sportType = "";
 
@@ -11,16 +11,52 @@ angular.module("wagerCrony")
 
 
 
+
+
+    var last = {
+      bottom: true,
+      top: false,
+      left: false,
+      right: true
+    };
+    $scope.toastPosition = angular.extend({}, last);
+    $scope.getToastPosition = function () {
+      sanitizePosition();
+      return Object.keys($scope.toastPosition)
+        .filter(function (pos) { return $scope.toastPosition[pos]; })
+        .join(' ');
+    }
+    function sanitizePosition() {
+      var current = $scope.toastPosition;
+      if (current.bottom && last.top) current.top = false;
+      if (current.top && last.bottom) current.bottom = false;
+      if (current.right && last.left) current.left = false;
+      if (current.left && last.right) current.right = false;
+      last = angular.extend({}, current);
+    }
+
+    //
+    $scope.showSimpleToast = function (message) {
+      // debugger;
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent(message)
+          .position($scope.getToastPosition())
+          .hideDelay(3000)
+      );
+    }
+
     //check if there were any stored alerts before the page was reloaded
     var alert = $window.localStorage.getItem("alert");
     if (alert) {
       console.log("retrieved alert from local window storage, alert = " + alert);
       console.log("retrieved alert from local window storage, alert = " + JSON.parse(alert));
-      $scope.alerts.push(JSON.parse(alert));
+      // $scope.alerts.push(JSON.parse(alert));
+      // debugger;
+      var alertObj = JSON.parse(alert);
+      $scope.showSimpleToast(alertObj.msg);
       $window.localStorage.removeItem("alert");
-
     }
-
 
 
     $scope.leagues = ['MLB', 'NHL', 'NFL'];
@@ -37,7 +73,7 @@ angular.module("wagerCrony")
 
 
     $scope.pick = {};
-    $scope.pick.pickLogo = "../images/blueQuestionTrans75.png";
+
     $scope.setDefaultEventDate = function () {
       // $scope.dt = new Date();
       $scope.dt = new Date();
@@ -120,23 +156,10 @@ angular.module("wagerCrony")
         console.log("setFormPopulated: form is  not populated");
         $scope.isFormPopulated = false;
       }
-      $scope.setLogo();
+
     };
 
-    $scope.setLogo = function () {
-      var selectedTeam;
-      if ($scope.pick === undefined) {
-        console.log("pick is undefined");
-      } else {
-        selectedTeam = $scope.teamsOutcomeList.filter(function (obj) {
-          return obj.name == $scope.pick.pickTeam;
-        });
-      }
-      // debugger;
-      console.log("set logo's selected team:" + JSON.stringify(selectedTeam));
-      console.log("the associated logo = ")
-      $scope.pick.pickLogo = selectedTeam[0].logo;
-    };
+
 
     $scope.getSelectedText = function () {
       // console.log('getSelectedText executed');
@@ -249,12 +272,8 @@ angular.module("wagerCrony")
           console.log('in success callback after updating pick = ' + JSON.stringify(res));
           //store the alert in local session data until figure out how the reset the form without
           //reloading the browser
-          // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
-
-          $window.localStorage.setItem("alert", JSON.stringify({ type: 'success', msg: 'Pick archived!' }));
+          $scope.alerts.push({ type: 'success', msg: 'Pick saved!' });
           $scope.pick = {};
-
-          // $location.path('/Admin');
           $route.reload();
 
 
@@ -262,7 +281,9 @@ angular.module("wagerCrony")
           console.log("in error callback after attempting to archive pick = " + JSON.stringify($scope.pick));
 
           console.log("error = " + err);
-          $scope.alerts.push({ type: 'danger', msg: 'Pick not archived!' });
+          $scope.alerts.push({ type: 'success', msg: 'Pick not saved!' });
+          $scope.pick = {};
+          $route.reload();
         });
 
 
@@ -272,7 +293,7 @@ angular.module("wagerCrony")
 
     $scope.updatePick = function () {
       console.log("adminController: updatePick: call node service to update Pick " + JSON.stringify($scope.pick));
-      debugger;
+      // debugger;
       $http.put('/api/pick/',
         {
           data: {
@@ -299,12 +320,13 @@ angular.module("wagerCrony")
           console.log('in success callback after updating pick = ' + JSON.stringify(res));
           //store the alert in local session data until figure out how the reset the form without
           //reloading the browser
-          // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
 
           $window.localStorage.setItem("alert", JSON.stringify({ type: 'success', msg: 'Pick updated!' }));
           $scope.pick = {};
 
-          // $location.path('/Admin');
+
+          //todo - might need to keep this until we can figure out how to reset the form without
+          //reloading the page
           $route.reload();
 
 
@@ -312,7 +334,7 @@ angular.module("wagerCrony")
           console.log("in error callback after attempting to update pick = " + JSON.stringify($scope.pick));
 
           console.log("error = " + err);
-          $scope.alerts.push({ type: 'danger', msg: 'Pick not updated!' });
+          $window.localStorage.setItem("alert", JSON.stringify({ type: 'failure', msg: 'Pick not updated!' }));
         });
     }
 
@@ -343,6 +365,7 @@ angular.module("wagerCrony")
           // $scope.alerts.push({type:'success',msg: 'Pick saved!'});
 
           $window.localStorage.setItem("alert", JSON.stringify({ type: 'success', msg: 'Pick saved!' }));
+
           $scope.pick = {};
 
           // $location.path('/Admin');

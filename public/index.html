@@ -46,11 +46,9 @@
     <script type="text/javascript" src="scripts/picksController.js"></script>
     <script type="text/javascript" src="scripts/trackController.js"></script>
     <script type="text/javascript" src="scripts/formTestController.js"></script>
-    <script type="text/javascript" src="scripts/alertController.js"></script>
     <script type="text/javascript" src="scripts/registerController.js"></script>
     <script type="text/javascript" src="scripts/adminController.js"></script>
     <script type="text/javascript" src="scripts/dataService.js"></script>
-
     <script type="text/javascript" src="scripts/accordionController.js"></script>
 
 </head>
@@ -106,64 +104,6 @@
 
             </md-content>
         </div>
-
-        <!-- <div ng-controller="collapseNavController" ng-show="(location!='/Login'&&location!='/Register'&&location!='/ResetPassword')">
-            <nav class="navbar navbar-default">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Premium Hockey Picks</a>
-                    </div>
-
-
-                    <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li ng-show="!globals.currentUser"><a href="#!/Login">Login</a></li> 
-
-                            <li ng-show="!globals.currentUser"><a href="#!/Register">Register</a></li>                             
-                            <li ng-show="globals.currentUser.admin">
-                                <a href="#!/Admin">
-                                    <span ng-class="{'boldMenuItem':isActive('/Admin')}">Admin</span>
-                                </a>
-                            </li>
-                            <li ng-show="globals.currentUser">
-                                <a href="#!/Picks">
-                                    <span ng-class="{'boldMenuItem':isActive('/Picks')}">Picks</span>
-                                </a>
-                            </li>
-                            <li ng-show="globals.currentUser">
-                                <a href="#!/Hedge">
-                                    <span ng-class="{'boldMenuItem':isActive('/Hedge')}">Hedge</span>
-                                </a>
-                            </li>
-                            <li ng-show="globals.currentUser">
-                                <a href="#!/Track">
-                                    <span ng-class="{'boldMenuItem':isActive('/Track')}">Track</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!/About">
-                                    <span ng-class="{'boldMenuItem':isActive('/About')}">About</span>
-                                </a>
-                            </li>
-                            <li ng-show="globals.currentUser">
-                                <a ng-click="logout()" href="#Login">Logout</a>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                </nav>
-        </div> -->
-
-
-
-
 
         <ng-view></ng-view>
 

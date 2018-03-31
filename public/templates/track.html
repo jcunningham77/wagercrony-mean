@@ -1,17 +1,17 @@
 
-<div ng-controller="AlertCtrl">
+<!-- <div ng-controller="AlertCtrl">
   <script type="text/ng-template" id="alert.html">
     <div ng-transclude></div>
   </script>
 
   <div uib-alert ng-repeat="alert in $parent.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
 
-</div>
+</div> -->
 
 
 <div ng-cloak layout="column" layout-align="start" ng-cloak>
     <form name="trackForm" novalidate>
-        <md-content layout-padding>    
+        <md-content layout-padding class="md-loginTransparent">    
             <h3 class="md-headline">Enter a Bet to Track</h3>
             <div layout="row" layout-align="start" ng-cloak>
                 <md-input-container>
@@ -91,42 +91,45 @@
 </div>
 
 <md-divider></md-divider>
-<br>
 
-<h3 class="md-headline">Saved Bets</h3>
-<span class="md-subhead">Sort By: </span>&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="Regular 12px" ng-click="sortBy('league')">League &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="Regular 12px" ng-click="sortBy('homeTeam')">Home &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="Regular 12px" ng-click="sortBy('visitingTeam')">Visitor &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="Regular 12px" ng-click="sortBy('createDate')">Date Recorded &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="Regular 12px" ng-click="sortBy('eventDate')">Event Date &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp;
-<br><br>
+<div flex-gt-sm="100" flex>
+    <md-content>
+        <md-list flex>
+            <md-subheader class="md-no-sticky">Tracked Bets</md-subheader>
+            <span class="md-caption">Sort By: </span>&nbsp;&nbsp;&nbsp;&nbsp;            
+            <span class="md-caption" ng-click="sortBy('homeTeam')">Home &nbsp;
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="md-caption" ng-click="sortBy('visitingTeam')">Visitor &nbsp;
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="md-caption" ng-click="sortBy('eventDate')">Event Date &nbsp;
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br>
+            <br>
+            <md-list-item class="md-3-line" ng-repeat="bet in savedBets | orderBy:propertyName:reverse" ng-click="showBetDetails(pick)">
+                <div class="md-list-item-text" layout="column">
+                    <h5 class="md-title">{{ bet.pickTeam }}, {{bet.eventDate| date:'shortDate'}} </h5>
+                    <p class="md-body-2">{{ bet.visitingTeam }} @ {{bet.homeTeam}}</p>
+                    <p class="md-body-2">Wager:{{ bet.wager }}</p>
+                    <p class="md-body-2">Result:{{ bet.result }}</p>
 
-<!-- <pre>Sort by = {{propertyName}}; reverse = {{reverse}}</pre> -->
+                    <p ng-class="{'result_win':(bet.result===1),'result_loss':(bet.result===-1)}">{{ (pick.result===1)?'Win':(pick.result===-1)?'Loss':'' }}</p>
+                </div>
+                <md-icon md-svg-src="../images/ic_mode_edit.svg" class="md-secondary" aria-label="Edit Pick" ng-click="editBet(bet)">
+                </md-icon>
+                <md-icon md-svg-src="../images/ic_mode_delete.svg" class="md-secondary" aria-label="Delete Pick" ng-click="deleteBet(bet)">
+                </md-icon>
 
-<div ng-controller="AccordionCtrl">
-    <script type="text/ng-template" id="group-template.html">
-    <div class="panel-heading">
-      <h4 class="panel-title" style="color:#fa39c3">
-        <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-                Saved Bets
-            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
-            Saved Bets
-          </span>
-        </a>
-      </h4>
-    </div>
-    <div class="panel-collapse collapse" uib-collapse="!CollapsHeaderIsOpen">
-      <div class="panel-body" style="text-align: right" ng-transclude></div>
-    </div>
-  </script>
 
-   <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="{{bet.league}}: {{bet.visitingTeam}} @ {{bet.homeTeam}}, {{bet.eventDate| date:'shortDate'}}, Date recorded: {{bet.createDate| date:'short'}}"  ng-repeat="bet in savedBets| orderBy:propertyName:reverse">
-        Wager: {{bet.wager}}<br>
-        Result: {{bet.result}}<br>
-        
-        </div>
-    </uib-accordion>
+
+            </md-list-item>
+
+        </md-list>
+    </md-content>
+
 </div>
+
+
 

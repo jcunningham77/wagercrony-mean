@@ -113,6 +113,11 @@ md-input-container label-bold {
   margin: 0 auto;
 }
 
+.loginPageLinks {
+  color:white;
+  font-weight: bolder;
+}
+
 .backgroundImage{
   /* background-image: "images/backgroundRink.jpg" !important; */
   background-position-y: 60px;

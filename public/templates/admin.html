@@ -1,11 +1,11 @@
-<div ng-controller="AlertCtrl">
+<!-- <div ng-controller="AlertCtrl">
     <script type="text/ng-template" id="alert.html">
           <div ng-transclude></div>
         </script>
 
     <div uib-alert ng-repeat="alert in $parent.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
 
-</div>
+</div> -->
 <div ng-cloak layout="column" layout-align="start" ng-cloak>
     <form name="trackForm">
         <md-content layout-padding  class="md-loginTransparent">
@@ -18,10 +18,6 @@
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-            </div>
-            <div layout="row" layout-align="start" flex>
-                <img ng-src="{{pick.pickLogo}}" class="md-avatar md-avatar-size" />
-                <!-- <img ng-src="{{pick.pickLogo}}" class="md-avatar md-avatar-size" alt="{{pick.pickTeam}}" /> -->
             </div>
             <div layout="row" layout-xs="column" layout-align="start" flex>
                 <div flex="20">
@@ -140,7 +136,6 @@
             <br>
             <br>
             <md-list-item class="md-3-line" ng-repeat="pick in savedPicks | orderBy:propertyName:reverse" ng-click="showPickDetails(pick)">
-                <img ng-src="{{pick.pickLogo}}" class="md-avatar md-avatar-size" alt="{{pick.pickTeam}}" />
                 <div class="md-list-item-text" layout="column">
                     <h5 class="md-title">{{ pick.pickTeam }}, {{pick.eventDate| date:'shortDate'}} </h5>
                     <p class="md-body-2">{{ pick.visitingTeam }} @ {{pick.homeTeam}}</p>

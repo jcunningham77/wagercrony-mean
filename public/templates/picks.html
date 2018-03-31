@@ -21,7 +21,7 @@
       <br>
       <md-list-item class="md-3-line md-loginTransparent" ng-repeat="pick in savedPicks | filter:{creator:'mattmcmonigle@yahoo.com'}| orderBy:propertyName:reverse "
         ng-click="showPickDetails(pick)">
-        <img ng-src="{{pick.pickLogo}}" class="md-avatar md-avatar-size" alt="{{pick.pickTeam}}" />
+        
         <div class="md-list-item-text" layout="column">
 
           <h5 class="md-title">{{ pick.pickTeam }}, {{pick.eventDate| date:'shortDate'}} </h5>

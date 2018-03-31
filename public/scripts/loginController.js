@@ -43,6 +43,7 @@ angular.module("wagerCrony")
 
         //
         $scope.showSimpleToast = function (message) {
+            
             $mdToast.show(
                 $mdToast.simple()
                     .textContent(message)
