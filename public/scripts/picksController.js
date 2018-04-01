@@ -5,6 +5,13 @@ angular.module("wagerCrony")
 		$scope.propertyName = 'eventDate';
 		$scope.reverse = true;
 
+		var last = {
+			bottom: true,
+			top: false,
+			left: false,
+			right: true
+		  };
+
         $scope.toastPosition = angular.extend({}, last);
         $scope.getToastPosition = function () {
             sanitizePosition();

@@ -24,7 +24,7 @@
         
         <div class="md-list-item-text" layout="column">
 
-          <h5 class="md-title">{{ pick.pickTeam }}, {{pick.eventDate| date:'shortDate'}} </h5>
+          <h5 class="md-title">{{ pick.pickTeam }}, {{(pick.pickMoneyLine)&& (pick.pickMoneyLine) + ","}} {{pick.eventDate| date:'shortDate'}} </h5>
           <p class="md-body-2">{{ pick.visitingTeam }} @ {{pick.homeTeam}}</p>
 
 

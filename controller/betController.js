@@ -162,4 +162,19 @@ module.exports = function (app) {
         })
     });
 
+    app.get('api/picksStats', function (req,res){
+        console.log('in the get endpoint for picks');
+
+        Pick.find({ 'archived': false }, function (err, picks) {
+            if (err) {
+                return console.error(err);
+            } else {
+                // console.log(picks);
+                res.status('200').send(picks);
+            }
+
+        })
+        
+    });
+
 };
