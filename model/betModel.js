@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var betSchema = new Schema({
     league:String,
+    betTeam:String,
     visitingTeam:String,
     homeTeam:String,
     eventDate: Date,
@@ -10,6 +11,7 @@ var betSchema = new Schema({
     wager:{ type: Number, min: 0, max: 10000 },
     result:{ type: Number, min: 0, max: 10000 },
     modifiedBy:String,
+    user:String,
     archived: { type: Boolean, default: false }
 });
 

@@ -22,8 +22,12 @@
                     </md-select>
                 </md-input-container>
             </div>
-
-
+            <div layout="row" layout-align="start" ng-cloak>
+                <md-input-container>
+                    <div search-input-text-field-select-list visible="true" label='Winning team' label2='{{messageOnOpen}}' name='betTeam' items="teams"
+                    bind="bet.betTeam" validate="setFormPopulated()"></div>
+                </md-input-container>
+            </div>
             <div layout="row" layout-align="start" flex> 
                     <div flex="45">
                         <div search-input-text-field-select-list visible="true" label='Visiting team' label2='{{messageOnOpen}}' items="teams" bind="bet.visitingTeam"  validate="setFormPopulated()" name="visitingTeam"></div>
@@ -69,12 +73,11 @@
                     <md-input-container class="md-block">
                             <label>Result</label>
                             <input type="number" step="any" name="result" ng-model="bet.result"
-                                max="10000"  ng-blur="setFormPopulated()" required/>
+                                max="10000"  ng-blur="setFormPopulated()"/>
                             <div ng-messages="trackForm.result.$error" multiple md-auto-hide="false">
                                 <div ng-message="max">
                                     Max result is $100,000.
                                 </div>
-                                <div ng-message="required">Result is required.</div>
                             </div>
                     </md-input-container> 
                 </div>  
@@ -108,9 +111,9 @@
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
             <br>
             <br>
-            <md-list-item class="md-3-line" ng-repeat="bet in savedBets | orderBy:propertyName:reverse" ng-click="showBetDetails(pick)">
+            <md-list-item class="md-3-line" ng-repeat="bet in savedBets | orderBy:propertyName:reverse">
                 <div class="md-list-item-text" layout="column">
-                    <h5 class="md-title">{{ bet.pickTeam }}, {{bet.eventDate| date:'shortDate'}} </h5>
+                    <h5 class="md-title">{{ bet.betTeam }}, {{bet.eventDate| date:'shortDate'}} </h5>
                     <p class="md-body-2">{{ bet.visitingTeam }} @ {{bet.homeTeam}}</p>
                     <p class="md-body-2">Wager:{{ bet.wager }}</p>
                     <p class="md-body-2">Result:{{ bet.result }}</p>

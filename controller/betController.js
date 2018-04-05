@@ -13,6 +13,7 @@ module.exports = function (app) {
         console.log('in the post endpoint for bet');
         var bet = new Bet({
             league: req.body.data.league,
+            betTeam: req.body.data.betTeam,
             visitingTeam: req.body.data.visitingTeam,
             homeTeam: req.body.data.homeTeam,
             eventDate: new Date(req.body.data.eventDate),
@@ -37,11 +38,11 @@ module.exports = function (app) {
     app.get('/api/bets/:user', function (req, res) {
         console.log('in the get endpoint for bet');
 
-        Bet.find({ "user": req.params.user }, function (err, bets) {
+        Bet.find({ "user": req.params.user,"archived": false}, function (err, bets) {
             if (err) {
                 return console.error(err);
             } else {
-                // console.log(bets);
+                console.log("bets found: " + bets);
                 res.status('200').send(bets);
             }
 

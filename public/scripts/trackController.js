@@ -77,7 +77,6 @@ angular.module("wagerCrony")
     $scope.setFormPopulated = function () {
       console.log('setFormPopulated');
       if ($scope.bet.wager
-        && $scope.bet.result
         && $scope.bet.visitingTeam
         && $scope.bet.homeTeam
         && $scope.bet.eventDate) {
@@ -210,6 +209,7 @@ angular.module("wagerCrony")
         {
           data: {
             "league": $scope.bet.league,
+            "betTeam": $scope.bet.betTeam,
             "visitingTeam": $scope.bet.visitingTeam,
             "homeTeam": $scope.bet.homeTeam,
             "eventDate": $scope.bet.eventDate,
