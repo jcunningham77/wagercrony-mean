@@ -340,6 +340,9 @@ angular.module("wagerCrony")
 
     $scope.savePick = function () {
       console.log("adminController: savePick: call node service to persist Pick " + JSON.stringify($scope.pick));
+      // debugger;
+
+
       $http.post('/api/pick/',
         {
           data: {

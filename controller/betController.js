@@ -50,14 +50,14 @@ module.exports = function (app) {
     });
 
     app.post('/api/pick', function (req, res) {
-        console.log('in the post endpoint for pick, req = ' + req);
+        
         var pick = new Pick({
             league: req.body.data.league,
             pickTeam: req.body.data.pickTeam,
             pickLogo: req.body.data.pickLogo,
             pickLine: req.body.data.pickLine || null,
             pickMoneyLine: req.body.data.pickMoneyLine || null,
-            result: req.body.data.result || null,
+            result: req.body.data.result || 0,
             visitingTeam: req.body.data.visitingTeam,
             homeTeam: req.body.data.homeTeam,
             eventDate: new Date(req.body.data.eventDate),
@@ -65,7 +65,7 @@ module.exports = function (app) {
             createDate: Date(),
             creator: req.body.data.creator
         });
-
+        console.log('in the post endpoint for pick, req = ' + JSON.stringify(pick));
         pick.save(function (err, pick, numAffected) {
             if (err) {
                 console.log(err);
@@ -163,18 +163,38 @@ module.exports = function (app) {
         })
     });
 
-    app.get('api/picksStats', function (req,res){
-        console.log('in the get endpoint for picks');
+    app.get('/api/picksStats', function (req,res){
+        console.log('in the get endpoint for pickstats');
 
-        Pick.find({ 'archived': false }, function (err, picks) {
+        var wins, total, pending, percentage;
+
+        Pick.where({result:1},{creator:"mattmcmonigle@yahoo.com"},{archived:false}).count(function (err, count) {
             if (err) {
-                return console.error(err);
-            } else {
-                // console.log(picks);
-                res.status('200').send(picks);
+                console.log("error counting wins");
             }
+            console.log('there are %d wins', count);
+            wins = count;
+          });
 
-        })
+          Pick.where({$or:[{result:-1},{result:1}],$and:[{creator:"mattmcmonigle@yahoo.com"},{archived:false}]}).count(function (err, count) {
+            if (err) {
+                console.log("error counting wins");
+            }
+            console.log('there are %d total picks', count);
+            total = count;
+          });          
+
+          Pick.where({result:0},{creator:"mattmcmonigle@yahoo.com"},{archived:false}).count(function (err, count) {
+            if (err) {
+                console.log("error counting wins");
+            }
+            console.log('there are %d pending picks', count);
+            total = count;
+          });            
+
+       
+
+          res.status('200').send("hello");
         
     });
 
