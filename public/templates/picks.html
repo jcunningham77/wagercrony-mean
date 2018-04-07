@@ -5,6 +5,20 @@
         <h1 class="md-display-1 md-loginTransparent">Promoted Picks</h1>
       </div>
 
+      <div layout="column" layout-align="center" class="aggregatePanel">
+        <div align="center" class="md-headline">Aggregated Stats</div>
+        <div layout="row" layout-align="space-around center">
+          <div>Wins: {{pickStats.wins}}
+            <br>Winning Percentage: {{pickStats.percentage}}%</div>
+
+          <div>Total # of Picks: {{pickStats.total}}
+            <br>Pending Picks: {{pickStats.pending}}</div>
+        </div>
+
+      </div>
+      <div align="center">
+        <span class="md-headline md-loginTransparent">Historical Picks</span>
+      </div>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <span class="md-caption">Sort By: </span>&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- <span class="Regular 12px" ng-click="sortBy('league')">League &nbsp;<i class="fa fa-sort" aria-hidden="true"></i> </span>&nbsp;&nbsp;&nbsp;&nbsp; -->
@@ -21,10 +35,11 @@
       <br>
       <md-list-item class="md-3-line md-loginTransparent" ng-repeat="pick in savedPicks | filter:{creator:'mattmcmonigle@yahoo.com'}| orderBy:propertyName:reverse "
         ng-click="showPickDetails(pick)">
-        
+
         <div class="md-list-item-text" layout="column">
 
-          <h5 class="md-title">{{ pick.pickTeam }}, {{(pick.pickMoneyLine)&& (pick.pickMoneyLine) + ","}} {{pick.eventDate| date:'shortDate'}} </h5>
+          <h5 class="md-title">{{ pick.pickTeam }}, {{(pick.pickMoneyLine)&& (pick.pickMoneyLine) + ","}} {{pick.eventDate| date:'shortDate'}}
+            </h5>
           <p class="md-body-2">{{ pick.visitingTeam }} @ {{pick.homeTeam}}</p>
 
 

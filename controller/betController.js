@@ -38,7 +38,7 @@ module.exports = function (app) {
     app.get('/api/bets/:user', function (req, res) {
         console.log('in the get endpoint for bet');
 
-        Bet.find({ "user": req.params.user,"archived": false}, function (err, bets) {
+        Bet.find({ "user": req.params.user, "archived": false }, function (err, bets) {
             if (err) {
                 return console.error(err);
             } else {
@@ -50,7 +50,7 @@ module.exports = function (app) {
     });
 
     app.post('/api/pick', function (req, res) {
-        
+
         var pick = new Pick({
             league: req.body.data.league,
             pickTeam: req.body.data.pickTeam,
@@ -163,39 +163,60 @@ module.exports = function (app) {
         })
     });
 
-    app.get('/api/picksStats', function (req,res){
+    app.get('/api/pickStats', function (req, res) {
         console.log('in the get endpoint for pickstats');
 
-        var wins, total, pending, percentage;
-
-        Pick.where({result:1},{creator:"mattmcmonigle@yahoo.com"},{archived:false}).count(function (err, count) {
+        var winsPromise = Pick.where({ result: 1 }, { creator: "mattmcmonigle@yahoo.com" }, { archived: false }).count(function (err, count) {
             if (err) {
                 console.log("error counting wins");
             }
             console.log('there are %d wins', count);
             wins = count;
-          });
+        }).exec();
 
-          Pick.where({$or:[{result:-1},{result:1}],$and:[{creator:"mattmcmonigle@yahoo.com"},{archived:false}]}).count(function (err, count) {
+        var totalPromise = Pick.where({ $or: [{ result: -1 }, { result: 1 }], $and: [{ creator: "mattmcmonigle@yahoo.com" }, { archived: false }] }).count(function (err, count) {
             if (err) {
                 console.log("error counting wins");
             }
             console.log('there are %d total picks', count);
             total = count;
-          });          
+        }).exec();
 
-          Pick.where({result:0},{creator:"mattmcmonigle@yahoo.com"},{archived:false}).count(function (err, count) {
+        var pendingPromise = Pick.where({ result: 0 }, { creator: "mattmcmonigle@yahoo.com" }, { archived: false }).count(function (err, count) {
             if (err) {
                 console.log("error counting wins");
             }
             console.log('there are %d pending picks', count);
-            total = count;
-          });            
+            pending = count;
+        }).exec();
 
-       
+        var wins, total, pending, percentage;
 
-          res.status('200').send("hello");
-        
+        Promise.all([winsPromise, totalPromise, pendingPromise]).then(values => {
+            console.log("after promise.all = " + values);
+            wins = values[0];
+            total = values[1];
+            pending = values[2];
+
+            percentage = (wins / total).toFixed(2)*100;
+
+            var pickStats = {
+                wins: wins,
+                pending: pending,
+                total: total,
+                percentage: percentage
+
+            }
+
+            console.log("after promise.all, pickStats = " + JSON.stringify(pickStats));
+
+            res.status('200').send(pickStats);
+            console.log("after promise.all, after send response");
+        }, reason => {
+            console.log("rejection reason = " + reason);
+            res.status('500').send(JSON.stringify(reason));
+        });
+
     });
 
 };
