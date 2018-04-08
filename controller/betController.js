@@ -166,12 +166,16 @@ module.exports = function (app) {
     app.get('/api/pickStats', function (req, res) {
         console.log('in the get endpoint for pickstats');
 
+
+
+
+
         var winsPromise = Pick.where({ result: 1 }, { creator: "mattmcmonigle@yahoo.com" }, { archived: false }).count(function (err, count) {
             if (err) {
                 console.log("error counting wins");
             }
             console.log('there are %d wins', count);
-            wins = count;
+
         }).exec();
 
         var totalPromise = Pick.where({ $or: [{ result: -1 }, { result: 1 }], $and: [{ creator: "mattmcmonigle@yahoo.com" }, { archived: false }] }).count(function (err, count) {
@@ -179,7 +183,7 @@ module.exports = function (app) {
                 console.log("error counting wins");
             }
             console.log('there are %d total picks', count);
-            total = count;
+
         }).exec();
 
         var pendingPromise = Pick.where({ result: 0 }, { creator: "mattmcmonigle@yahoo.com" }, { archived: false }).count(function (err, count) {
@@ -187,25 +191,44 @@ module.exports = function (app) {
                 console.log("error counting wins");
             }
             console.log('there are %d pending picks', count);
-            pending = count;
+
         }).exec();
 
-        var wins, total, pending, percentage;
+        var lastTenPromise = Pick.find({ $or: [{ result: -1 }, { result: 1 }], $and: [{ creator: "mattmcmonigle@yahoo.com" }, { archived: false }] }, 'result', { limit: 10 }, function (err, results) {
+            if (err) {
+                console.log("error counting wins");
+            }
+            console.log('Here are the last ten picks = ', results);
 
-        Promise.all([winsPromise, totalPromise, pendingPromise]).then(values => {
+        }).sort({ eventDate: 'desc' }).exec();
+
+        var wins, total, pending, percentage, lastTen, lastTenPercentage;
+
+        Promise.all([winsPromise, totalPromise, pendingPromise, lastTenPromise]).then(values => {
             console.log("after promise.all = " + values);
             wins = values[0];
             total = values[1];
             pending = values[2];
+            lastTen = values[3];
 
-            percentage = (wins / total).toFixed(2)*100;
+            percentage = (wins / total).toFixed(2) * 100;
+
+            var lastTenWins = 0;
+            for (var i = 0; i < lastTen.length; i++) {
+
+                if (lastTen[i].result===1) {
+                    lastTenWins++;
+                }
+            }
+
+            lastTenPercentage = (lastTenWins / 10).toFixed(2) * 100;
 
             var pickStats = {
                 wins: wins,
                 pending: pending,
                 total: total,
-                percentage: percentage
-
+                percentage: percentage,
+                lastTenPercentage: lastTenPercentage
             }
 
             console.log("after promise.all, pickStats = " + JSON.stringify(pickStats));
