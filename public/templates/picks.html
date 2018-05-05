@@ -10,7 +10,7 @@
         <div align="center" class="md-subhead" ng-class="{'result_win':(pickStats.lastTenPercentage>40),'result_loss':(pickStats.lastTenPercentage<50)}">Last Ten Winning Percentage: {{pickStats.lastTenPercentage}}%</div>
         <div layout="row" layout-align="space-around center">
           <div>Wins: {{pickStats.wins}}
-            <br>Winning Percentage: {{pickStats.percentage}}%</div>
+            <br>Winning Percentage: {{pickStats.percentage| number : 2}}%</div>
 
           <div>Total # of Picks: {{pickStats.total}}
             <br>Pending Picks: {{pickStats.pending}}</div>
