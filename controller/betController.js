@@ -170,7 +170,7 @@ module.exports = function (app) {
 
 
 
-        var winsPromise = Pick.where({ result: 1 }, { creator: "mattmcmonigle@yahoo.com" }, { archived: false }).count(function (err, count) {
+        var winsPromise = Pick.where({ result:1,archived:false,creator:"mattmcmonigle@yahoo.com" }).count(function (err, count) {
             if (err) {
                 console.log("error counting wins");
             }
